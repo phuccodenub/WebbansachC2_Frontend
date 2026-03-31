@@ -3,51 +3,81 @@
 > **Mục tiêu:** Demo quy trình làm việc nhóm chuyên nghiệp với Git, sử dụng GitHub Desktop  
 > **Số thành viên:** 7 người  
 > **Công cụ:** GitHub Desktop (KHÔNG sử dụng command line)  
-> **Yêu cầu:** Mỗi feature branch phải có ít nhất 2 commits
+> **Yêu cầu:** Mỗi feature branch phải có ít nhất 2 commits  
+> **Repository:** https://github.com/phuccodenub/WebbansachC2_Frontend.git
 
 ---
 
 ## 📋 MỤC LỤC
 
-1. [Phân Công Công Việc](#1-phân-công-công-việc)
-2. [Cấu Trúc Branch](#2-cấu-trúc-branch)
-3. [Quy Tắc Commit Message](#3-quy-tắc-commit-message)
-4. [Hướng Dẫn Chi Tiết Cho Từng Thành Viên](#4-hướng-dẫn-chi-tiết-cho-từng-thành-viên)
-5. [Quy Trình Merge Request](#5-quy-trình-merge-request)
-6. [Timeline Thực Hiện](#6-timeline-thực-hiện)
-7. [Checklist Hoàn Thành](#7-checklist-hoàn-thành)
+1. [Hiện Trạng Dự Án](#1-hiện-trạng-dự-án)
+2. [Phân Công Công Việc](#2-phân-công-công-việc)
+3. [Cấu Trúc Branch](#3-cấu-trúc-branch)
+4. [Quy Tắc Commit Message](#4-quy-tắc-commit-message)
+5. [Hướng Dẫn Chi Tiết Cho Từng Thành Viên](#5-hướng-dẫn-chi-tiết-cho-từng-thành-viên)
+6. [Quy Trình Merge Request](#6-quy-trình-merge-request)
+7. [Timeline Thực Hiện](#7-timeline-thực-hiện)
+8. [Checklist Hoàn Thành](#8-checklist-hoàn-thành)
 
 ---
 
-## 1. PHÂN CÔNG CÔNG VIỆC
+## 1. HIỆN TRẠNG DỰ ÁN
+
+### 📊 Tổng Quan
+
+| Thành phần | Số lượng | UI hoàn thành | Logic hoàn thành |
+|------------|----------|---------------|------------------|
+| User Pages | 12 | ✅ 95% | ⚠️ 20% |
+| Admin Pages | 5 | ✅ 90% | ⚠️ 15% |
+| Components | 3 | ✅ 100% | ⚠️ 30% |
+| Layouts | 2 | ✅ 100% | ✅ 100% |
+
+### 🔴 VẤN ĐỀ CẦN KHẮC PHỤC
+
+**1. Các form chưa có xử lý:**
+- `LoginPage.tsx` - `handleSubmit` rỗng, không validation
+- `RegisterPage.tsx` - `handleSubmit` rỗng, không validate password confirm
+- `CheckoutPage.tsx` - Form không có state management
+- `ProfilePage.tsx` - Form inputs không connected to state
+
+**2. Dữ liệu hardcoded (cần làm động):**
+- `HomePage.tsx` - 12 sách hardcoded (bestSellers, newBooks)
+- `CategoryPage.tsx` - 12 sách hardcoded, filter/sort không hoạt động
+- `ProductDetailPage.tsx` - Tất cả thông tin sách hardcoded
+- `CartPage.tsx` - 3 items hardcoded, không persist
+- `WishlistPage.tsx` - 3 items hardcoded
+- `OrderHistoryPage.tsx` - 4 orders hardcoded
+
+**3. Navigation bị sai:**
+- Header: Icon Wishlist link đến `/` thay vì `/wishlist`
+- Footer: Tất cả links đều là placeholder `/`
+
+**4. Chức năng chưa hoạt động:**
+- Nút "Thêm vào giỏ hàng" ở mọi nơi
+- Nút "Thêm vào yêu thích" 
+- Filter/Sort trên CategoryPage
+- Search trên Header
+- Pagination
+
+---
+
+## 2. PHÂN CÔNG CÔNG VIỆC
 
 ### 👥 Danh Sách Thành Viên và Feature Branch
 
-| STT | Thành Viên | Feature Branch | Mô Tả Công Việc |
-|-----|------------|----------------|-----------------|
-| 1 | **Hương** | `feature/auth-register-login` | Xác thực người dùng: Đăng ký, Đăng nhập |
-| 2 | **Danh** | `feature/product-detail` | Trang chi tiết sản phẩm (sách) |
-| 3 | **Nhân Lê** | `feature/category` | Quản lý danh mục sách |
-| 4 | **Đạt** | `feature/cart` | Giỏ hàng và chức năng thêm/xóa sản phẩm |
-| 5 | **Nhân Nguyễn** | `feature/user-profile` | Trang hồ sơ người dùng |
-| 6 | **Phúc** | `feature/admin-book-management` | Admin: Quản lý sách (CRUD) |
-| 7 | **Lộc** | `feature/admin-order-management` | Admin: Quản lý đơn hàng |
-
-### 🆕 CÁC FEATURE BRANCH BỔ SUNG (Cần phân công thêm)
-
-| STT | Feature Branch | Mô Tả | Đề Xuất Phân Công |
-|-----|----------------|-------|-------------------|
-| 8 | `feature/checkout-payment` | Thanh toán và checkout | Hương hoặc Đạt |
-| 9 | `feature/order-history` | Lịch sử đơn hàng người dùng | Nhân Nguyễn |
-| 10 | `feature/wishlist` | Danh sách yêu thích | Danh |
-| 11 | `feature/search-filter` | Tìm kiếm và lọc sách | Nhân Lê |
-| 12 | `feature/admin-dashboard` | Dashboard thống kê admin | Phúc hoặc Lộc |
-| 13 | `feature/header-footer` | Components Header và Footer | Bất kỳ thành viên |
-| 14 | `feature/homepage` | Trang chủ hiển thị sách | Bất kỳ thành viên |
+| STT | Thành Viên | Feature Branch | Mô Tả Công Việc | Độ Khó |
+|-----|------------|----------------|-----------------|--------|
+| 1 | **Hương** | `feature/auth-register-login` | Form validation + State cho Login/Register | ⭐⭐ |
+| 2 | **Danh** | `feature/product-detail` | Kết nối ProductDetail với data động | ⭐⭐ |
+| 3 | **Nhân Lê** | `feature/category` | Làm filter/sort hoạt động | ⭐⭐⭐ |
+| 4 | **Đạt** | `feature/cart` | Cart Context + localStorage persist | ⭐⭐⭐ |
+| 5 | **Nhân Nguyễn** | `feature/user-profile` | Form state + validation cho Profile | ⭐⭐ |
+| 6 | **Phúc** | `feature/admin-book-management` | Filter/Search + Form handling Admin Books | ⭐⭐⭐ |
+| 7 | **Lộc** | `feature/admin-order-management` | Filter/Search + Modal state Admin Orders | ⭐⭐⭐ |
 
 ---
 
-## 2. CẤU TRÚC BRANCH
+## 3. CẤU TRÚC BRANCH
 
 ```
 main (production)
@@ -76,7 +106,7 @@ main (production)
 
 ---
 
-## 3. QUY TẮC COMMIT MESSAGE
+## 4. QUY TẮC COMMIT MESSAGE
 
 ### 📝 Format Chuẩn (Conventional Commits)
 
@@ -120,329 +150,705 @@ abc
 
 ---
 
-## 4. HƯỚNG DẪN CHI TIẾT CHO TỪNG THÀNH VIÊN
+## 5. HƯỚNG DẪN CHI TIẾT CHO TỪNG THÀNH VIÊN
 
 > ⚠️ **LƯU Ý QUAN TRỌNG:**  
 > - Sử dụng **GitHub Desktop** cho tất cả thao tác Git  
 > - **KHÔNG** sử dụng command line / terminal  
 > - Mỗi branch phải có **ít nhất 2 commits**
+> - **Fetch origin** và **Pull** từ `develop` trước khi bắt đầu làm việc
 
 ---
 
 ### 👤 HƯƠNG - `feature/auth-register-login`
 
-#### Bước 1: Tạo Branch Mới (GitHub Desktop)
-1. Mở GitHub Desktop
-2. Đảm bảo đang ở branch `develop`
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/LoginPage.tsx` | ✅ | ❌ | `handleSubmit` rỗng, không validation |
+| `src/pages/RegisterPage.tsx` | ✅ | ❌ | Không validate password confirm, terms |
+
+#### ✏️ Bước 1: Tạo Branch Mới (GitHub Desktop)
+1. Mở GitHub Desktop → Đảm bảo đang ở branch `develop`
+2. **Fetch origin** để lấy code mới nhất
 3. Click **Branch** → **New Branch**
 4. Đặt tên: `feature/auth-register-login`
 5. Click **Create Branch**
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 2: Thực Hiện Commit 1 - Login Validation
 
-**📁 Files cần làm việc:**
-- `src/pages/LoginPage.tsx`
-- `src/pages/RegisterPage.tsx`
+**📁 File:** `src/pages/LoginPage.tsx`
 
-**Commit 1:** Hoàn thiện form đăng nhập
-```
-Thay đổi: Cập nhật LoginPage.tsx
-- Thêm validation cho email/password
-- Thêm "Remember me" checkbox
-- Cải thiện error messages
-
-Commit message:
-feat(auth): implement login form with validation
-
-- Add email and password validation
-- Add remember me checkbox functionality  
-- Improve error message display
+**Công việc cụ thể:**
+1. Thêm state cho error messages:
+```tsx
+const [errors, setErrors] = useState({ username: '', password: '' })
 ```
 
-**Commit 2:** Hoàn thiện form đăng ký
+2. Viết hàm validate trong `handleSubmit`:
+```tsx
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
+  let valid = true
+  const newErrors = { username: '', password: '' }
+  
+  if (!formData.username.trim()) {
+    newErrors.username = 'Vui lòng nhập tên đăng nhập'
+    valid = false
+  }
+  
+  if (!formData.password || formData.password.length < 6) {
+    newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
+    valid = false
+  }
+  
+  setErrors(newErrors)
+  
+  if (valid) {
+    console.log('Login data:', formData)
+    // TODO: Call API login
+  }
+}
 ```
-Thay đổi: Cập nhật RegisterPage.tsx
-- Thêm confirm password field
-- Thêm terms & conditions checkbox
-- Thêm phone number field (optional)
 
-Commit message:
-feat(auth): complete registration form with all fields
-
-- Add password confirmation field
-- Add terms and conditions acceptance
-- Add optional phone number input
+3. Hiển thị error messages dưới mỗi input:
+```tsx
+{errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
 ```
 
-#### Bước 3: Push lên GitHub (GitHub Desktop)
-1. Sau mỗi commit, click **Push origin** ở góc trên
-2. Đảm bảo tất cả commits đã được push
+**Commit message:**
+```
+feat(auth): add login form validation
+
+- Add error state for username and password fields
+- Implement validation logic in handleSubmit
+- Display error messages below input fields
+- Validate minimum password length (6 chars)
+```
+
+#### ✏️ Bước 3: Thực Hiện Commit 2 - Register Validation
+
+**📁 File:** `src/pages/RegisterPage.tsx`
+
+**Công việc cụ thể:**
+1. Thêm state errors:
+```tsx
+const [errors, setErrors] = useState({
+  fullName: '', email: '', phone: '', password: '', confirmPassword: ''
+})
+```
+
+2. Validate trong `handleSubmit`:
+- fullName không rỗng
+- email format đúng (regex)
+- password >= 6 ký tự
+- confirmPassword === password
+- Terms checkbox phải được tick
+
+3. Hiển thị errors cho mỗi field
+
+**Commit message:**
+```
+feat(auth): add registration form validation
+
+- Add comprehensive form validation for all fields
+- Validate email format with regex
+- Check password confirmation matches
+- Require terms acceptance before submit
+- Display field-specific error messages
+```
+
+#### ✏️ Bước 4: Push lên GitHub
+1. Click **Push origin** (hoặc **Publish branch** nếu lần đầu)
+2. Verify trên GitHub.com có 2 commits
 
 ---
 
 ### 👤 DANH - `feature/product-detail`
 
-#### Bước 1: Tạo Branch Mới (GitHub Desktop)
-1. Mở GitHub Desktop, chuyển về `develop`
-2. **Branch** → **New Branch** → `feature/product-detail`
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/ProductDetailPage.tsx` | ✅ | ❌ | `useParams().id` không dùng để fetch, data hardcoded |
+| `src/components/BookCard.tsx` | ✅ | ⚠️ | onClick cart button rỗng |
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 1: Tạo Branch
+`feature/product-detail` từ `develop`
 
-**📁 Files cần làm việc:**
-- `src/pages/ProductDetailPage.tsx`
-- `src/components/BookCard.tsx`
+#### ✏️ Bước 2: Commit 1 - Tạo Book Data & Load Dynamic
 
-**Commit 1:** Cập nhật layout trang chi tiết sản phẩm
-```
-Thay đổi: Cập nhật ProductDetailPage.tsx
-- Thêm section mô tả chi tiết sách
-- Thêm thông tin tác giả, NXB
-- Thêm đánh giá sao
+**📁 File:** `src/pages/ProductDetailPage.tsx`
 
-Commit message:
-feat(product): enhance product detail page layout
-
-- Add detailed book description section
-- Display author and publisher information
-- Add star rating component
+**Công việc cụ thể:**
+1. Tạo mảng mock data books (ít nhất 5 sách khác nhau):
+```tsx
+const booksData = [
+  { id: 1, title: 'Đắc Nhân Tâm', author: 'Dale Carnegie', price: 88000, ... },
+  { id: 2, title: 'Nhà Giả Kim', author: 'Paulo Coelho', price: 79000, ... },
+  // ... thêm 3 sách nữa
+]
 ```
 
-**Commit 2:** Thêm chức năng tương tác
-```
-Thay đổi: Cập nhật ProductDetailPage.tsx
-- Thêm nút "Thêm vào giỏ hàng"
-- Thêm nút "Thêm vào yêu thích"
-- Thêm chọn số lượng
-
-Commit message:
-feat(product): add interactive features to product page
-
-- Implement add to cart button
-- Add wishlist toggle button
-- Add quantity selector component
+2. Sử dụng `useParams()` để lấy ID và tìm sách:
+```tsx
+const { id } = useParams()
+const book = booksData.find(b => b.id === Number(id)) || booksData[0]
 ```
 
-#### Bước 3: Push lên GitHub
-Click **Push origin** sau mỗi commit
+3. Thay thế tất cả hardcoded values bằng `book.title`, `book.author`, `book.price`...
+
+**Commit message:**
+```
+feat(product): implement dynamic book data loading
+
+- Create mock books data array with 5 different books
+- Use useParams to get book ID from URL
+- Replace all hardcoded values with dynamic data
+- Add fallback to first book if ID not found
+```
+
+#### ✏️ Bước 3: Commit 2 - Quantity Selector State
+
+**📁 File:** `src/pages/ProductDetailPage.tsx`
+
+**Công việc cụ thể:**
+1. Thêm state quantity:
+```tsx
+const [quantity, setQuantity] = useState(1)
+```
+
+2. Kết nối nút +/- với state:
+```tsx
+<button onClick={() => setQuantity(q => Math.max(1, q - 1))}>-</button>
+<span>{quantity}</span>
+<button onClick={() => setQuantity(q => q + 1)}>+</button>
+```
+
+3. Thêm console.log cho nút "Thêm vào giỏ hàng":
+```tsx
+const handleAddToCart = () => {
+  console.log('Add to cart:', { bookId: book.id, quantity })
+  alert(`Đã thêm ${quantity} sản phẩm vào giỏ hàng!`)
+}
+```
+
+**Commit message:**
+```
+feat(product): add quantity selector functionality
+
+- Add quantity state with default value 1
+- Implement increment/decrement buttons
+- Prevent quantity going below 1
+- Add alert feedback when adding to cart
+```
 
 ---
 
 ### 👤 NHÂN LÊ - `feature/category`
 
-#### Bước 1: Tạo Branch
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/CategoryPage.tsx` | ✅ | ❌ | Filter không hoạt động, sort không hoạt động, 12 books hardcoded |
+
+#### ✏️ Bước 1: Tạo Branch
 `feature/category` từ `develop`
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 2: Commit 1 - Implement Filter Logic
 
-**📁 Files cần làm việc:**
-- `src/pages/CategoryPage.tsx`
+**📁 File:** `src/pages/CategoryPage.tsx`
 
-**Commit 1:** Xây dựng giao diện danh mục
-```
-Thay đổi: Cập nhật CategoryPage.tsx
-- Tạo sidebar danh mục
-- Hiển thị danh sách sách theo danh mục
-- Thêm breadcrumb navigation
-
-Commit message:
-feat(category): build category page with sidebar navigation
-
-- Create category sidebar with tree structure
-- Display books filtered by category
-- Add breadcrumb for better navigation
+**Công việc cụ thể:**
+1. Tạo state cho filtered books:
+```tsx
+const [filteredBooks, setFilteredBooks] = useState(books)
+const [selectedGenre, setSelectedGenre] = useState('')
+const [selectedPriceRange, setSelectedPriceRange] = useState('')
 ```
 
-**Commit 2:** Thêm chức năng lọc và sắp xếp
+2. Tạo hàm filter:
+```tsx
+useEffect(() => {
+  let result = [...books]
+  
+  if (selectedGenre) {
+    result = result.filter(book => book.genre === selectedGenre)
+  }
+  
+  if (selectedPriceRange) {
+    // Filter theo khoảng giá
+    if (selectedPriceRange === 'under100') {
+      result = result.filter(book => book.price < 100000)
+    } else if (selectedPriceRange === '100to200') {
+      result = result.filter(book => book.price >= 100000 && book.price <= 200000)
+    }
+    // ... thêm các range khác
+  }
+  
+  setFilteredBooks(result)
+}, [selectedGenre, selectedPriceRange])
 ```
-Thay đổi: Cập nhật CategoryPage.tsx
-- Thêm filter theo giá
-- Thêm filter theo đánh giá
-- Thêm sort options (mới nhất, giá, bán chạy)
 
-Commit message:
-feat(category): add filtering and sorting functionality
+3. Kết nối sidebar filters với state
 
-- Implement price range filter
-- Add rating filter option
-- Create sort dropdown (newest, price, bestseller)
+**Commit message:**
+```
+feat(category): implement filter functionality
+
+- Add state for filtered books and filter selections
+- Create useEffect to filter books when selections change
+- Implement genre filter logic
+- Implement price range filter logic
+- Connect sidebar filters to state
+```
+
+#### ✏️ Bước 3: Commit 2 - Implement Sort
+
+**📁 File:** `src/pages/CategoryPage.tsx`
+
+**Công việc cụ thể:**
+1. Thêm state sort:
+```tsx
+const [sortBy, setSortBy] = useState('newest')
+```
+
+2. Thêm logic sort trong useEffect:
+```tsx
+// Sau khi filter xong
+if (sortBy === 'price-asc') {
+  result.sort((a, b) => a.price - b.price)
+} else if (sortBy === 'price-desc') {
+  result.sort((a, b) => b.price - a.price)
+} else if (sortBy === 'name') {
+  result.sort((a, b) => a.title.localeCompare(b.title))
+}
+```
+
+3. Kết nối dropdown sort với state
+4. Hiển thị số lượng kết quả: `{filteredBooks.length} sản phẩm`
+
+**Commit message:**
+```
+feat(category): implement sort functionality
+
+- Add sortBy state with default 'newest'
+- Implement sort logic for price ascending/descending
+- Add sort by name alphabetically
+- Connect sort dropdown to state
+- Display filtered results count
 ```
 
 ---
 
 ### 👤 ĐẠT - `feature/cart`
 
-#### Bước 1: Tạo Branch
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/CartPage.tsx` | ✅ | ⚠️ | Cart items không persist, chỉ có trong component state |
+| `src/pages/CheckoutPage.tsx` | ✅ | ❌ | Cart items hardcoded, form không có handling |
+
+#### ✏️ Bước 1: Tạo Branch
 `feature/cart` từ `develop`
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 2: Commit 1 - Tạo Cart Context
 
-**📁 Files cần làm việc:**
-- `src/pages/CartPage.tsx`
-- `src/pages/CheckoutPage.tsx`
+**📁 Tạo file mới:** `src/context/CartContext.tsx`
 
-**Commit 1:** Hoàn thiện giao diện giỏ hàng
+**Công việc cụ thể:**
+1. Tạo CartContext với các function:
+```tsx
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+
+interface CartItem {
+  id: number
+  title: string
+  price: number
+  quantity: number
+  image: string
+}
+
+interface CartContextType {
+  items: CartItem[]
+  addToCart: (item: CartItem) => void
+  removeFromCart: (id: number) => void
+  updateQuantity: (id: number, quantity: number) => void
+  clearCart: () => void
+  totalItems: number
+  totalPrice: number
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined)
+
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [items, setItems] = useState<CartItem[]>(() => {
+    const saved = localStorage.getItem('cart')
+    return saved ? JSON.parse(saved) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(items))
+  }, [items])
+
+  // Implement addToCart, removeFromCart, updateQuantity, clearCart...
+  
+  return (
+    <CartContext.Provider value={{ items, addToCart, removeFromCart, updateQuantity, clearCart, totalItems, totalPrice }}>
+      {children}
+    </CartContext.Provider>
+  )
+}
+
+export const useCart = () => {
+  const context = useContext(CartContext)
+  if (!context) throw new Error('useCart must be used within CartProvider')
+  return context
+}
 ```
-Thay đổi: Cập nhật CartPage.tsx
-- Hiển thị danh sách sản phẩm trong giỏ
-- Thêm nút tăng/giảm số lượng
-- Tính tổng tiền tự động
 
-Commit message:
-feat(cart): implement cart page with item management
-
-- Display cart items with product details
-- Add quantity increment/decrement buttons
-- Calculate and display total price automatically
+2. Wrap App với CartProvider trong `main.tsx`:
+```tsx
+<CartProvider>
+  <App />
+</CartProvider>
 ```
 
-**Commit 2:** Thêm chức năng xóa và cập nhật
+**Commit message:**
 ```
-Thay đổi: Cập nhật CartPage.tsx
-- Thêm nút xóa từng sản phẩm
-- Thêm nút "Xóa tất cả"
-- Thêm nút "Tiếp tục mua sắm"
-- Thêm nút "Thanh toán"
+feat(cart): create cart context with localStorage persistence
 
-Commit message:
-feat(cart): add remove items and checkout navigation
+- Create CartContext with full cart management
+- Implement addToCart, removeFromCart, updateQuantity, clearCart
+- Add localStorage persistence for cart items
+- Calculate totalItems and totalPrice
+- Create useCart hook for easy access
+```
 
-- Implement remove single item functionality
-- Add clear all cart button
-- Create continue shopping and checkout buttons
+#### ✏️ Bước 3: Commit 2 - Kết Nối CartPage với Context
+
+**📁 File:** `src/pages/CartPage.tsx`
+
+**Công việc cụ thể:**
+1. Import và sử dụng useCart:
+```tsx
+import { useCart } from '../context/CartContext'
+
+function CartPage() {
+  const { items, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart()
+```
+
+2. Xóa state hardcoded, thay bằng context
+3. Kết nối các nút với context functions
+4. Update Header để hiện cart count từ context
+
+**📁 File:** `src/components/Header.tsx`
+```tsx
+import { useCart } from '../context/CartContext'
+// Thay đổi cart badge từ "0" thành {totalItems}
+```
+
+**Commit message:**
+```
+feat(cart): connect CartPage and Header to cart context
+
+- Replace hardcoded cart items with context data
+- Connect quantity buttons to updateQuantity function
+- Connect remove button to removeFromCart function
+- Update Header cart badge to show real totalItems
+- Remove redundant local state
 ```
 
 ---
 
 ### 👤 NHÂN NGUYỄN - `feature/user-profile`
 
-#### Bước 1: Tạo Branch
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/ProfilePage.tsx` | ✅ | ❌ | Form inputs không connected to state, save button không hoạt động |
+| `src/pages/OrderHistoryPage.tsx` | ✅ | ⚠️ | Filter pills có state nhưng không filter thực sự |
+
+#### ✏️ Bước 1: Tạo Branch
 `feature/user-profile` từ `develop`
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 2: Commit 1 - Profile Form State
 
-**📁 Files cần làm việc:**
-- `src/pages/ProfilePage.tsx`
-- `src/pages/OrderHistoryPage.tsx`
+**📁 File:** `src/pages/ProfilePage.tsx`
 
-**Commit 1:** Xây dựng trang hồ sơ
-```
-Thay đổi: Cập nhật ProfilePage.tsx
-- Hiển thị thông tin cá nhân
-- Form chỉnh sửa thông tin
-- Upload avatar
+**Công việc cụ thể:**
+1. Tạo state cho profile data:
+```tsx
+const [profile, setProfile] = useState({
+  fullName: 'Nguyễn Văn A',
+  phone: '0901234567',
+  email: 'nguyenvana@email.com'
+})
 
-Commit message:
-feat(profile): create user profile page with edit functionality
-
-- Display user personal information
-- Implement profile edit form
-- Add avatar upload feature
+const [isEditing, setIsEditing] = useState(false)
 ```
 
-**Commit 2:** Thêm quản lý địa chỉ và mật khẩu
+2. Kết nối inputs với state:
+```tsx
+<input 
+  value={profile.fullName}
+  onChange={(e) => setProfile({...profile, fullName: e.target.value})}
+  disabled={!isEditing}
+/>
 ```
-Thay đổi: Cập nhật ProfilePage.tsx
-- Thêm section quản lý địa chỉ giao hàng
-- Thêm form đổi mật khẩu
-- Thêm tabs navigation
 
-Commit message:
-feat(profile): add address management and password change
+3. Thêm nút Edit/Save toggle:
+```tsx
+<button onClick={() => {
+  if (isEditing) {
+    console.log('Saving profile:', profile)
+    alert('Đã lưu thông tin!')
+  }
+  setIsEditing(!isEditing)
+}}>
+  {isEditing ? 'Lưu' : 'Chỉnh sửa'}
+</button>
+```
 
-- Create shipping address management section
-- Implement change password form
-- Add tab navigation for profile sections
+**Commit message:**
+```
+feat(profile): implement profile form state management
+
+- Add profile state with default user data
+- Connect all input fields to state
+- Add isEditing toggle for edit mode
+- Implement save functionality with feedback
+- Disable inputs when not in edit mode
+```
+
+#### ✏️ Bước 3: Commit 2 - Order History Filter
+
+**📁 File:** `src/pages/OrderHistoryPage.tsx`
+
+**Công việc cụ thể:**
+1. Thêm state filtered orders:
+```tsx
+const [filteredOrders, setFilteredOrders] = useState(orders)
+```
+
+2. Kết nối filter pills với filter logic:
+```tsx
+useEffect(() => {
+  if (activeFilter === 'all') {
+    setFilteredOrders(orders)
+  } else {
+    setFilteredOrders(orders.filter(order => order.status === activeFilter))
+  }
+}, [activeFilter])
+```
+
+3. Render `filteredOrders` thay vì `orders`
+
+**Commit message:**
+```
+feat(profile): implement order history filter functionality
+
+- Add filteredOrders state
+- Create useEffect to filter when activeFilter changes
+- Connect filter pills to actual filtering logic
+- Display filtered results in table
 ```
 
 ---
 
 ### 👤 PHÚC - `feature/admin-book-management`
 
-#### Bước 1: Tạo Branch
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/admin/AdminBooksPage.tsx` | ✅ | ❌ | Filter/search không hoạt động, delete button không làm gì |
+| `src/pages/admin/AdminAddBookPage.tsx` | ✅ | ❌ | Form không có state, validation chỉ là UI |
+
+#### ✏️ Bước 1: Tạo Branch
 `feature/admin-book-management` từ `develop`
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 2: Commit 1 - Books List Filter & Delete
 
-**📁 Files cần làm việc:**
-- `src/pages/admin/AdminBooksPage.tsx`
-- `src/pages/admin/AdminAddBookPage.tsx`
+**📁 File:** `src/pages/admin/AdminBooksPage.tsx`
 
-**Commit 1:** Xây dựng danh sách quản lý sách
-```
-Thay đổi: Cập nhật AdminBooksPage.tsx
-- Hiển thị bảng danh sách sách
-- Thêm pagination
-- Thêm search và filter
-
-Commit message:
-feat(admin): implement book management table with pagination
-
-- Create data table displaying all books
-- Add pagination component
-- Implement search and filter functionality
+**Công việc cụ thể:**
+1. Chuyển hardcoded books thành state:
+```tsx
+const [books, setBooks] = useState(initialBooks)
+const [searchTerm, setSearchTerm] = useState('')
+const [filterGenre, setFilterGenre] = useState('')
 ```
 
-**Commit 2:** Hoàn thiện form thêm/sửa sách
+2. Thêm filter/search logic:
+```tsx
+const displayedBooks = books.filter(book => {
+  const matchSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const matchGenre = !filterGenre || book.genre === filterGenre
+  return matchSearch && matchGenre
+})
 ```
-Thay đổi: Cập nhật AdminAddBookPage.tsx
-- Form thêm sách mới với validation
-- Upload hình ảnh sách
-- Chọn danh mục
 
-Commit message:
-feat(admin): complete add/edit book form with image upload
+3. Implement delete:
+```tsx
+const handleDelete = (id: number) => {
+  if (confirm('Bạn có chắc muốn xóa sách này?')) {
+    setBooks(books.filter(book => book.id !== id))
+  }
+}
+```
 
-- Create comprehensive book form with validation
-- Implement book cover image upload
-- Add category selection dropdown
+**Commit message:**
+```
+feat(admin): implement book list search and filter
+
+- Convert books to state for dynamic management
+- Add search by title functionality
+- Add genre filter dropdown logic
+- Implement delete book with confirmation
+- Display filtered results
+```
+
+#### ✏️ Bước 3: Commit 2 - Add Book Form Handling
+
+**📁 File:** `src/pages/admin/AdminAddBookPage.tsx`
+
+**Công việc cụ thể:**
+1. Tạo form state:
+```tsx
+const [formData, setFormData] = useState({
+  title: '',
+  author: '',
+  category: '',
+  publisher: '',
+  isbn: '',
+  importPrice: '',
+  salePrice: '',
+  quantity: '',
+  description: ''
+})
+const [errors, setErrors] = useState({})
+```
+
+2. Kết nối tất cả inputs với state
+3. Validate khi submit:
+```tsx
+const handleSubmit = () => {
+  const newErrors = {}
+  if (!formData.title) newErrors.title = 'Vui lòng nhập tên sách'
+  if (!formData.author) newErrors.author = 'Vui lòng nhập tác giả'
+  // ... validate các fields khác
+  
+  if (Object.keys(newErrors).length === 0) {
+    console.log('Book data:', formData)
+    alert('Đã lưu sách thành công!')
+  } else {
+    setErrors(newErrors)
+  }
+}
+```
+
+**Commit message:**
+```
+feat(admin): implement add book form with validation
+
+- Create form state for all book fields
+- Connect all inputs to state
+- Add validation for required fields
+- Display validation errors
+- Show success message on valid submit
 ```
 
 ---
 
 ### 👤 LỘC - `feature/admin-order-management`
 
-#### Bước 1: Tạo Branch
+#### 📋 Hiện Trạng Files
+| File | UI | Logic | Vấn đề |
+|------|-----|-------|--------|
+| `src/pages/admin/AdminOrdersPage.tsx` | ✅ | ⚠️ | Modal có state nhưng data hardcoded, filter không hoạt động |
+| `src/pages/admin/AdminOrderDetailPage.tsx` | ✅ | ❌ | Chỉ redirect về AdminOrdersPage |
+
+#### ✏️ Bước 1: Tạo Branch
 `feature/admin-order-management` từ `develop`
 
-#### Bước 2: Thực Hiện Công Việc
+#### ✏️ Bước 2: Commit 1 - Orders Filter & Search
 
-**📁 Files cần làm việc:**
-- `src/pages/admin/AdminOrdersPage.tsx`
-- `src/pages/admin/AdminOrderDetailPage.tsx`
+**📁 File:** `src/pages/admin/AdminOrdersPage.tsx`
 
-**Commit 1:** Xây dựng danh sách đơn hàng
-```
-Thay đổi: Cập nhật AdminOrdersPage.tsx
-- Hiển thị bảng đơn hàng
-- Filter theo trạng thái
-- Search theo mã đơn hàng
-
-Commit message:
-feat(admin): create order management table with filters
-
-- Display orders in data table format
-- Add status filter (pending, processing, shipped, delivered)
-- Implement order ID search
+**Công việc cụ thể:**
+1. Thêm state cho filters:
+```tsx
+const [orders, setOrders] = useState(initialOrders)
+const [searchTerm, setSearchTerm] = useState('')
+const [statusFilter, setStatusFilter] = useState('')
 ```
 
-**Commit 2:** Chi tiết và cập nhật đơn hàng
+2. Implement filter logic:
+```tsx
+const displayedOrders = orders.filter(order => {
+  const matchSearch = order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                      order.customerName.toLowerCase().includes(searchTerm.toLowerCase())
+  const matchStatus = !statusFilter || order.status === statusFilter
+  return matchSearch && matchStatus
+})
 ```
-Thay đổi: Cập nhật AdminOrderDetailPage.tsx
-- Hiển thị chi tiết đơn hàng
-- Cập nhật trạng thái đơn hàng
-- In hóa đơn
 
-Commit message:
-feat(admin): implement order detail view with status update
+3. Kết nối search input và filter dropdowns với state
 
-- Show complete order details
-- Add status update dropdown
-- Create print invoice functionality
+**Commit message:**
+```
+feat(admin): implement order search and filter
+
+- Add search by order ID and customer name
+- Add status filter dropdown functionality
+- Create displayedOrders computed from filters
+- Connect filter UI to state
+```
+
+#### ✏️ Bước 3: Commit 2 - Order Status Update
+
+**📁 File:** `src/pages/admin/AdminOrdersPage.tsx`
+
+**Công việc cụ thể:**
+1. Thêm function update status:
+```tsx
+const handleUpdateStatus = (orderId: string, newStatus: string) => {
+  setOrders(orders.map(order => 
+    order.id === orderId 
+      ? { ...order, status: newStatus }
+      : order
+  ))
+  alert(`Đã cập nhật trạng thái đơn hàng ${orderId}`)
+}
+```
+
+2. Trong modal, thêm dropdown và nút cập nhật:
+```tsx
+<select 
+  value={selectedOrder?.status}
+  onChange={(e) => handleUpdateStatus(selectedOrder.id, e.target.value)}
+>
+  <option value="pending">Chờ xử lý</option>
+  <option value="processing">Đang xử lý</option>
+  <option value="shipping">Đang giao</option>
+  <option value="delivered">Đã giao</option>
+  <option value="cancelled">Đã hủy</option>
+</select>
+```
+
+**Commit message:**
+```
+feat(admin): implement order status update functionality
+
+- Add handleUpdateStatus function
+- Create status dropdown in order detail modal
+- Update order status in state when changed
+- Show feedback alert on status change
+- Reflect status change in orders table immediately
 ```
 
 ---
 
-## 5. QUY TRÌNH MERGE REQUEST (PULL REQUEST)
+## 6. QUY TRÌNH MERGE REQUEST (PULL REQUEST)
 
 ### 📋 Các Bước Tạo Pull Request
 
@@ -502,7 +908,7 @@ Closes #[issue_number]
 
 ---
 
-## 6. TIMELINE THỰC HIỆN
+## 7. TIMELINE THỰC HIỆN
 
 ### 📅 Lịch Trình Demo
 
@@ -528,7 +934,7 @@ Closes #[issue_number]
 
 ---
 
-## 7. CHECKLIST HOÀN THÀNH
+## 8. CHECKLIST HOÀN THÀNH
 
 ### ✅ Checklist Cho Mỗi Thành Viên
 
