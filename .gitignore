@@ -63,3 +63,10 @@ coverage/
 *.tmp
 *.temp
 .cache/
+
+# Design/Development files (not needed in production)
+figma_*.txt
+figma_screens/
+*.figma
+design/
+mockups/
