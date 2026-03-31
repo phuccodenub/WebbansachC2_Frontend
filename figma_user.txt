@@ -1,0 +1,6848 @@
+metadata:
+  name: Website_BookStore
+  components:
+    79:146:
+      id: 79:146
+      key: 4378d8b9ac45729e08ce64b06c1212c798c782bd
+      name: Option=Default, visible option=yes
+      componentSetId: 79:145
+    79:160:
+      id: 79:160
+      key: 8b69797fc38c6de6182a1659956af79e479a2b01
+      name: search box
+    88:889:
+      id: 88:889
+      key: 81fb5c5f4ddac82a3efc18a9de5e4d4a21cbb775
+      name: MUI/Rating
+    82:8029:
+      id: 82:8029
+      key: b2a7c913f93028cfb154c33bbc8133726370dd48
+      name: Size=Large, Disabled=True
+      componentSetId: 82:7998
+    60:271:
+      id: 60:271
+      key: 1d11497d721be343925592f38889b311e77c23ca
+      name: Property 1=Variant2
+      componentSetId: 60:275
+    60:276:
+      id: 60:276
+      key: b4c6aa13a6a47394510e1511acf8482c3765efd0
+      name: Property 1=Variant2
+      componentSetId: 60:275
+    134:434:
+      id: 134:434
+      key: 605c4d07e86be91738f203ed7569c575ef22727f
+      name: Logo website
+    134:430:
+      id: 134:430
+      key: b5b9b965e4abc75e3d2b1593d53ae02f37619063
+      name: Search
+    203:536:
+      id: 203:536
+      key: 1ea37f5450725ce360573e77c5a8083f4fd3010f
+      name: Frame 427318957
+  componentSets:
+    79:145:
+      id: 79:145
+      key: c1dd3b7c2025a487a1239e3010642734a3a8fe22
+      name: nav/menu selected
+      description: ''
+    82:7998:
+      id: 82:7998
+      key: bd5142fc205f3e5c2a348aa96ff6a84a15d3e243
+      name: <Rating>
+      description: Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.
+    60:275:
+      id: 60:275
+      key: c68b1cc7c05ff85699681d31761dac720208b323
+      name: button
+      description: ''
+nodes:
+  - id: 0:1
+    name: User
+    type: CANVAS
+    children:
+      - id: 9:62
+        name: '[Hương]- Đăng nhập'
+        type: FRAME
+        layout: layout_RQFEUH
+        fills: fill_QUSHFD
+        children:
+          - id: 22:33
+            name: Rectangle 3
+            type: RECTANGLE
+            layout: layout_ZTIZKZ
+            fills: fill_5H7NMP
+            borderRadius: 23px
+          - id: 22:34
+            name: WELCOME
+            type: TEXT
+            layout: layout_MN3SNR
+            text: WELCOME
+            textStyle: style_VGSHS7
+            fills: fill_Y7A3YE
+          - id: 22:36
+            name: Rectangle 4
+            type: RECTANGLE
+            layout: layout_OP4NXT
+            fills: fill_4Z1NBP
+            borderRadius: 10px
+          - id: 22:37
+            name: Rectangle 5
+            type: RECTANGLE
+            layout: layout_IHV874
+            fills: fill_4Z1NBP
+            borderRadius: 10px
+          - id: 22:51
+            name: Rectangle 6
+            type: RECTANGLE
+            layout: layout_C4HSD9
+            fills: fill_X3IOZH
+            strokes: stroke_T323QJ
+            borderRadius: 10px
+          - id: 22:39
+            name: Person
+            type: RECTANGLE
+            layout: layout_HSIRD0
+            fills: fill_NDF7LD
+          - id: 22:40
+            name: Lock
+            type: RECTANGLE
+            layout: layout_WC82B9
+            fills: fill_BBIKAH
+          - id: 22:42
+            name: Username
+            type: TEXT
+            layout: layout_6P97PA
+            text: Username
+            textStyle: style_1ZD0AH
+            fills: fill_Y7A3YE
+          - id: 22:45
+            name: Password
+            type: TEXT
+            layout: layout_5BMBYZ
+            text: Password
+            textStyle: style_1ZD0AH
+            fills: fill_Y7A3YE
+          - id: 22:49
+            name: Frame 1
+            type: FRAME
+            layout: layout_2M1DLS
+            fills: fill_Y7A3YE
+            strokes: stroke_T323QJ
+            borderRadius: 10px
+          - id: 22:53
+            name: Rectangle 7
+            type: RECTANGLE
+            layout: layout_8ZOCGC
+            fills: fill_X3IOZH
+            strokes: stroke_T323QJ
+            borderRadius: 10px
+          - id: 25:30
+            name: material-icon-theme:google
+            type: FRAME
+            layout: layout_WA6ZR8
+            fills: fill_X3IOZH
+          - id: 25:36
+            name: logos:facebook
+            type: FRAME
+            layout: layout_DC9NF3
+            fills: fill_X3IOZH
+          - id: 22:55
+            name: Login with Google
+            type: TEXT
+            layout: layout_HRNN9J
+            text: Login with Google
+            textStyle: style_1ZD0AH
+            fills: fill_Y7A3YE
+          - id: 22:56
+            name: Login with Facebook
+            type: TEXT
+            layout: layout_IMSFR9
+            text: Login with Facebook
+            textStyle: style_1ZD0AH
+            fills: fill_Y7A3YE
+          - id: 22:61
+            name: Login with others
+            type: TEXT
+            layout: layout_00ETEB
+            text: Login with others
+            textStyle: style_4AXAOS
+            fills: fill_Y7A3YE
+      - id: 9:5
+        name: '[]- Đăng ký'
+        type: FRAME
+        layout: layout_RQFEUH
+        fills: fill_QUSHFD
+        effects: effect_MGLNTN
+        children:
+          - id: 18:58
+            name: image 2
+            type: RECTANGLE
+            layout: layout_0URAIE
+            fills: fill_BRAPTB
+          - id: 134:398
+            name: ĐĂNG KÝ TÀI KHOẢN
+            type: TEXT
+            layout: layout_7PZZRN
+            text: ĐĂNG KÝ TÀI KHOẢN
+            textStyle: style_7XK6WE
+            fills: fill_Y7A3YE
+          - id: 18:61
+            name: image 3
+            type: RECTANGLE
+            layout: layout_VWWWCG
+            fills: fill_53XN9H
+          - id: 18:63
+            name: Hoặc đăng nhập với
+            type: TEXT
+            layout: layout_46894A
+            text: Hoặc đăng nhập với
+            textStyle: style_3AEDZM
+            fills: fill_Y7A3YE
+          - id: 18:66
+            name: Text on a path
+            type: TEXT_PATH
+            layout: layout_FLUWJR
+            textStyle: style_BMNL2A
+            fills: fill_Y7A3YE
+          - id: 18:126
+            name: Rectangle 8
+            type: RECTANGLE
+            layout: layout_ZLTNKQ
+            fills: fill_YGNXG2
+            borderRadius: 23px
+          - id: 134:399
+            name: Rectangle 4
+            type: IMAGE-SVG
+            layout: layout_WEY06I
+            fills: fill_4Z1NBP
+            borderRadius: 10px
+          - id: 134:400
+            name: Rectangle 9
+            type: RECTANGLE
+            layout: layout_M06PY3
+            fills: fill_4Z1NBP
+            borderRadius: 10px
+          - id: 134:401
+            name: Rectangle 10
+            type: RECTANGLE
+            layout: layout_YYWXMW
+            fills: fill_4Z1NBP
+            borderRadius: 10px
+          - id: 134:402
+            name: Rectangle 11
+            type: RECTANGLE
+            layout: layout_U7E0CF
+            fills: fill_4Z1NBP
+            borderRadius: 10px
+          - id: 134:403
+            name: Họ tên
+            type: TEXT
+            layout: layout_MKF8NV
+            text: Họ tên
+            textStyle: style_3AEDZM
+            fills: fill_Y7A3YE
+          - id: 18:25
+            name: Emai
+            type: TEXT
+            layout: layout_LEJZM1
+            text: Emai
+            textStyle: style_3AEDZM
+            fills: fill_Y7A3YE
+          - id: 18:26
+            name: Số điện thoại
+            type: TEXT
+            layout: layout_89Y588
+            text: Số điện thoại
+            textStyle: style_3AEDZM
+            fills: fill_Y7A3YE
+          - id: 18:13
+            name: Mật khẩu
+            type: TEXT
+            layout: layout_PHRZTN
+            text: Mật khẩu
+            textStyle: style_3AEDZM
+            fills: fill_Y7A3YE
+          - id: 134:405
+            name: Frame 1
+            type: FRAME
+            layout: layout_EJOQ1C
+            fills: fill_Y7A3YE
+            strokes: stroke_T323QJ
+            borderRadius: 10px
+      - id: 192:725
+        name: Danh
+        type: FRAME
+        layout: layout_QO4969
+        fills: fill_X3IOZH
+        children:
+          - id: 90:2851
+            name: HeartStraight
+            type: FRAME
+            layout: layout_U8VXU7
+            fills: fill_X3IOZH
+          - id: 90:2853
+            name: ShoppingCartSimple
+            type: FRAME
+            layout: layout_H0YU0G
+            fills: fill_X3IOZH
+          - id: 90:2855
+            name: ShoppingCart
+            type: FRAME
+            layout: layout_0YAUAP
+            fills: fill_X3IOZH
+          - id: 90:2925
+            name: nav/menu selected
+            type: INSTANCE
+            layout: layout_1YJNM3
+            componentId: 79:146
+            componentProperties:
+              - name: Option
+                value: Default
+                type: VARIANT
+              - name: visible option
+                value: yes
+                type: VARIANT
+          - id: 90:2927
+            name: Logo
+            type: GROUP
+            layout: layout_A66RXF
+            borderRadius: 0px 0px 0px 0px
+          - id: 90:2939
+            name: MMT
+            type: TEXT
+            layout: layout_B4ZRTZ
+            text: MMT
+            textStyle: style_9Q618O
+            fills: fill_Y7A3YE
+          - id: 90:2940
+            name: Đăng nhập
+            type: TEXT
+            layout: layout_WHX9X3
+            text: 'Đăng nhập '
+            textStyle: style_FO0IJE
+            fills: fill_Y7A3YE
+          - id: 90:2941
+            name: ArrowSquareRight
+            type: FRAME
+            layout: layout_CPP6R7
+            fills: fill_X3IOZH
+          - id: 90:2942
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_BRCWKY
+            fills: fill_Y7A3YE
+          - id: 90:2943
+            name: PaintBrush
+            type: FRAME
+            layout: layout_N8Y3P8
+            fills: fill_X3IOZH
+          - id: 90:2944
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_DRMSYS
+            fills: fill_Y7A3YE
+          - id: 90:2945
+            name: Đăng ký
+            type: TEXT
+            layout: layout_2AY9Z8
+            text: Đăng ký
+            textStyle: style_FO0IJE
+            fills: fill_Y7A3YE
+          - id: 90:2946
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_RZPB8T
+            fills: fill_Y7A3YE
+          - id: 90:2947
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_7U8PIN
+            fills: fill_Y7A3YE
+          - id: 34:15
+            name: Đúng Là Tết!
+            type: TEXT
+            layout: layout_JVJ9DU
+            text: Đúng Là Tết!
+            textStyle: style_RD26QS
+            fills: fill_Y7A3YE
+          - id: 37:3197
+            name: '0 Đánh giá | Đã bán: 0'
+            type: TEXT
+            layout: layout_V1B2ID
+            text: '0 Đánh giá | Đã bán: 0   '
+            textStyle: style_810ZMU
+            fills: fill_Y7A3YE
+          - id: 37:3198
+            name: Line 1
+            type: LINE
+            layout: layout_QQGWNM
+            strokes: stroke_ZVO6ZV
+          - id: 40:20
+            name: 61,200đ
+            type: TEXT
+            layout: layout_17ZV3W
+            text: '61,200đ '
+            textStyle: style_1ZD0AH
+            fills: fill_Y7A3YE
+          - id: 40:21
+            name: 61,200đ
+            type: TEXT
+            layout: layout_17ZV3W
+            text: '61,200đ '
+            textStyle: style_1ZD0AH
+            fills: fill_QUP68V
+          - id: 40:23
+            name: 68,000đ
+            type: TEXT
+            layout: layout_P7AGTU
+            text: '68,000đ '
+            textStyle: style_1ZD0AH
+            fills: fill_GXK47F
+          - id: 40:60
+            name: (Bạn đã tiết kiệm được 7.800đ)
+            type: TEXT
+            layout: layout_LTMEQI
+            text: (Bạn đã tiết kiệm được 7.800đ)
+            textStyle: style_XLYTL2
+            fills: fill_Y7A3YE
+          - id: 40:61
+            name: Line 2
+            type: LINE
+            layout: layout_4N0I1D
+            strokes: stroke_ZVO6ZV
+          - id: 41:107
+            name: Rectangle 39
+            type: RECTANGLE
+            layout: layout_SS92WG
+            fills: fill_TDE98V
+          - id: 41:109
+            name: Rectangle 40
+            type: RECTANGLE
+            layout: layout_5QYZWA
+            fills: fill_0E553H
+          - id: 41:111
+            name: Rectangle 41
+            type: RECTANGLE
+            layout: layout_I21ADL
+            fills: fill_6F5ITX
+          - id: 48:194
+            name: Rectangle
+            type: RECTANGLE
+            layout: layout_HM1M3E
+            fills: fill_BDC5ZW
+          - id: 48:199
+            name: Rectangle 50
+            type: RECTANGLE
+            layout: layout_ZFB7DN
+            fills: fill_K68RBQ
+          - id: 48:201
+            name: Rectangle 51
+            type: RECTANGLE
+            layout: layout_PZJQKY
+            fills: fill_01WOCC
+          - id: 48:203
+            name: Rectangle 52
+            type: RECTANGLE
+            layout: layout_OCCFDC
+            fills: fill_USWZEQ
+          - id: 48:205
+            name: Rectangle 53
+            type: RECTANGLE
+            layout: layout_0B8TIR
+            fills: fill_YZQH0R
+          - id: 70:179
+            name: Rectangle
+            type: RECTANGLE
+            layout: layout_5TDR38
+            fills: fill_BDC5ZW
+          - id: 70:180
+            name: Rectangle 54
+            type: RECTANGLE
+            layout: layout_UPZ21P
+            fills: fill_K68RBQ
+          - id: 70:181
+            name: Rectangle 55
+            type: RECTANGLE
+            layout: layout_FZUI1F
+            fills: fill_01WOCC
+          - id: 70:182
+            name: Rectangle 56
+            type: RECTANGLE
+            layout: layout_AB07HI
+            fills: fill_USWZEQ
+          - id: 70:183
+            name: Rectangle 57
+            type: RECTANGLE
+            layout: layout_1CCRMZ
+            fills: fill_YZQH0R
+          - id: 43:131
+            name: Rectangle 46
+            type: RECTANGLE
+            layout: layout_Q53U6H
+            fills: fill_S5FAR3
+          - id: 43:133
+            name: Rectangle 47
+            type: RECTANGLE
+            layout: layout_FVGUKA
+            fills: fill_2VJOI9
+          - id: 41:114
+            name: Trang Chủ
+            type: TEXT
+            layout: layout_1PV8BW
+            text: Trang Chủ
+            textStyle: style_GU7O1L
+            fills: fill_Y7A3YE
+          - id: 41:115
+            name: /
+            type: TEXT
+            layout: layout_HU92QQ
+            text: /
+            textStyle: style_GU7O1L
+            fills: fill_Y7A3YE
+          - id: 41:116
+            name: Truyện Tranh
+            type: TEXT
+            layout: layout_GT6SSU
+            text: Truyện Tranh
+            textStyle: style_GU7O1L
+            fills: fill_Y7A3YE
+          - id: 41:117
+            name: /
+            type: TEXT
+            layout: layout_U66VG9
+            text: /
+            textStyle: style_GU7O1L
+            fills: fill_Y7A3YE
+          - id: 41:118
+            name: Đúng Là Tết!
+            type: TEXT
+            layout: layout_YX6N7B
+            text: Đúng Là Tết!
+            textStyle: style_GU7O1L
+            fills: fill_Y7A3YE
+          - id: 41:119
+            name: SÁCH CÙNG TÁC GIẢ
+            type: TEXT
+            layout: layout_RPHKDQ
+            text: SÁCH CÙNG TÁC GIẢ
+            textStyle: style_GU7O1L
+            fills: fill_Y7A3YE
+          - id: 43:122
+            name: Rectangle 42
+            type: RECTANGLE
+            layout: layout_67QT7B
+            fills: fill_DVLYEH
+          - id: 43:127
+            name: Rectangle 45
+            type: RECTANGLE
+            layout: layout_EV5WPQ
+            fills: fill_WCVOH9
+          - id: 35:8
+            name: "Mã Kim Đồng: 6251400010072 ISBN:\_978-604-2-15467-3 Tác giả:\_Bùi Phương Tâm\L\_ \_ \_ \_ \_ \_ \_\_Mai Ngô Đối tượng:\_Nhi đồng (6 – 11) Khuôn Khổ:\_22x27 cm Số trang:\_44T Định dạng:\_bìa mềm Trọng lượng:\_245 gram Bộ sách:\_Sách tết, mùa xuân"
+            type: TEXT
+            layout: layout_4ZCYXX
+            text: "Mã Kim Đồng: 6251400010072\nISBN:\_978-604-2-15467-3\nTác giả:\_Bùi Phương Tâm\L\_ \_ \_ \_ \_ \_ \_\_Mai Ngô\nĐối tượng:\_Nhi đồng (6 – 11)\nKhuôn Khổ:\_22x27 cm\nSố trang:\_44T\nĐịnh dạng:\_bìa mềm\nTrọng lượng:\_245 gram\nBộ sách:\_Sách tết, mùa xuân\n"
+            textStyle: style_RD26QS
+            fills: fill_Y7A3YE
+          - id: 43:123
+            name: Rectangle 43
+            type: RECTANGLE
+            layout: layout_IXUSQJ
+            fills: fill_0VFQT4
+          - id: 43:125
+            name: Rectangle 44
+            type: RECTANGLE
+            layout: layout_OZKJBY
+            fills: fill_KFSPVV
+          - id: 43:129
+            name: ĐÁNH GIÁ SẢN PHẨM
+            type: TEXT
+            layout: layout_81MHLZ
+            text: 'ĐÁNH GIÁ SẢN PHẨM '
+            textStyle: style_6P926F
+            fills: fill_Y7A3YE
+          - id: 43:141
+            name: Combo Để em luôn ngoan ngoãn (10 quyển)
+            type: TEXT
+            layout: layout_IPXQAY
+            text: Combo Để em luôn ngoan ngoãn (10 quyển)
+            textStyle: style_AWP1QB
+            fills: fill_Y7A3YE
+          - id: 43:157
+            name: Đúng Là Tết!
+            type: TEXT
+            layout: layout_F84ZGK
+            text: Đúng Là Tết!
+            textStyle: style_AWP1QB
+            fills: fill_Y7A3YE
+          - id: 43:142
+            name: 192.000đ
+            type: TEXT
+            layout: layout_QV9KD9
+            text: '192.000đ '
+            textStyle: style_AWP1QB
+            fills: fill_ZXYO0L
+          - id: 43:146
+            name: 240.000đ
+            type: TEXT
+            layout: layout_52MLBK
+            text: 240.000đ
+            textStyle: style_AWP1QB
+            fills: fill_RG708X
+          - id: 43:159
+            name: 61.200đ
+            type: TEXT
+            layout: layout_SR8X7D
+            text: 61.200đ
+            textStyle: style_AWP1QB
+            fills: fill_G1YN5Y
+          - id: 43:160
+            name: 68.000đ
+            type: TEXT
+            layout: layout_5CO1VL
+            text: 68.000đ
+            textStyle: style_AWP1QB
+            fills: fill_F3I31G
+          - id: 43:172
+            name: Rectangle 48
+            type: RECTANGLE
+            layout: layout_XCIPAM
+            fills: fill_PG74TD
+          - id: 43:130
+            name: "‘Ò ó o…\LTiếng gì đó\LEm thức dậy\LThấy cả nhà…\LCậu rửa xe\LMẹ rửa lá\LBà kho cá\LMợ cắm hoa\L‘Mâm ngũ quả\LLên bàn thờ!’\LÔng thảnh thơi\LNgồi đọc báo\LMẹ hái táo Ba đánh giày’“Đúng là Tết” giống như một bài đồng dao, với lượng ngôn ngữ phù hợp với các bé. Thể thơ ba chữ theo nhịp điệu tươi vui dễ đọc dễ thuộc, giúp bé ngân nga cả ngày. Vui làm sao giọng bé oanh vàng đọc thơ vang nhà trong mỗi ngày Xuân."
+            type: TEXT
+            layout: layout_U30CDN
+            text: "‘Ò ó o…\LTiếng gì đó\LEm thức dậy\LThấy cả nhà…\LCậu rửa xe\LMẹ rửa lá\LBà kho cá\LMợ cắm hoa\L‘Mâm ngũ quả\LLên bàn thờ!’\LÔng thảnh thơi\LNgồi đọc báo\LMẹ hái táo\nBa đánh giày’“Đúng là Tết” giống như một bài đồng dao, với lượng ngôn ngữ phù hợp với các bé. Thể thơ ba chữ theo nhịp điệu tươi vui dễ đọc dễ thuộc, giúp bé ngân nga cả ngày. Vui làm sao giọng bé oanh vàng đọc thơ vang nhà trong mỗi ngày Xuân."
+            textStyle: style_RD26QS
+            fills: fill_Y7A3YE
+          - id: 43:174
+            name: SÁCH CÙNG THỂ LOẠI
+            type: TEXT_PATH
+            layout: layout_KAXTIU
+            textStyle: style_2W0DLX
+            fills: fill_Y7A3YE
+            effects: effect_B6LK8X
+          - id: 48:196
+            name: Line 5
+            type: IMAGE-SVG
+            layout: layout_FT08Y2
+            strokes: stroke_T323QJ
+          - id: 48:197
+            name: Line 6
+            type: LINE
+            layout: layout_ZS7O5E
+            strokes: stroke_T323QJ
+          - id: 70:174
+            name: SÁCH CÙNG BỘ
+            type: TEXT_PATH
+            layout: layout_5AXIQ7
+            textStyle: style_2W0DLX
+            fills: fill_Y7A3YE
+            effects: effect_B6LK8X
+          - id: 70:175
+            name: Line 7
+            type: IMAGE-SVG
+            layout: layout_4JEVBL
+            strokes: stroke_T323QJ
+          - id: 70:176
+            name: Line 8
+            type: LINE
+            layout: layout_FZJID9
+            strokes: stroke_T323QJ
+          - id: 48:210
+            name: Đánh Giá 0
+            type: TEXT
+            layout: layout_NOER0M
+            text: Đánh Giá 0
+            textStyle: style_YHP9UG
+            fills: fill_Y7A3YE
+          - id: 48:211
+            name: Câu hỏi & Trả lời 0
+            type: TEXT
+            layout: layout_JLQ1NS
+            text: Câu hỏi & Trả lời 0
+            textStyle: style_YHP9UG
+            fills: fill_Y7A3YE
+          - id: 48:212
+            name: Dựa trên 0 đánh giá
+            type: TEXT
+            layout: layout_UQOV79
+            text: Dựa trên 0 đánh giá
+            textStyle: style_YHP9UG
+            fills: fill_Y7A3YE
+          - id: 70:27
+            name: 63.000đ
+            type: TEXT
+            layout: layout_RA2Y5N
+            text: 63.000đ
+            textStyle: style_AWP1QB
+            fills: fill_23ZHBL
+          - id: 70:28
+            name: 70.000đ
+            type: TEXT
+            layout: layout_FEX1IF
+            text: 70.000đ
+            textStyle: style_AWP1QB
+            fills: fill_S5AR38
+          - id: 70:173
+            name: Xem thêm
+            type: TEXT
+            layout: layout_C46KHB
+            text: Xem thêm
+            textStyle: style_GU7O1L
+            fills: fill_Z6ODIN
+          - id: 70:178
+            name: Xem thêm >>
+            type: TEXT
+            layout: layout_J6FFIY
+            text: Xem thêm >>
+            textStyle: style_EN4Z3K
+            fills: fill_EGLXGR
+          - id: 90:2682
+            name: Xem thêm >>
+            type: TEXT
+            layout: layout_0QHXUL
+            text: Xem thêm >>
+            textStyle: style_EN4Z3K
+            fills: fill_EGLXGR
+          - id: 70:185
+            name: Line 9
+            type: IMAGE-SVG
+            layout: layout_Y3TLWZ
+            strokes: stroke_T323QJ
+          - id: 70:186
+            name: Line 10
+            type: LINE
+            layout: layout_F3ZN81
+            strokes: stroke_T323QJ
+          - id: 70:187
+            name: SẢN PHẨM ĐÃ XEM
+            type: TEXT_PATH
+            layout: layout_VVXMSG
+            textStyle: style_2W0DLX
+            fills: fill_Y7A3YE
+            effects: effect_B6LK8X
+          - id: 70:188
+            name: Rectangle
+            type: RECTANGLE
+            layout: layout_2T8WGJ
+            fills: fill_BDC5ZW
+          - id: 70:189
+            name: Rectangle 58
+            type: RECTANGLE
+            layout: layout_C8TJLC
+            fills: fill_K68RBQ
+          - id: 70:190
+            name: Rectangle 59
+            type: RECTANGLE
+            layout: layout_UKIKG1
+            fills: fill_01WOCC
+          - id: 70:191
+            name: Rectangle 60
+            type: RECTANGLE
+            layout: layout_99FKIP
+            fills: fill_USWZEQ
+          - id: 70:192
+            name: Rectangle 61
+            type: RECTANGLE
+            layout: layout_L84TAT
+            fills: fill_YZQH0R
+          - id: 70:193
+            name: 63.000đ
+            type: TEXT
+            layout: layout_CCXY9Q
+            text: 63.000đ
+            textStyle: style_AWP1QB
+            fills: fill_23ZHBL
+          - id: 70:194
+            name: 70.000đ
+            type: TEXT
+            layout: layout_OT1L13
+            text: 70.000đ
+            textStyle: style_AWP1QB
+            fills: fill_S5AR38
+          - id: 70:195
+            name: Xem thêm >>
+            type: TEXT
+            layout: layout_ZDFQ95
+            text: Xem thêm >>
+            textStyle: style_EN4Z3K
+            fills: fill_EGLXGR
+          - id: 90:964
+            name: 14,400₫
+            type: TEXT
+            layout: layout_6S7UXP
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_6KAMW6
+          - id: 90:965
+            name: 16,000₫
+            type: TEXT
+            layout: layout_M03ASU
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_8628VR
+          - id: 90:2688
+            name: Rectangle 4151
+            type: RECTANGLE
+            layout: layout_3IDCQ9
+            fills: fill_95VTBX
+          - id: 90:2689
+            name: Rectangle 4152
+            type: RECTANGLE
+            layout: layout_MN22IP
+            fills: fill_YWNJTP
+          - id: 90:2691
+            name: '1'
+            type: TEXT
+            layout: layout_MLAIXT
+            text: '1'
+            textStyle: style_RD26QS
+            fills: fill_Y7A3YE
+          - id: 90:2693
+            name: Số lượng
+            type: TEXT
+            layout: layout_XED5DL
+            text: Số lượng
+            textStyle: style_AWP1QB
+            fills: fill_Y7A3YE
+          - id: 90:2698
+            name: Rectangle 4154
+            type: RECTANGLE
+            layout: layout_BQJB3C
+            fills: fill_YWNJTP
+          - id: 90:2700
+            name: Rectangle 4155
+            type: RECTANGLE
+            layout: layout_ZBGIOS
+            fills: fill_YWNJTP
+          - id: 90:2701
+            name: Rectangle 4156
+            type: RECTANGLE
+            layout: layout_5A34UI
+            fills: fill_YWNJTP
+          - id: 90:2703
+            name: THÊM VÀO GIỎ HÀNG
+            type: TEXT
+            layout: layout_L8MZ7K
+            text: THÊM VÀO GIỎ HÀNG
+            textStyle: style_QWK3LY
+            fills: fill_Y7A3YE
+          - id: 90:2704
+            name: MUA NGAY
+            type: TEXT
+            layout: layout_XG6ACB
+            text: MUA NGAY
+            textStyle: style_QWK3LY
+            fills: fill_Y7A3YE
+          - id: 90:2705
+            name: Thích 0
+            type: TEXT
+            layout: layout_0NJV89
+            text: Thích 0
+            textStyle: style_SBS9MA
+            fills: fill_Y7A3YE
+          - id: 90:2706
+            name: Chia sẽ
+            type: TEXT
+            layout: layout_5KV4W6
+            text: Chia sẽ
+            textStyle: style_SBS9MA
+            fills: fill_Y7A3YE
+          - id: 90:2708
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_EX91GR
+            fills: fill_Y7A3YE
+          - id: 90:2712
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_FYO871
+            fills: fill_Y7A3YE
+          - id: 90:2716
+            name: Rectangle 4157
+            type: RECTANGLE
+            layout: layout_4N5JCK
+            fills: fill_YWNJTP
+          - id: 182:423
+            name: Rectangle 4185
+            type: RECTANGLE
+            layout: layout_X6NHVU
+            fills: fill_YWNJTP
+          - id: 70:26
+            name: Vun đắp tâm hồn - Cô bé đội đám mây
+            type: TEXT
+            layout: layout_QB66YQ
+            text: Vun đắp tâm hồn - Cô bé đội đám mây
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:80
+            name: Tớ rất yêu Doraemon
+            type: TEXT
+            layout: layout_8OMTZR
+            text: Tớ rất yêu Doraemon
+            textStyle: style_EN4Z3K
+            fills: fill_Y7A3YE
+          - id: 70:87
+            name: 128,000₫
+            type: TEXT
+            layout: layout_8702DM
+            text: 128,000₫
+            textStyle: style_PIRKRY
+            fills: fill_9WDLKE
+          - id: 70:100
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            type: TEXT
+            layout: layout_A2KUJ7
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:104
+            name: 14,400₫
+            type: TEXT
+            layout: layout_DSFY1C
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_NU3RA8
+          - id: 70:105
+            name: 16,000₫
+            type: TEXT
+            layout: layout_ER3Q0F
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_UEXE8S
+          - id: 70:121
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Chiếc cúp vô địch
+            type: TEXT
+            layout: layout_B01BFL
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Chiếc cúp vô địch
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:128
+            name: 14,400₫
+            type: TEXT
+            layout: layout_LK3LOW
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_HLPH86
+          - id: 70:129
+            name: 16,000₫
+            type: TEXT
+            layout: layout_VRJC5M
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_42T16Y
+          - id: 70:196
+            name: Tớ rất yêu Doraemon
+            type: TEXT
+            layout: layout_LIXG1X
+            text: Tớ rất yêu Doraemon
+            textStyle: style_EN4Z3K
+            fills: fill_Y7A3YE
+          - id: 70:197
+            name: Vun đắp tâm hồn - Cô bé đội đám mây
+            type: TEXT
+            layout: layout_UEMX8A
+            text: Vun đắp tâm hồn - Cô bé đội đám mây
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:198
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            type: TEXT
+            layout: layout_92S99E
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:199
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Chiếc cúp vô địch
+            type: TEXT
+            layout: layout_9NPQ7Y
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Chiếc cúp vô địch
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:200
+            name: 128,000₫
+            type: TEXT
+            layout: layout_K8UWOP
+            text: 128,000₫
+            textStyle: style_PIRKRY
+            fills: fill_9WDLKE
+          - id: 70:201
+            name: 14,400₫
+            type: TEXT
+            layout: layout_4OA196
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_NU3RA8
+          - id: 70:202
+            name: 14,400₫
+            type: TEXT
+            layout: layout_TPTKBL
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_HLPH86
+          - id: 70:203
+            name: 16,000₫
+            type: TEXT
+            layout: layout_G17UR7
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_42T16Y
+          - id: 70:204
+            name: 16,000₫
+            type: TEXT
+            layout: layout_NG23ZB
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_UEXE8S
+          - id: 70:137
+            name: Để em luôn ngoan ngoãn - Vì sao tớ không nên ăn vạ ?
+            type: TEXT
+            layout: layout_U75RVE
+            text: Để em luôn ngoan ngoãn - Vì sao tớ không nên ăn vạ ?
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:138
+            name: 21,600₫
+            type: TEXT
+            layout: layout_QVSYGE
+            text: 21,600₫
+            textStyle: style_PIRKRY
+            fills: fill_CXKT5L
+          - id: 70:139
+            name: "\_24,000₫"
+            type: TEXT
+            layout: layout_GDC08S
+            text: "\_24,000₫"
+            textStyle: style_PIRKRY
+            fills: fill_7MUBE9
+          - id: 70:140
+            name: Để em luôn ngoan ngoãn - Vì sao tớ không nên nói dối ?
+            type: TEXT
+            layout: layout_00NEZB
+            text: |-
+
+              Để em luôn ngoan ngoãn - Vì sao tớ không nên nói dối ?
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 70:142
+            name: 21,600₫
+            type: TEXT
+            layout: layout_DB72SY
+            text: 21,600₫
+            textStyle: style_PIRKRY
+            fills: fill_20S6LO
+          - id: 70:143
+            name: 24,000₫
+            type: TEXT
+            layout: layout_OF3HY6
+            text: 24,000₫
+            textStyle: style_PIRKRY
+            fills: fill_7MUBE9
+          - id: 70:144
+            name: Bỏ điện thoại xuống nào!
+            type: TEXT
+            layout: layout_AC2IHG
+            text: Bỏ điện thoại xuống nào!
+            textStyle: style_AWP1QB
+            fills: fill_Y7A3YE
+          - id: 70:145
+            name: 61,200₫
+            type: TEXT
+            layout: layout_GAAY28
+            text: 61,200₫
+            textStyle: style_AWP1QB
+            fills: fill_WM4PRZ
+          - id: 70:146
+            name: 68,000₫
+            type: TEXT
+            layout: layout_5IIPY7
+            text: 68,000₫
+            textStyle: style_AWP1QB
+            fills: fill_7MUBE9
+          - id: 90:951
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            type: TEXT
+            layout: layout_CLWBM7
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 90:952
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            type: TEXT
+            layout: layout_DADHPX
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 90:953
+            name: 14,400₫
+            type: TEXT
+            layout: layout_4QFDQE
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_6KAMW6
+          - id: 90:954
+            name: 16,000₫
+            type: TEXT
+            layout: layout_2IN7L4
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_8628VR
+          - id: 90:2684
+            name: Minus
+            type: FRAME
+            layout: layout_K5XVA8
+            fills: fill_X3IOZH
+          - id: 90:2686
+            name: Plus
+            type: FRAME
+            layout: layout_E0X57Q
+            fills: fill_X3IOZH
+          - id: 90:2707
+            name: Heart
+            type: FRAME
+            layout: layout_NIYJUP
+            fills: fill_X3IOZH
+          - id: 90:2709
+            name: EnvelopeSimple
+            type: FRAME
+            layout: layout_73I7WD
+            fills: fill_X3IOZH
+          - id: 90:2711
+            name: EyedropperSample
+            type: FRAME
+            layout: layout_56TQ55
+            fills: fill_X3IOZH
+          - id: 99:3056
+            name: Rectangle 4180
+            type: RECTANGLE
+            layout: layout_4391WY
+            fills: fill_YWNJTP
+          - id: 99:3057
+            name: Rectangle 4181
+            type: IMAGE-SVG
+            layout: layout_G75NLG
+            fills: fill_YWNJTP
+          - id: 103:3264
+            name: MÔ TẢ - ĐÁNH GIÁ
+            type: TEXT
+            layout: layout_X90BTY
+            text: MÔ TẢ - ĐÁNH GIÁ
+            textStyle: style_YHP9UG
+            fills: fill_Y7A3YE
+          - id: 103:3265
+            name: BÌNH LUẬN
+            type: TEXT
+            layout: layout_P23J00
+            text: BÌNH LUẬN
+            textStyle: style_YHP9UG
+            fills: fill_Y7A3YE
+          - id: 103:3266
+            name: SÁCH CÙNG TÁC GIẢ
+            type: TEXT
+            layout: layout_3AZMG5
+            text: SÁCH CÙNG TÁC GIẢ
+            textStyle: style_YHP9UG
+            fills: fill_Y7A3YE
+          - id: 103:3267
+            name: Rectangle 4184
+            type: RECTANGLE
+            layout: layout_OOP6WC
+            fills: fill_TDE98V
+          - id: 103:3269
+            name: Rectangle 4170
+            type: RECTANGLE
+            layout: layout_1S901E
+            fills: fill_TDE98V
+          - id: 104:3271
+            name: search box
+            type: INSTANCE
+            layout: layout_2EKAAH
+            componentId: 79:160
+          - id: 70:84
+            name: 115,200₫
+            type: TEXT
+            layout: layout_RBLJRQ
+            text: 115,200₫
+            textStyle: style_PIRKRY
+            fills: fill_N0N9QJ
+          - id: 125:253
+            name: MUI/Rating
+            type: INSTANCE
+            layout: layout_U5HC96
+            componentId: 88:889
+          - id: 90:2859
+            name: Article
+            type: FRAME
+            layout: layout_7U9CCY
+            fills: fill_X3IOZH
+          - id: 123:279
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_HRXSB5
+            fills: fill_V3OY6N
+          - id: 182:428
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_A6UZ6O
+            fills: fill_Y7A3YE
+          - id: 182:430
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_TLQGW1
+            fills: fill_Y7A3YE
+          - id: 182:431
+            name: Viết đánh giá
+            type: TEXT
+            layout: layout_SVYTRQ
+            text: Viết đánh giá
+            textStyle: style_0FH6MY
+            fills: fill_Y7A3YE
+          - id: 182:432
+            name: Đặt câu hỏi
+            type: TEXT
+            layout: layout_77WZWX
+            text: Đặt câu hỏi
+            textStyle: style_0FH6MY
+            fills: fill_Y7A3YE
+          - id: 191:648
+            name: MUI/Rating
+            type: INSTANCE
+            layout: layout_ADC42N
+            componentId: 88:889
+      - id: 88:889
+        name: MUI/Rating
+        type: COMPONENT
+        layout: layout_DJIJE2
+        children:
+          - id: 88:890
+            name: <Rating>
+            type: INSTANCE
+            layout: layout_E2MR90
+            fills: fill_X3IOZH
+            opacity: 0.5
+            componentId: 82:8029
+            componentProperties:
+              - name: Size
+                value: Large
+                type: VARIANT
+              - name: Disabled
+                value: 'True'
+                type: VARIANT
+      - id: 53:30
+        name: '[Hương]- Homepage'
+        type: FRAME
+        layout: layout_QWNPOY
+        fills: fill_5HSCN6
+        strokes: stroke_T323QJ
+        children:
+          - id: 58:262
+            name: Rectangle 4138
+            type: RECTANGLE
+            layout: layout_3WK0KK
+            fills: fill_X3IOZH
+            effects: M3/Elevation Light/1
+          - id: 60:267
+            name: Frame 427318907
+            type: FRAME
+            layout: layout_1WLGIN
+            fills: fill_SWXWIJ
+            borderRadius: 6px
+          - id: 60:282
+            name: Frame 427318908
+            type: FRAME
+            layout: layout_THVGH9
+            fills: fill_KC7E4A
+            borderRadius: 6px
+          - id: 60:285
+            name: Rectangle 4139
+            type: RECTANGLE
+            layout: layout_IGM8UY
+            fills: fill_O6ZCWJ
+            strokes: stroke_Y73WL8
+            borderRadius: 6px
+          - id: 60:287
+            name: iconamoon:search-bold
+            type: FRAME
+            layout: layout_D53UGY
+            fills: fill_X3IOZH
+          - id: 60:290
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_66RV12
+            fills: fill_DDWS8T
+          - id: 61:300
+            name: Frame 427318911
+            type: FRAME
+            layout: layout_DVUC3D
+          - id: 61:301
+            name: Rectangle 4141
+            type: RECTANGLE
+            layout: layout_H3SB4G
+            fills: fill_RA0FRJ
+            borderRadius: 24px
+          - id: 64:331
+            name: Frame 427318919
+            type: FRAME
+            layout: layout_HS3NX4
+            fills: fill_X3IOZH
+          - id: 68:363
+            name: Frame 427318926
+            type: FRAME
+            layout: layout_8G4QYX
+            strokes: stroke_F6VAIN
+            borderRadius: 6px
+          - id: 68:364
+            name: Frame 427318927
+            type: FRAME
+            layout: layout_U270OR
+            strokes: stroke_F6VAIN
+            borderRadius: 6px
+          - id: 68:371
+            name: Frame 427318928
+            type: FRAME
+            layout: layout_ANGZRK
+            strokes: stroke_F6VAIN
+            borderRadius: 6px
+          - id: 68:378
+            name: Frame 427318929
+            type: FRAME
+            layout: layout_HM0UFQ
+            strokes: stroke_F6VAIN
+            borderRadius: 6px
+          - id: 68:399
+            name: Frame 427318930
+            type: FRAME
+            layout: layout_S9MHWX
+            strokes: stroke_F6VAIN
+            borderRadius: 6px
+          - id: 68:405
+            name: Frame 427318931
+            type: FRAME
+            layout: layout_APSIXI
+            strokes: stroke_F6VAIN
+            borderRadius: 6px
+          - id: 74:33
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_39P7DK
+            fills: fill_V3OY6N
+          - id: 74:34
+            name: MMT
+            type: TEXT
+            layout: layout_L7VQ5G
+            text: MMT
+            textStyle: style_6AU0O1
+            fills: fill_Y7A3YE
+          - id: 77:36
+            name: b o o k s t o r e
+            type: TEXT
+            layout: layout_GU16TL
+            text: 'b o o k s t o r e '
+            textStyle: style_NQT1FR
+            fills: fill_Y7A3YE
+          - id: 77:44
+            name: Tìm sách
+            type: TEXT
+            layout: layout_39OJ48
+            text: Tìm sách
+            textStyle: style_WQJP41
+            fills: fill_YM3VDX
+          - id: 86:923
+            name: Sách bán chạy
+            type: TEXT
+            layout: layout_80E5BC
+            text: Sách bán chạy
+            textStyle: style_F9Y2ER
+            fills: fill_Y7A3YE
+          - id: 190:443
+            name: Danh mục sản phẩm
+            type: TEXT
+            layout: layout_Q1K6BC
+            text: Danh mục sản phẩm
+            textStyle: style_F9Y2ER
+            fills: fill_Y7A3YE
+          - id: 87:930
+            name: Group 64
+            type: GROUP
+            layout: layout_D1917J
+            borderRadius: 0px 0px 0px 0px
+          - id: 87:931
+            name: Group 65
+            type: GROUP
+            layout: layout_XT436L
+            borderRadius: 0px 0px 0px 0px
+          - id: 87:936
+            name: Group 66
+            type: GROUP
+            layout: layout_7H2MI8
+            borderRadius: 0px 0px 0px 0px
+          - id: 87:941
+            name: Group 67
+            type: GROUP
+            layout: layout_TDJ66Y
+            borderRadius: 0px 0px 0px 0px
+          - id: 139:331
+            name: Group 130
+            type: GROUP
+            layout: layout_AJDV9P
+            borderRadius: 0px 0px 0px 0px
+      - id: 60:275
+        name: button
+        type: COMPONENT_SET
+        layout: layout_JGK4Z1
+        strokes: stroke_8X9N3D
+        borderRadius: 5px
+        children:
+          - id: 60:271
+            name: Property 1=Variant2
+            type: COMPONENT
+            layout: layout_33LR3P
+            fills: fill_SWXWIJ
+            borderRadius: 6px
+          - id: 60:276
+            name: Property 1=Variant2
+            type: COMPONENT
+            layout: layout_ON2QS3
+            fills: fill_KC7E4A
+            borderRadius: 6px
+      - id: 74:26
+        name: '[Hương]- Danh mục'
+        type: FRAME
+        layout: layout_SXC30H
+        fills: fill_5HSCN6
+        children:
+          - id: 74:43
+            name: iconamoon:search-bold
+            type: FRAME
+            layout: layout_H7F9RP
+            fills: fill_X3IOZH
+          - id: 134:441
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 134:481
+            name: Rectangle 4269
+            type: RECTANGLE
+            layout: layout_BW60TX
+            fills: fill_D7FAOT
+          - id: 134:482
+            name: Frame 427318944
+            type: FRAME
+            layout: layout_LZAXSY
+          - id: 134:486
+            name: Frame 427318945
+            type: FRAME
+            layout: layout_JLIYY4
+          - id: 134:490
+            name: Frame 427318946
+            type: FRAME
+            layout: layout_P7XBO7
+          - id: 134:494
+            name: Frame 427318947
+            type: FRAME
+            layout: layout_MNI9EF
+          - id: 134:498
+            name: Frame 427318948
+            type: FRAME
+            layout: layout_PNWZM3
+          - id: 134:502
+            name: Frame 427318949
+            type: FRAME
+            layout: layout_1SOMW0
+          - id: 134:506
+            name: Nhà xuất bản
+            type: TEXT
+            layout: layout_VILI2L
+            text: Nhà xuất bản
+            textStyle: style_WQJP41
+            fills: fill_Y7A3YE
+          - id: 134:507
+            name: Line 26
+            type: LINE
+            layout: layout_EF450D
+            strokes: stroke_T323QJ
+          - id: 137:260
+            name: Group 122
+            type: GROUP
+            layout: layout_QISWJZ
+            borderRadius: 0px 0px 0px 0px
+          - id: 137:261
+            name: Group 123
+            type: GROUP
+            layout: layout_39S0UY
+            borderRadius: 0px 0px 0px 0px
+          - id: 134:508
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_H9DJ0H
+            strokes: stroke_ILT4GM
+          - id: 137:290
+            name: Lọc theo
+            type: TEXT
+            layout: layout_5M7E1G
+            text: Lọc theo
+            textStyle: style_1JVIWD
+            fills: fill_Y7A3YE
+          - id: 139:260
+            name: Tất cả sản phẩm
+            type: TEXT
+            layout: layout_G9R807
+            text: Tất cả sản phẩm
+            textStyle: style_1JVIWD
+            fills: fill_Y7A3YE
+          - id: 139:262
+            name: Rectangle 4272
+            type: RECTANGLE
+            layout: layout_1UA298
+            fills: fill_YWNJTP
+            borderRadius: 5px
+          - id: 191:475
+            name: Frame 427318953
+            type: FRAME
+            layout: layout_FCS8HX
+          - id: 191:476
+            name: Frame 427318954
+            type: FRAME
+            layout: layout_669YF2
+          - id: 191:529
+            name: Frame 427318955
+            type: FRAME
+            layout: layout_EKYVDB
+          - id: 191:582
+            name: Frame 427318956
+            type: FRAME
+            layout: layout_UG5INL
+          - id: 191:443
+            name: Group 130
+            type: GROUP
+            layout: layout_9XZK1Z
+            borderRadius: 0px 0px 0px 0px
+          - id: 194:777
+            name: Logo website
+            type: INSTANCE
+            layout: layout_PSH0V8
+            componentId: 134:434
+      - id: 77:63
+        name: Group 63
+        type: GROUP
+        layout: layout_Q3R788
+        borderRadius: 0px 0px 0px 0px
+        children:
+          - id: 77:32
+            name: Rectangle 4138
+            type: IMAGE-SVG
+            layout: layout_NIWQIA
+            fills: fill_YWNJTP
+            effects: M3/Elevation Light/1
+          - id: 77:47
+            name: button
+            type: INSTANCE
+            layout: layout_IG9020
+            fills: fill_SWXWIJ
+            borderRadius: 6px
+            componentId: 60:271
+          - id: 77:45
+            name: button
+            type: INSTANCE
+            layout: layout_6CW7WJ
+            fills: fill_KC7E4A
+            borderRadius: 6px
+            componentId: 60:276
+          - id: 74:32
+            name: mdi:shop
+            type: FRAME
+            layout: layout_6Z6VVM
+            fills: fill_X3IOZH
+          - id: 77:40
+            name: Frame 427318933
+            type: FRAME
+            layout: layout_IPCUJT
+          - id: 77:37
+            name: Rectangle 4139
+            type: RECTANGLE
+            layout: layout_XAATVL
+            fills: fill_X3IOZH
+            strokes: stroke_Y73WL8
+            borderRadius: 6px
+          - id: 77:42
+            name: iconamoon:search-bold
+            type: FRAME
+            layout: layout_ZWGUVD
+            fills: fill_X3IOZH
+          - id: 60:286
+            name: Tìm sách
+            type: TEXT
+            layout: layout_455RI1
+            text: Tìm sách
+            textStyle: style_WQJP41
+            fills: fill_YM3VDX
+          - id: 77:49
+            name: icon-park-outline:shopping
+            type: FRAME
+            layout: layout_NG65VG
+            fills: fill_X3IOZH
+      - id: 134:434
+        name: Logo website
+        type: COMPONENT
+        layout: layout_HH98V7
+        children:
+          - id: 134:413
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_NRKD6P
+            fills: fill_V3OY6N
+          - id: 134:414
+            name: Frame 427318932
+            type: FRAME
+            layout: layout_AFOAZZ
+      - id: 134:430
+        name: Search
+        type: COMPONENT
+        layout: layout_0P02JS
+        fills: fill_X3IOZH
+        strokes: stroke_Y73WL8
+        borderRadius: 6px
+        children:
+          - id: 134:419
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_F90IXJ
+            strokes: stroke_R0BFFB
+          - id: 134:420
+            name: Tìm sách
+            type: TEXT
+            layout: layout_AJ9U4Y
+            text: Tìm sách
+            textStyle: style_WQJP41
+            fills: fill_YM3VDX
+      - id: 101:3257
+        name: Danh mục yêu thích
+        type: FRAME
+        layout: layout_HCXFU1
+        fills: fill_X3IOZH
+        children:
+          - id: 99:3176
+            name: Rectangle
+            type: RECTANGLE
+            layout: layout_0EGI64
+            fills: fill_BDC5ZW
+          - id: 99:3177
+            name: Rectangle 4192
+            type: RECTANGLE
+            layout: layout_SFLZND
+            fills: fill_K68RBQ
+          - id: 99:3178
+            name: Rectangle 4193
+            type: RECTANGLE
+            layout: layout_SFLZND
+            fills: fill_K68RBQ
+          - id: 99:3179
+            name: Rectangle 4194
+            type: RECTANGLE
+            layout: layout_PR69BY
+            fills: fill_01WOCC
+          - id: 99:3180
+            name: 63.000đ
+            type: TEXT
+            layout: layout_XO3NKL
+            text: 63.000đ
+            textStyle: style_AWP1QB
+            fills: fill_23ZHBL
+          - id: 99:3181
+            name: 70.000đ
+            type: TEXT
+            layout: layout_UD8OYJ
+            text: 70.000đ
+            textStyle: style_AWP1QB
+            fills: fill_S5AR38
+          - id: 99:3183
+            name: Tớ rất yêu Doraemon
+            type: TEXT
+            layout: layout_Y7C808
+            text: Tớ rất yêu Doraemon
+            textStyle: style_EN4Z3K
+            fills: fill_Y7A3YE
+          - id: 99:3184
+            name: Vun đắp tâm hồn - Cô bé đội đám mây
+            type: TEXT
+            layout: layout_M036TG
+            text: Vun đắp tâm hồn - Cô bé đội đám mây
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 99:3185
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            type: TEXT
+            layout: layout_55L58B
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 99:3186
+            name: 115,200₫
+            type: TEXT
+            layout: layout_K3DEYW
+            text: 115,200₫
+            textStyle: style_PIRKRY
+            fills: fill_N0N9QJ
+          - id: 99:3187
+            name: 128,000₫
+            type: TEXT
+            layout: layout_STL3YR
+            text: 128,000₫
+            textStyle: style_PIRKRY
+            fills: fill_9WDLKE
+          - id: 99:3188
+            name: 14,400₫
+            type: TEXT
+            layout: layout_R9WDGS
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_6KAMW6
+          - id: 99:3189
+            name: 16,000₫
+            type: TEXT
+            layout: layout_QXPDP0
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_8628VR
+          - id: 99:3190
+            name: Rectangle 4195
+            type: RECTANGLE
+            layout: layout_23CARU
+            fills: fill_FMDFHI
+          - id: 99:3191
+            name: "Wishlist Trang chủ\_/\_Wishlist"
+            type: TEXT
+            layout: layout_YMSG5S
+            text: "Wishlist\nTrang chủ\_/\_Wishlist"
+            textStyle: style_TY44SO
+            fills: fill_Y7A3YE
+          - id: 99:3192
+            name: Wishlist
+            type: TEXT
+            layout: layout_I27P9D
+            text: Wishlist
+            textStyle: style_TY44SO
+            fills: fill_Y7A3YE
+          - id: 99:3193
+            name: Line 17
+            type: LINE
+            layout: layout_5B78S0
+            strokes: stroke_ZVO6ZV
+          - id: 99:3194
+            name: Rectangle 4196
+            type: RECTANGLE
+            layout: layout_7YKB90
+            fills: fill_3ZNP8W
+          - id: 99:3195
+            name: Rectangle 4197
+            type: RECTANGLE
+            layout: layout_CC383O
+            fills: fill_3ZNP8W
+          - id: 99:3196
+            name: Rectangle 4198
+            type: RECTANGLE
+            layout: layout_QK1Q9J
+            fills: fill_3ZNP8W
+          - id: 99:3197
+            name: X
+            type: FRAME
+            layout: layout_0299EL
+            fills: fill_X3IOZH
+          - id: 99:3199
+            name: X
+            type: FRAME
+            layout: layout_6CWO9D
+            fills: fill_X3IOZH
+          - id: 99:3201
+            name: X
+            type: FRAME
+            layout: layout_0SLF9M
+            fills: fill_X3IOZH
+          - id: 99:3203
+            name: Rectangle 4199
+            type: RECTANGLE
+            layout: layout_YH52FT
+            fills: fill_3ZNP8W
+          - id: 99:3204
+            name: Xóa tất cả
+            type: TEXT
+            layout: layout_7XJIPK
+            text: Xóa tất cả
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 99:3205
+            name: Rectangle
+            type: RECTANGLE
+            layout: layout_0EGI64
+            fills: fill_BDC5ZW
+          - id: 99:3206
+            name: Rectangle 4200
+            type: RECTANGLE
+            layout: layout_SFLZND
+            fills: fill_K68RBQ
+          - id: 99:3207
+            name: Rectangle 4201
+            type: RECTANGLE
+            layout: layout_SFLZND
+            fills: fill_K68RBQ
+          - id: 99:3208
+            name: Rectangle 4202
+            type: RECTANGLE
+            layout: layout_PR69BY
+            fills: fill_01WOCC
+          - id: 99:3209
+            name: 63.000đ
+            type: TEXT
+            layout: layout_XO3NKL
+            text: 63.000đ
+            textStyle: style_AWP1QB
+            fills: fill_23ZHBL
+          - id: 99:3210
+            name: 70.000đ
+            type: TEXT
+            layout: layout_UD8OYJ
+            text: 70.000đ
+            textStyle: style_AWP1QB
+            fills: fill_S5AR38
+          - id: 99:3212
+            name: Tớ rất yêu Doraemon
+            type: TEXT
+            layout: layout_Y7C808
+            text: Tớ rất yêu Doraemon
+            textStyle: style_EN4Z3K
+            fills: fill_Y7A3YE
+          - id: 99:3213
+            name: Vun đắp tâm hồn - Cô bé đội đám mây
+            type: TEXT
+            layout: layout_M036TG
+            text: Vun đắp tâm hồn - Cô bé đội đám mây
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 99:3214
+            name: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            type: TEXT
+            layout: layout_55L58B
+            text: Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 99:3215
+            name: 115,200₫
+            type: TEXT
+            layout: layout_K3DEYW
+            text: 115,200₫
+            textStyle: style_PIRKRY
+            fills: fill_N0N9QJ
+          - id: 99:3216
+            name: 128,000₫
+            type: TEXT
+            layout: layout_STL3YR
+            text: 128,000₫
+            textStyle: style_PIRKRY
+            fills: fill_9WDLKE
+          - id: 99:3217
+            name: 14,400₫
+            type: TEXT
+            layout: layout_R9WDGS
+            text: 14,400₫
+            textStyle: style_PIRKRY
+            fills: fill_6KAMW6
+          - id: 99:3218
+            name: 16,000₫
+            type: TEXT
+            layout: layout_QXPDP0
+            text: 16,000₫
+            textStyle: style_PIRKRY
+            fills: fill_8628VR
+          - id: 99:3219
+            name: Rectangle 4203
+            type: RECTANGLE
+            layout: layout_Q0BW6Q
+            fills: fill_BH4OIZ
+          - id: 99:3220
+            name: "Wishlist Trang chủ\_/\_Wishlist"
+            type: TEXT
+            layout: layout_YMSG5S
+            text: "Wishlist\nTrang chủ\_/\_Wishlist"
+            textStyle: style_TY44SO
+            fills: fill_Y7A3YE
+          - id: 99:3221
+            name: Wishlist
+            type: TEXT
+            layout: layout_I27P9D
+            text: Wishlist
+            textStyle: style_TY44SO
+            fills: fill_Y7A3YE
+          - id: 99:3222
+            name: Line 18
+            type: LINE
+            layout: layout_5B78S0
+            strokes: stroke_ZVO6ZV
+          - id: 99:3223
+            name: Rectangle 4204
+            type: RECTANGLE
+            layout: layout_7YKB90
+            fills: fill_3ZNP8W
+          - id: 99:3224
+            name: Rectangle 4205
+            type: RECTANGLE
+            layout: layout_CC383O
+            fills: fill_3ZNP8W
+          - id: 99:3225
+            name: Rectangle 4206
+            type: RECTANGLE
+            layout: layout_QK1Q9J
+            fills: fill_3ZNP8W
+          - id: 99:3226
+            name: X
+            type: FRAME
+            layout: layout_0299EL
+            fills: fill_X3IOZH
+          - id: 99:3228
+            name: X
+            type: FRAME
+            layout: layout_6CWO9D
+            fills: fill_X3IOZH
+          - id: 99:3230
+            name: X
+            type: FRAME
+            layout: layout_0SLF9M
+            fills: fill_X3IOZH
+          - id: 99:3231
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_VKT691
+            fills: fill_Y7A3YE
+          - id: 99:3232
+            name: Rectangle 4207
+            type: RECTANGLE
+            layout: layout_YH52FT
+            fills: fill_3ZNP8W
+          - id: 99:3233
+            name: Xóa tất cả
+            type: TEXT
+            layout: layout_7XJIPK
+            text: Xóa tất cả
+            textStyle: style_PIRKRY
+            fills: fill_Y7A3YE
+          - id: 99:3239
+            name: Rectangle 4192
+            type: RECTANGLE
+            layout: layout_9VOCXE
+            fills: fill_X3IOZH
+          - id: 99:3240
+            name: Rectangle 4193
+            type: IMAGE-SVG
+            layout: layout_6QKR3H
+            fills: fill_X3IOZH
+          - id: 99:3241
+            name: Rectangle 4194
+            type: RECTANGLE
+            layout: layout_MUR0NZ
+            fills: fill_MEI9YL
+            borderRadius: 25px
+          - id: 99:3242
+            name: Rectangle 4195
+            type: RECTANGLE
+            layout: layout_1VHL4U
+            fills: fill_ZVOQ5D
+            strokes: stroke_M1Q6XQ
+            borderRadius: 10px
+          - id: 99:3243
+            name: MMT Bookstore là một website bán sách trực tuyến, cung cấp đa dạng các thể loại sách cho học sinh, sinh viên và người yêu sách. Website cho phép người dùng tìm kiếm, xem chi tiết sách, đặt mua và thanh toán online. Đồng thời, hệ thống hỗ trợ quản lý sản phẩm, đơn hàng và khách hàng một cách hiệu quả.
+            type: TEXT
+            layout: layout_KBSBW4
+            text: MMT Bookstore là một website bán sách trực tuyến, cung cấp đa dạng các thể loại sách cho học sinh, sinh viên và người yêu sách. Website cho phép người dùng tìm kiếm, xem chi tiết sách, đặt mua và thanh toán online. Đồng thời, hệ thống hỗ trợ quản lý sản phẩm, đơn hàng và khách hàng một cách hiệu quả.
+            textStyle: style_W1ZAZB
+            fills: fill_M8MERQ
+          - id: 99:3244
+            name: Liên hệ
+            type: TEXT
+            layout: layout_KJ9F3V
+            text: Liên hệ
+            textStyle: style_2YFT4U
+            fills: fill_Y7A3YE
+          - id: 99:3245
+            name: gg:pin
+            type: FRAME
+            layout: layout_L09C4Z
+            fills: fill_X3IOZH
+          - id: 99:3249
+            name: mingcute:phone-fill
+            type: FRAME
+            layout: layout_D9S8E7
+            fills: fill_X3IOZH
+          - id: 99:3253
+            name: material-symbols:mail
+            type: FRAME
+            layout: layout_0SDE6F
+            fills: fill_X3IOZH
+          - id: 99:3255
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_B5DY7H
+            fills: fill_V3OY6N
+          - id: 99:3076
+            name: nav/menu selected
+            type: INSTANCE
+            layout: layout_RQQF7R
+            componentId: 79:146
+            componentProperties:
+              - name: Option
+                value: Default
+                type: VARIANT
+              - name: visible option
+                value: yes
+                type: VARIANT
+          - id: 99:3077
+            name: search box
+            type: INSTANCE
+            layout: layout_JNKMH4
+            componentId: 79:160
+          - id: 99:3078
+            name: Logo
+            type: GROUP
+            layout: layout_E1BX3R
+            borderRadius: 0px 0px 0px 0px
+          - id: 99:3090
+            name: MMT
+            type: TEXT
+            layout: layout_NUBRNK
+            text: MMT
+            textStyle: style_9Q618O
+            fills: fill_Y7A3YE
+          - id: 99:3091
+            name: Đăng nhập
+            type: TEXT
+            layout: layout_3TVYXC
+            text: 'Đăng nhập '
+            textStyle: style_FO0IJE
+            fills: fill_Y7A3YE
+          - id: 99:3092
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_CYNBTH
+            fills: fill_Y7A3YE
+          - id: 99:3093
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_9I1IQ1
+            fills: fill_Y7A3YE
+          - id: 99:3094
+            name: Đăng ký
+            type: TEXT
+            layout: layout_I1OFEP
+            text: Đăng ký
+            textStyle: style_FO0IJE
+            fills: fill_Y7A3YE
+          - id: 99:3095
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_QMZ980
+            fills: fill_Y7A3YE
+          - id: 99:3096
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_QBKXJQ
+            fills: fill_Y7A3YE
+          - id: 99:3097
+            name: nav/menu selected
+            type: INSTANCE
+            layout: layout_RQQF7R
+            componentId: 79:146
+            componentProperties:
+              - name: Option
+                value: Default
+                type: VARIANT
+              - name: visible option
+                value: yes
+                type: VARIANT
+          - id: 99:3099
+            name: Logo
+            type: GROUP
+            layout: layout_E1BX3R
+            borderRadius: 0px 0px 0px 0px
+          - id: 99:3111
+            name: MMT
+            type: TEXT
+            layout: layout_NUBRNK
+            text: MMT
+            textStyle: style_9Q618O
+            fills: fill_Y7A3YE
+          - id: 99:3112
+            name: Đăng nhập
+            type: TEXT
+            layout: layout_3TVYXC
+            text: 'Đăng nhập '
+            textStyle: style_FO0IJE
+            fills: fill_Y7A3YE
+          - id: 99:3113
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_CYNBTH
+            fills: fill_Y7A3YE
+          - id: 99:3114
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_9I1IQ1
+            fills: fill_Y7A3YE
+          - id: 99:3115
+            name: Đăng ký
+            type: TEXT
+            layout: layout_I1OFEP
+            text: Đăng ký
+            textStyle: style_FO0IJE
+            fills: fill_Y7A3YE
+          - id: 99:3116
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_QMZ980
+            fills: fill_Y7A3YE
+          - id: 99:3117
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_QBKXJQ
+            fills: fill_Y7A3YE
+      - id: 105:3519
+        name: ArrowSquareDown
+        type: FRAME
+        layout: layout_G24I1O
+        fills: fill_X3IOZH
+      - id: 191:670
+        name: Category_Manga
+        type: FRAME
+        layout: layout_A0SFMJ
+        fills: fill_X3IOZH
+        children:
+          - id: 27:24
+            name: Frame 4
+            type: FRAME
+            layout: layout_5SFTHZ
+          - id: 130:425
+            name: Top
+            type: GROUP
+            layout: layout_QTYDLB
+            borderRadius: 0px 0px 0px 0px
+          - id: 130:422
+            name: Group 92
+            type: GROUP
+            layout: layout_JAHX0F
+            borderRadius: 0px 0px 0px 0px
+          - id: 130:536
+            name: Group 121
+            type: GROUP
+            layout: layout_TQFTB8
+            borderRadius: 0px 0px 0px 0px
+          - id: 191:688
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_YWNJTP
+            effects: M3/Elevation Light/1
+          - id: 193:747
+            name: Group 131
+            type: GROUP
+            layout: layout_66RLN4
+            borderRadius: 0px 0px 0px 0px
+      - id: 191:669
+        name: Blog
+        type: FRAME
+        layout: layout_4DA5JD
+        fills: fill_X3IOZH
+        children:
+          - id: 130:427
+            name: Left
+            type: GROUP
+            layout: layout_DAQ1GE
+            borderRadius: 0px 0px 0px 0px
+          - id: 114:1069
+            name: Right
+            type: GROUP
+            layout: layout_YI3UPV
+            borderRadius: 0px 0px 0px 0px
+          - id: 130:426
+            name: Top
+            type: GROUP
+            layout: layout_QCWZTT
+            borderRadius: 0px 0px 0px 0px
+          - id: 114:1190
+            name: Group 81
+            type: GROUP
+            layout: layout_5Y385N
+            borderRadius: 0px 0px 0px 0px
+          - id: 126:273
+            name: Line 22
+            type: LINE
+            layout: layout_L9SGD7
+            strokes: stroke_T323QJ
+          - id: 130:282
+            name: Group 89
+            type: GROUP
+            layout: layout_MQTYXT
+            borderRadius: 0px 0px 0px 0px
+          - id: 191:671
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_YWNJTP
+            effects: M3/Elevation Light/1
+          - id: 193:727
+            name: Group 131
+            type: GROUP
+            layout: layout_OMZ1SH
+            borderRadius: 0px 0px 0px 0px
+          - id: 193:772
+            name: Logo website
+            type: INSTANCE
+            layout: layout_7LS7NV
+            componentId: 134:434
+      - id: 139:273
+        name: icon-park-twotone:shopping-cart
+        type: FRAME
+        layout: layout_G24I1O
+        fills: fill_X3IOZH
+      - id: 139:283
+        name: icon-park-outline:shopping-cart
+        type: FRAME
+        layout: layout_G24I1O
+        fills: fill_X3IOZH
+      - id: 193:767
+        name: Logo website
+        type: INSTANCE
+        layout: layout_HH98V7
+        componentId: 134:434
+        children:
+          - id: I193:767;134:413
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_NRKD6P
+            fills: fill_V3OY6N
+          - id: I193:767;134:414
+            name: Frame 427318932
+            type: FRAME
+            layout: layout_AFOAZZ
+      - id: 201:495
+        name: '[Đạt]-Trang giỏ hàng'
+        type: FRAME
+        layout: layout_RQFEUH
+        fills: fill_5HSCN6
+        children:
+          - id: 201:496
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 207:565
+            name: Giỏ hàng
+            type: TEXT
+            layout: layout_GMVRKF
+            text: Giỏ hàng
+            textStyle: style_852S78
+            fills: fill_Y7A3YE
+          - id: 308:899
+            name: Group 155
+            type: GROUP
+            layout: layout_F3TNTY
+            borderRadius: 0px 0px 0px 0px
+          - id: 308:900
+            name: Group 156
+            type: GROUP
+            layout: layout_4UW46M
+            borderRadius: 0px 0px 0px 0px
+          - id: 308:914
+            name: Group 157
+            type: GROUP
+            layout: layout_F9THUV
+            borderRadius: 0px 0px 0px 0px
+          - id: 308:928
+            name: Background+Border+Shadow
+            type: FRAME
+            layout: layout_GBIAVD
+            fills: fill_X3IOZH
+            strokes: stroke_XE1BXZ
+            effects: effect_JT4EVB
+            borderRadius: 12px
+          - id: 308:1206
+            name: Background+Border+Shadow
+            type: FRAME
+            layout: layout_7FJU61
+            fills: fill_X3IOZH
+            strokes: stroke_XE1BXZ
+            effects: effect_JT4EVB
+            borderRadius: 12px
+      - id: 357:189
+        name: Frame 427318937
+        type: FRAME
+        layout: layout_AMINHD
+        fills: fill_V3OY6N
+        effects: M3/Elevation Light/1
+        children:
+          - id: 357:190
+            name: Frame 427318936
+            type: FRAME
+            layout: layout_60NQRG
+      - id: 203:536
+        name: Frame 427318957
+        type: COMPONENT
+        layout: layout_8IRO5P
+        children:
+          - id: 203:532
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_SEZW82
+            fills: fill_EZBG3L
+          - id: 201:524
+            name: '1'
+            type: TEXT
+            layout: layout_ME9NTD
+            text: '1'
+            textStyle: style_2AAP8A
+            fills: fill_Y7A3YE
+          - id: 203:528
+            name: Vector
+            type: IMAGE-SVG
+            layout: layout_PL4TXN
+            fills: fill_AOKCIN
+      - id: 203:553
+        name: Group 154
+        type: GROUP
+        layout: layout_QOU8KU
+        borderRadius: 0px 0px 0px 0px
+        children:
+          - id: 203:554
+            name: Rectangle 4288
+            type: RECTANGLE
+            layout: layout_O6E9Y2
+            fills: fill_X3IOZH
+            strokes: stroke_WEE2TK
+            borderRadius: 10px
+          - id: 203:555
+            name: Rectangle 4289
+            type: RECTANGLE
+            layout: layout_QBJXUT
+            fills: fill_YWNJTP
+          - id: 203:556
+            name: Frame 427318958
+            type: INSTANCE
+            layout: layout_0H2TBF
+            componentId: 203:536
+          - id: 203:557
+            name: Tên sách abc abc
+            type: TEXT
+            layout: layout_3U4FFD
+            text: |-
+              Tên sách 
+              abc
+              abc
+            textStyle: style_NOGBRN
+            fills: fill_Y7A3YE
+          - id: 203:558
+            name: Group
+            type: GROUP
+            layout: layout_8QNFDY
+            borderRadius: 0px 0px 0px 0px
+      - id: 309:161
+        name: '[Đạt]-Trang thanh toán'
+        type: FRAME
+        layout: layout_NV6N3F
+        fills: fill_5HSCN6
+        children:
+          - id: 309:235
+            name: Rectangle 4294
+            type: RECTANGLE
+            layout: layout_D1ESVF
+            fills: fill_X3IOZH
+            effects: effect_HUIPRE
+            borderRadius: 12px
+          - id: 309:179
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_BBNNE3
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 309:197
+            name: Thanh toán
+            type: TEXT
+            layout: layout_7LXNDZ
+            text: Thanh toán
+            textStyle: style_4CDRFZ
+            fills: fill_Y7A3YE
+          - id: 309:227
+            name: Group 165
+            type: GROUP
+            layout: layout_KBWE1P
+            borderRadius: 0px 0px 0px 0px
+          - id: 309:234
+            name: Group 168
+            type: GROUP
+            layout: layout_NXVQJK
+            borderRadius: 0px 0px 0px 0px
+          - id: 309:241
+            name: Line 27
+            type: LINE
+            layout: layout_TMM1W9
+            strokes: stroke_75LIEX
+          - id: 309:276
+            name: phương thức thanh toán
+            type: GROUP
+            layout: layout_XM5J5P
+            borderRadius: 0px 0px 0px 0px
+          - id: 309:277
+            name: Rectangle 4302
+            type: RECTANGLE
+            layout: layout_BYPS36
+            fills: fill_X3IOZH
+            effects: effect_B1AS4C
+            borderRadius: 12px
+          - id: 311:295
+            name: 248.000đ
+            type: TEXT
+            layout: layout_9ZO0BH
+            text: 248.000đ
+            textStyle: style_1EAUWT
+            fills: fill_Y7A3YE
+          - id: 311:296
+            name: 20.000đ
+            type: TEXT
+            layout: layout_YCTI9I
+            text: 20.000đ
+            textStyle: style_1EAUWT
+            fills: fill_Y7A3YE
+          - id: 311:297
+            name: 0đ
+            type: TEXT
+            layout: layout_KQB4XB
+            text: 0đ
+            textStyle: style_1EAUWT
+            fills: fill_Y7A3YE
+          - id: 311:292
+            name: Tạm tính
+            type: TEXT
+            layout: layout_1GE8PH
+            text: 'Tạm tính '
+            textStyle: style_SNZK9H
+            fills: fill_4JXWA0
+          - id: 311:293
+            name: Phí vận chuyển
+            type: TEXT
+            layout: layout_GUUH11
+            text: Phí vận chuyển
+            textStyle: style_SNZK9H
+            fills: fill_4JXWA0
+          - id: 311:294
+            name: Khuyến mãi
+            type: TEXT
+            layout: layout_0BRDLM
+            text: Khuyến mãi
+            textStyle: style_SNZK9H
+            fills: fill_4JXWA0
+          - id: 311:289
+            name: 124.000đ
+            type: TEXT
+            layout: layout_A5J12I
+            text: 124.000đ
+            textStyle: style_KEX9HG
+            fills: fill_Y7A3YE
+          - id: 311:290
+            name: 124.000đ
+            type: TEXT
+            layout: layout_JAD6NM
+            text: 124.000đ
+            textStyle: style_KEX9HG
+            fills: fill_Y7A3YE
+          - id: 311:284
+            name: 'SL : 1'
+            type: TEXT
+            layout: layout_XN4927
+            text: 'SL : 1'
+            textStyle: style_SNZK9H
+            fills: fill_Z34RM9
+          - id: 311:285
+            name: 'SL : 2'
+            type: TEXT
+            layout: layout_XKNFRO
+            text: 'SL : 2'
+            textStyle: style_SNZK9H
+            fills: fill_Z34RM9
+          - id: 309:282
+            name: Trường ca Achilles
+            type: TEXT
+            layout: layout_S1XOQN
+            text: Trường ca Achilles
+            textStyle: style_1EAUWT
+            fills: fill_Y7A3YE
+          - id: 309:283
+            name: Dưới đám mây màu cánh vạc
+            type: TEXT
+            layout: layout_JKPZ8M
+            text: Dưới đám mây màu cánh vạc
+            textStyle: style_1EAUWT
+            fills: fill_Y7A3YE
+          - id: 309:278
+            name: Đơn hàng
+            type: TEXT
+            layout: layout_7D3N71
+            text: Đơn hàng
+            textStyle: style_OYTDJD
+            fills: fill_Y7A3YE
+          - id: 309:279
+            name: Line 28
+            type: LINE
+            layout: layout_K5NNPC
+            strokes: stroke_75LIEX
+          - id: 311:291
+            name: Line 29
+            type: LINE
+            layout: layout_XP36LH
+            strokes: stroke_75LIEX
+          - id: 311:298
+            name: Line 30
+            type: LINE
+            layout: layout_RNM5FC
+            strokes: stroke_75LIEX
+          - id: 309:280
+            name: Rectangle 4303
+            type: RECTANGLE
+            layout: layout_DSMMJS
+            fills: fill_RJS1WH
+          - id: 309:281
+            name: Rectangle 4304
+            type: RECTANGLE
+            layout: layout_T4TCQZ
+            fills: fill_QVQ40F
+          - id: 311:299
+            name: Tổng cộng
+            type: TEXT
+            layout: layout_2YYAVB
+            text: Tổng cộng
+            textStyle: style_OYTDJD
+            fills: fill_Y7A3YE
+          - id: 311:300
+            name: 268.000đ
+            type: TEXT
+            layout: layout_BY1J9G
+            text: 268.000đ
+            textStyle: style_OYTDJD
+            fills: fill_B3CIB7
+          - id: 311:301
+            name: Button
+            type: FRAME
+            layout: layout_B7NGMS
+            fills: fill_B3CIB7
+            borderRadius: 8px
+      - id: 311:307
+        name: '[Đạt]- Trang đặt hàng thành công'
+        type: FRAME
+        layout: layout_EMRC0A
+        fills: fill_5HSCN6
+        children:
+          - id: 311:369
+            name: Frame
+            type: FRAME
+            layout: layout_9LBBX7
+            fills: fill_X3IOZH
+            strokes: stroke_MNKIEY
+            effects: effect_WHTW87
+            borderRadius: 12px
+          - id: 311:402
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 357:330
+            name: Group 174
+            type: GROUP
+            layout: layout_75HIX7
+            borderRadius: 0px 0px 0px 0px
+      - id: 313:419
+        name: '[ Nhân ]Trang xem chi tiết đơn hàng'
+        type: FRAME
+        layout: layout_EMRC0A
+        fills: fill_5HSCN6
+        children:
+          - id: 313:420
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 313:645
+            name: Section - Tracking Progress Bar
+            type: FRAME
+            layout: layout_OLKHX2
+            fills: fill_X3IOZH
+            strokes: stroke_MNKIEY
+            effects: effect_WHTW87
+            borderRadius: 12px
+          - id: 313:676
+            name: Order Header
+            type: FRAME
+            layout: layout_N40O1L
+          - id: 313:693
+            name: 'Left Side: Product List'
+            type: FRAME
+            layout: layout_DGVHYS
+          - id: 313:751
+            name: 'Right Side: Sidebar Info'
+            type: FRAME
+            layout: layout_0WYL9U
+      - id: 316:822
+        name: '[ Nhân ]Trang lịch sử đơn hàng'
+        type: FRAME
+        layout: layout_RQFEUH
+        fills: fill_5HSCN6
+        children:
+          - id: 316:823
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 316:1166
+            name: Header
+            type: FRAME
+            layout: layout_AQU6M5
+          - id: 318:1171
+            name: Status Filter Tabs
+            type: FRAME
+            layout: layout_T4QJM9
+          - id: 318:1183
+            name: Table
+            type: FRAME
+            layout: layout_246M7W
+      - id: 319:1258
+        name: '[ Nhân ]Trang lịch sử đơn hàng'
+        type: FRAME
+        layout: layout_U203Y1
+        fills: fill_5HSCN6
+        children:
+          - id: 319:1259
+            name: Frame 427318937
+            type: FRAME
+            layout: layout_4ER293
+            fills: fill_V3OY6N
+            effects: M3/Elevation Light/1
+          - id: 319:1721
+            name: Header Section
+            type: FRAME
+            layout: layout_4J5G8L
+          - id: 319:1853
+            name: Container
+            type: FRAME
+            layout: layout_RIV3N5
+      - id: 357:251
+        name: Group 174
+        type: GROUP
+        layout: layout_0AW8NG
+        children:
+          - id: 357:226
+            name: Group 130
+            type: GROUP
+            layout: layout_SJXQ0Q
+            borderRadius: 0px 0px 0px 0px
+          - id: 357:246
+            name: Logo website
+            type: INSTANCE
+            layout: layout_DJOR8L
+            componentId: 134:434
+globalVars:
+  styles:
+    layout_RQFEUH:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 1024
+    fill_QUSHFD:
+      - '#FFFAED'
+    layout_ZTIZKZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 720
+        y: 207
+      dimensions:
+        width: 576
+        height: 656
+    fill_5H7NMP:
+      - type: IMAGE
+        imageRef: c721232cfaaeadd554345cf1b48f076fcd60cf33
+        scaleMode: STRETCH
+        objectFit: fill
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: true
+          requiresImageDimensions: false
+          cropTransform:
+            - - 0.5854372978210449
+              - 0
+              - 0.1210751086473465
+            - - 0
+              - 1
+              - -0.00008524987060809508
+          filenameSuffix: '3e9469'
+      - '#D9D9D9'
+    layout_MN3SNR:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 275
+        y: 204
+      dimensions:
+        width: 213
+        height: 48
+    style_VGSHS7:
+      fontFamily: Inter
+      fontWeight: 800
+      fontSize: 40
+      lineHeight: 1.2102272033691406em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    fill_Y7A3YE:
+      - '#000000'
+    layout_OP4NXT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 156
+        y: 292
+      dimensions:
+        width: 456
+        height: 74
+    fill_4Z1NBP:
+      - rgba(217, 217, 217, 0.5)
+    layout_IHV874:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 154
+        y: 406
+      dimensions:
+        width: 456
+        height: 74
+    layout_C4HSD9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 156
+        y: 683
+      dimensions:
+        width: 456
+        height: 74
+    fill_X3IOZH:
+      - '#FFFFFF'
+    stroke_T323QJ:
+      colors:
+        - '#000000'
+      strokeWeight: 1px
+    layout_HSIRD0:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 171
+        y: 304
+      dimensions:
+        width: 50
+        height: 50
+    fill_NDF7LD:
+      - type: IMAGE
+        imageRef: 625ae3cf01760e1edf13b3a8083dca3e2c6959a0
+        scaleMode: FIT
+        objectFit: contain
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_WC82B9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 171
+        y: 413
+      dimensions:
+        width: 50
+        height: 50
+    fill_BBIKAH:
+      - type: IMAGE
+        imageRef: 7e7a81d80b09b6a41757199595b111faa4ac1641
+        scaleMode: FIT
+        objectFit: contain
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_6P97PA:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 261
+        y: 325
+      dimensions:
+        width: 116
+        height: 29
+    style_1ZD0AH:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 24
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_5BMBYZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 261
+        y: 434
+      dimensions:
+        width: 111
+        height: 29
+    layout_2M1DLS:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 292
+        y: 512
+      dimensions:
+        width: 180
+        height: 50
+    layout_8ZOCGC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 156
+        y: 789
+      dimensions:
+        width: 456
+        height: 74
+    layout_WA6ZR8:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 252
+        y: 695
+      dimensions:
+        width: 50
+        height: 50
+    layout_DC9NF3:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 252
+        y: 801
+      dimensions:
+        width: 50
+        height: 50
+    layout_HRNN9J:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 324
+        y: 707
+      dimensions:
+        width: 207
+        height: 29
+    layout_IMSFR9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 324
+        y: 816
+      dimensions:
+        width: 238
+        height: 29
+    layout_00ETEB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 280
+        y: 611
+      dimensions:
+        width: 207
+        height: 30
+    style_4AXAOS:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 25
+      lineHeight: 1.210227279663086em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    effect_MGLNTN:
+      boxShadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+    layout_0URAIE:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 311
+        y: 851
+      dimensions:
+        width: 64
+        height: 63
+    fill_BRAPTB:
+      - type: IMAGE
+        imageRef: 4e646103ce190f1bd0962db2490b890fbb43327a
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_7PZZRN:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 215
+        y: 138
+      dimensions:
+        width: 346
+        height: 42
+    style_7XK6WE:
+      fontFamily: Roboto
+      fontWeight: 600
+      fontSize: 36
+      lineHeight: 1.171875em
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    layout_VWWWCG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 402
+        y: 851
+      dimensions:
+        width: 64
+        height: 64
+    fill_53XN9H:
+      - type: IMAGE
+        imageRef: e61ac9deddb92f865a9d688748724afa37e1b72b
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_46894A:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 275
+        y: 803
+      dimensions:
+        width: 226
+        height: 29
+    style_3AEDZM:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 24
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    layout_FLUWJR:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 106
+        y: 712
+      dimensions:
+        width: 510
+        height: 78
+    style_BMNL2A:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 24
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    layout_ZLTNKQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 716
+        y: 180
+      dimensions:
+        width: 576
+        height: 656
+    fill_YGNXG2:
+      - type: IMAGE
+        imageRef: c4400bf2c9cec5a8a08c11a5d9d6508064180f83
+        scaleMode: STRETCH
+        objectFit: fill
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: true
+          requiresImageDimensions: false
+          cropTransform:
+            - - 0.5854372978210449
+              - 0
+              - 0.11481565237045288
+            - - 0
+              - 1
+              - -0.0003797437238972634
+          filenameSuffix: 37e3ce
+    layout_WEY06I:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 160
+        y: 241
+      dimensions:
+        width: 456
+        height: 74
+    layout_M06PY3:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 160
+        y: 367
+      dimensions:
+        width: 456
+        height: 74
+    layout_YYWXMW:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 160
+        y: 493
+      dimensions:
+        width: 456
+        height: 74
+    layout_U7E0CF:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 160
+        y: 623
+      dimensions:
+        width: 456
+        height: 74
+    layout_MKF8NV:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 186
+        y: 263
+      dimensions:
+        width: 76
+        height: 29
+    layout_LEJZM1:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 183
+        y: 391
+      dimensions:
+        width: 55
+        height: 29
+    layout_89Y588:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 183
+        y: 515
+      dimensions:
+        width: 150
+        height: 29
+    layout_PHRZTN:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 183
+        y: 645
+      dimensions:
+        width: 106
+        height: 29
+    layout_EJOQ1C:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 260
+        y: 730
+      dimensions:
+        width: 256
+        height: 50
+    layout_QO4969:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1804
+        height: 3064
+    layout_U8VXU7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1605.84
+        y: 33.32
+      dimensions:
+        width: 24
+        height: 24
+    layout_H0YU0G:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1637.84
+        y: 33.32
+      dimensions:
+        width: 24
+        height: 24
+    layout_0YAUAP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1669.84
+        y: 33.32
+      dimensions:
+        width: 24
+        height: 24
+    layout_1YJNM3:
+      mode: column
+      gap: 10px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 441
+        y: 50.3
+      dimensions:
+        width: 133
+    layout_A66RXF:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 219.28
+        y: 91.46
+      dimensions:
+        width: 116.52
+        height: 11.97
+    layout_B4ZRTZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 235
+        y: 45.3
+      dimensions:
+        width: 76
+        height: 44
+    style_9Q618O:
+      fontFamily: Open Sans
+      fontWeight: 400
+      fontSize: 32
+      lineHeight: 1.36181640625em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_WHX9X3:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1354
+        y: 66.3
+      dimensions:
+        width: 82
+        height: 22
+    style_FO0IJE:
+      fontFamily: Open Sans
+      fontWeight: 400
+      fontSize: 16
+      lineHeight: 1.36181640625em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_CPP6R7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1423.88
+        y: 0
+      dimensions:
+        width: 24
+        height: 24
+    layout_BRCWKY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1325
+        y: 66.16
+      dimensions:
+        width: 18
+        height: 16.94
+    layout_N8Y3P8:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1488.38
+        y: 22.37
+      dimensions:
+        width: 24
+        height: 24
+    layout_DRMSYS:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1489
+        y: 65.22
+      dimensions:
+        width: 21
+        height: 17.64
+    layout_2AY9Z8:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1521
+        y: 66.3
+      dimensions:
+        width: 60
+        height: 22
+    layout_RZPB8T:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1617
+        y: 67.1
+      dimensions:
+        width: 21
+        height: 16.95
+    layout_7U8PIN:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1683
+        y: 67.1
+      dimensions:
+        width: 20.25
+        height: 19.06
+    layout_JVJ9DU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 717
+        y: 205
+      dimensions:
+        width: 155
+        height: 17
+    style_RD26QS:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 20
+      lineHeight: 1.2102272033691406em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_V1B2ID:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 872
+        y: 244
+      dimensions:
+        width: 147
+        height: 17
+    style_810ZMU:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 14
+      lineHeight: 1.2102272851126534em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_QQGWNM:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 715
+        y: 270.59
+      dimensions:
+        width: 882
+        height: 1.03
+    stroke_ZVO6ZV:
+      colors:
+        - rgba(0, 0, 0, 0.3)
+      strokeWeight: 1px
+    layout_17ZV3W:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 717
+        y: 285
+      dimensions:
+        width: 94
+        height: 39
+    fill_QUP68V:
+      - '#FD1313'
+    layout_P7AGTU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 831
+        y: 285
+      dimensions:
+        width: 98
+        height: 39
+    fill_GXK47F:
+      - '#DCC3C3'
+    layout_LTMEQI:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 958
+        y: 290
+      dimensions:
+        width: 218
+        height: 19
+    style_XLYTL2:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 15
+      lineHeight: 1.2102272033691406em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_4N0I1D:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 717
+        y: 323.29
+      dimensions:
+        width: 880
+        height: 1.1
+    layout_SS92WG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1211
+        y: 813
+      dimensions:
+        width: 105
+        height: 118
+    fill_TDE98V:
+      - type: IMAGE
+        imageRef: 456844bb4d59c8ee311a69d6dc8f814742ac0e6b
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_5QYZWA:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1211
+        y: 945
+      dimensions:
+        width: 105
+        height: 119
+    fill_0E553H:
+      - type: IMAGE
+        imageRef: bd2cfd056d10e0938c4a97ee2bc9e87f5756c9ed
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_I21ADL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1209
+        y: 1079
+      dimensions:
+        width: 106
+        height: 120
+    fill_6F5ITX:
+      - type: IMAGE
+        imageRef: 264286a599fdafb93bbde99419f73e30cf9a9d7a
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_HM1M3E:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 1640
+      dimensions:
+        width: 241
+        height: 303
+    fill_BDC5ZW:
+      - type: IMAGE
+        imageRef: 2d9f11d90297fb62335374218463a69acf2d56c3
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_ZFB7DN:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 484
+        y: 1640
+      dimensions:
+        width: 241
+        height: 303
+    fill_K68RBQ:
+      - type: IMAGE
+        imageRef: 8b361fc6d4ef47675173da0dd9c0e23e4996378e
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_PZJQKY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 773
+        y: 1640
+      dimensions:
+        width: 241
+        height: 303
+    fill_01WOCC:
+      - type: IMAGE
+        imageRef: c4f046ed50df306c5f1e0a02df6076cadc9657d7
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_OCCFDC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1067
+        y: 1640
+      dimensions:
+        width: 241
+        height: 303
+    fill_USWZEQ:
+      - type: IMAGE
+        imageRef: 3f63f4db260f11075e8a02f0f87b7b59e7876122
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_0B8TIR:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1348
+        y: 1640
+      dimensions:
+        width: 241
+        height: 303
+    fill_YZQH0R:
+      - type: IMAGE
+        imageRef: 65e5eb4f33c6d44d9dc515a5e6f1a5102aacc6c1
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_5TDR38:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 2140
+      dimensions:
+        width: 241
+        height: 303
+    layout_UPZ21P:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 484
+        y: 2140
+      dimensions:
+        width: 241
+        height: 303
+    layout_FZUI1F:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 773
+        y: 2140
+      dimensions:
+        width: 241
+        height: 303
+    layout_AB07HI:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1067
+        y: 2140
+      dimensions:
+        width: 241
+        height: 303
+    layout_1CCRMZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1348
+        y: 2140
+      dimensions:
+        width: 241
+        height: 303
+    layout_Q53U6H:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1209
+        y: 1213
+      dimensions:
+        width: 106
+        height: 120
+    fill_S5FAR3:
+      - type: IMAGE
+        imageRef: e6c129c191ab6e0d2b37d87e07ce6ef7cfdbc5a1
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_FVGUKA:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1210
+        y: 1347
+      dimensions:
+        width: 106
+        height: 120
+    fill_2VJOI9:
+      - type: IMAGE
+        imageRef: 9d6360e3424c48151f662bb7aa67d3eac21cb8b5
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_1PV8BW:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 186
+        y: 160
+      dimensions:
+        width: 79
+        height: 20
+    style_GU7O1L:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 16
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_HU92QQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 275
+        y: 160
+      dimensions:
+        width: 6
+        height: 20
+    layout_GT6SSU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 291
+        y: 160
+      dimensions:
+        width: 100
+        height: 20
+    layout_U66VG9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 401
+        y: 160
+      dimensions:
+        width: 6
+        height: 20
+    layout_YX6N7B:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 417
+        y: 160
+      dimensions:
+        width: 96
+        height: 20
+    layout_RPHKDQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1311
+        y: 756
+      dimensions:
+        width: 163
+        height: 19
+    layout_67QT7B:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 164
+        y: 787
+      dimensions:
+        width: 984
+        height: 429
+    fill_DVLYEH:
+      - rgba(247, 247, 247, 0.95)
+    layout_EV5WPQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 172
+        y: 1248
+      dimensions:
+        width: 984
+        height: 219
+    fill_WCVOH9:
+      - rgba(246, 244, 244, 0.59)
+    layout_4ZCYXX:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 724
+        y: 340
+      dimensions:
+        width: 315
+        height: 273
+    layout_IXUSQJ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 164
+        y: 646
+      dimensions:
+        width: 713
+        height: 65
+    fill_0VFQT4:
+      - type: IMAGE
+        imageRef: 270aa4c81c5f81bc7d29ff2d82a911da23cab11c
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_OZKJBY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 894
+        y: 646
+      dimensions:
+        width: 710
+        height: 65
+    fill_KFSPVV:
+      - type: IMAGE
+        imageRef: abc00394f266d5209e0f5407555d26019c21d5c1
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_81MHLZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 192
+        y: 1265
+      dimensions:
+        width: 334
+        height: 40
+    style_6P926F:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 32
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_IPXQAY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1329
+        y: 951
+      dimensions:
+        width: 249
+        height: 15
+    style_AWP1QB:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 12
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_F84ZGK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1329
+        y: 812
+      dimensions:
+        width: 72
+        height: 15
+    layout_QV9KD9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1329
+        y: 975
+      dimensions:
+        width: 54
+        height: 15
+    fill_ZXYO0L:
+      - '#FF0D0D'
+    layout_52MLBK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1408
+        y: 975
+      dimensions:
+        width: 55
+        height: 15
+    fill_RG708X:
+      - rgba(255, 13, 13, 0.39)
+    layout_SR8X7D:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1332
+        y: 838
+      dimensions:
+        width: 46
+        height: 15
+    fill_G1YN5Y:
+      - '#FF0707'
+    layout_5CO1VL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1393
+        y: 838
+      dimensions:
+        width: 48
+        height: 15
+    fill_F3I31G:
+      - rgba(255, 7, 7, 0.5)
+    layout_XCIPAM:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1322
+        y: 1481
+      dimensions:
+        width: 158
+        height: 31
+    fill_PG74TD:
+      - rgba(247, 14, 14, 0.4)
+    layout_U30CDN:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 189
+        y: 802
+      dimensions:
+        width: 930
+        height: 397
+    layout_KAXTIU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 161
+        y: 1591
+      dimensions:
+        width: 1484
+        height: 0
+    style_2W0DLX:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 20
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    effect_B6LK8X:
+      backdropFilter: blur(4px)
+    layout_FT08Y2:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1008
+        y: 1583.95
+      dimensions:
+        width: 581
+        height: 2.04
+    layout_ZS7O5E:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 1585
+      dimensions:
+        width: 556
+        height: 2.01
+    layout_5AXIQ7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 2087.05
+      dimensions:
+        width: 1484
+        height: 0
+    layout_4JEVBL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1008
+        y: 2084
+      dimensions:
+        width: 581
+        height: 2.04
+    layout_FZJID9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 2085.05
+      dimensions:
+        width: 556
+        height: 2.01
+    layout_NOER0M:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 1433
+      dimensions:
+        width: 105
+        height: 24
+    style_YHP9UG:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 20
+      lineHeight: 1.2102272033691406em
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    layout_JLQ1NS:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 300
+        y: 1433
+      dimensions:
+        width: 172
+        height: 24
+    layout_UQOV79:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 192
+        y: 1339
+      dimensions:
+        width: 187
+        height: 24
+    layout_RA2Y5N:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 493
+        y: 1979
+      dimensions:
+        width: 48
+        height: 15
+    fill_23ZHBL:
+      - '#E33434'
+    layout_FEX1IF:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 673
+        y: 1979
+      dimensions:
+        width: 47
+        height: 15
+    fill_S5AR38:
+      - '#EB9E9E'
+    layout_C46KHB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1362
+        y: 1487
+      dimensions:
+        width: 77
+        height: 19
+    fill_Z6ODIN:
+      - '#FAF6F6'
+    layout_J6FFIY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1493
+        y: 2030
+      dimensions:
+        width: 96
+        height: 18
+    style_EN4Z3K:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 15
+      lineHeight: 1.2102272033691406em
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    fill_EGLXGR:
+      - '#FC2727'
+    layout_0QHXUL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1493
+        y: 2509
+      dimensions:
+        width: 96
+        height: 18
+    layout_Y3TLWZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1008
+        y: 2563
+      dimensions:
+        width: 581
+        height: 2.04
+    layout_F3ZN81:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 2564.05
+      dimensions:
+        width: 556
+        height: 2.01
+    layout_VVXMSG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 161
+        y: 2570.05
+      dimensions:
+        width: 1484
+        height: 0
+    layout_2T8WGJ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 179
+        y: 2619.05
+      dimensions:
+        width: 241
+        height: 303
+    layout_C8TJLC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 484
+        y: 2619.05
+      dimensions:
+        width: 241
+        height: 303
+    layout_UKIKG1:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 773
+        y: 2619.05
+      dimensions:
+        width: 241
+        height: 303
+    layout_99FKIP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1067
+        y: 2619.05
+      dimensions:
+        width: 241
+        height: 303
+    layout_L84TAT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1348
+        y: 2619.05
+      dimensions:
+        width: 241
+        height: 303
+    layout_CCXY9Q:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 493
+        y: 2958.05
+      dimensions:
+        width: 48
+        height: 15
+    layout_OT1L13:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 673
+        y: 2958.05
+      dimensions:
+        width: 47
+        height: 15
+    layout_ZDFQ95:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1493
+        y: 3009.05
+      dimensions:
+        width: 96
+        height: 18
+    layout_6S7UXP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 773
+        y: 2982
+      dimensions:
+        width: 49
+        height: 15
+    style_PIRKRY:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 12
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    fill_6KAMW6:
+      - '#FC1212'
+    layout_M03ASU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 967
+        y: 2982
+      dimensions:
+        width: 48
+        height: 15
+    fill_8628VR:
+      - rgba(252, 18, 18, 0.65)
+    layout_3IDCQ9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1171
+        y: 391
+      dimensions:
+        width: 142
+        height: 25
+    fill_95VTBX:
+      - rgba(255, 248, 248, 0.99)
+    layout_MN22IP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1175
+        y: 442
+      dimensions:
+        width: 215
+        height: 29
+    fill_YWNJTP:
+      - '#D9D9D9'
+    layout_MLAIXT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1236
+        y: 392
+      dimensions:
+        width: 10
+        height: 24
+    layout_XED5DL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1175
+        y: 361
+      dimensions:
+        width: 51
+        height: 15
+    layout_BQJB3C:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1176
+        y: 481
+      dimensions:
+        width: 138
+        height: 26
+    layout_ZBGIOS:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1250
+        y: 517
+      dimensions:
+        width: 65
+        height: 19
+    layout_5A34UI:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1176
+        y: 517
+      dimensions:
+        width: 69
+        height: 19
+    layout_L8MZ7K:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1215
+        y: 449
+      dimensions:
+        width: 136
+        height: 16
+    style_QWK3LY:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 13
+      lineHeight: 1.2102272327129657em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_XG6ACB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1210
+        y: 486
+      dimensions:
+        width: 70
+        height: 16
+    layout_0NJV89:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1191
+        y: 520
+      dimensions:
+        width: 39
+        height: 13
+    style_SBS9MA:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 11
+      lineHeight: 1.2102272727272727em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_5KV4W6:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1263
+        y: 520
+      dimensions:
+        width: 39
+        height: 13
+    layout_EX91GR:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1576
+        y: 225.85
+      dimensions:
+        width: 21
+        height: 16.93
+    layout_FYO871:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 755
+        y: 1363
+      dimensions:
+        width: 18
+        height: 16.94
+    layout_4N5JCK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 735
+        y: 1354
+      dimensions:
+        width: 167
+        height: 37
+    layout_X6NHVU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 971
+        y: 1354
+      dimensions:
+        width: 164
+        height: 37
+    layout_QB66YQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 472
+        y: 1946
+      dimensions:
+        width: 230
+        height: 15
+    layout_8OMTZR:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 161
+        y: 1946
+      dimensions:
+        width: 242
+        height: 18
+    layout_8702DM:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 350
+        y: 1976
+      dimensions:
+        width: 53
+        height: 15
+    fill_9WDLKE:
+      - '#F68282'
+    layout_A2KUJ7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1049
+        y: 1946
+      dimensions:
+        width: 241
+        height: 30
+    layout_DSFY1C:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1049
+        y: 1991
+      dimensions:
+        width: 47
+        height: 15
+    fill_NU3RA8:
+      - '#FE3535'
+    layout_ER3Q0F:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1244
+        y: 1994
+      dimensions:
+        width: 46
+        height: 15
+    fill_UEXE8S:
+      - '#F78787'
+    layout_B01BFL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1332
+        y: 1946
+      dimensions:
+        width: 238
+        height: 15
+    layout_LK3LOW:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1332
+        y: 1991
+      dimensions:
+        width: 47
+        height: 15
+    fill_HLPH86:
+      - '#E83838'
+    layout_VRJC5M:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1522
+        y: 1991
+      dimensions:
+        width: 46
+        height: 15
+    fill_42T16Y:
+      - '#F08D8D'
+    layout_LIXG1X:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 161
+        y: 2925.05
+      dimensions:
+        width: 242
+        height: 18
+    layout_UEMX8A:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 472
+        y: 2925.05
+      dimensions:
+        width: 230
+        height: 15
+    layout_92S99E:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1049
+        y: 2925.05
+      dimensions:
+        width: 241
+        height: 30
+    layout_9NPQ7Y:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1332
+        y: 2925.05
+      dimensions:
+        width: 238
+        height: 15
+    layout_K8UWOP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 350
+        y: 2955.05
+      dimensions:
+        width: 53
+        height: 15
+    layout_4OA196:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1049
+        y: 2970.05
+      dimensions:
+        width: 47
+        height: 15
+    layout_TPTKBL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1332
+        y: 2970.05
+      dimensions:
+        width: 47
+        height: 15
+    layout_G17UR7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1522
+        y: 2970.05
+      dimensions:
+        width: 46
+        height: 15
+    layout_NG23ZB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1244
+        y: 2973.05
+      dimensions:
+        width: 46
+        height: 15
+    layout_U75RVE:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1324
+        y: 1082
+      dimensions:
+        width: 309
+        height: 15
+    layout_QVSYGE:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1324
+        y: 1110
+      dimensions:
+        width: 46
+        height: 15
+    fill_CXKT5L:
+      - '#F63C3C'
+    layout_GDC08S:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1393
+        y: 1110
+      dimensions:
+        width: 51
+        height: 15
+    fill_7MUBE9:
+      - '#E66E6E'
+    layout_00NEZB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1324
+        y: 1197
+      dimensions:
+        width: 317
+        height: 30
+    layout_DB72SY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1324
+        y: 1240
+      dimensions:
+        width: 46
+        height: 15
+    fill_20S6LO:
+      - '#FC4646'
+    layout_OF3HY6:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1396
+        y: 1240
+      dimensions:
+        width: 48
+        height: 15
+    layout_AC2IHG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1324
+        y: 1342
+      dimensions:
+        width: 141
+        height: 15
+    layout_GAAY28:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1324
+        y: 1370
+      dimensions:
+        width: 46
+        height: 15
+    fill_WM4PRZ:
+      - '#FF3A3A'
+    layout_5IIPY7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1410
+        y: 1370
+      dimensions:
+        width: 48
+        height: 15
+    layout_CLWBM7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 753
+        y: 1954
+      dimensions:
+        width: 244
+        height: 30
+    layout_DADHPX:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 753
+        y: 2931
+      dimensions:
+        width: 244
+        height: 30
+    layout_4QFDQE:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 759
+        y: 1998
+      dimensions:
+        width: 48
+        height: 15
+    layout_2IN7L4:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 950
+        y: 1998
+      dimensions:
+        width: 47
+        height: 15
+    layout_K5XVA8:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1175
+        y: 392
+      dimensions:
+        width: 24
+        height: 24
+    layout_E0X57Q:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1290
+        y: 392
+      dimensions:
+        width: 24
+        height: 24
+    layout_NIYJUP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1427.28
+        y: 454.37
+      dimensions:
+        width: 24
+        height: 24
+    layout_73I7WD:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 918.01
+        y: 1263.73
+      dimensions:
+        width: 24
+        height: 24
+    layout_56TQ55:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1020.02
+        y: 1167.3
+      dimensions:
+        width: 24
+        height: 24
+    layout_4391WY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1188
+        y: 744
+      dimensions:
+        width: 413
+        height: 43
+    layout_G75NLG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 165
+        y: 744
+      dimensions:
+        width: 983
+        height: 43
+    layout_X90BTY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 178
+        y: 756
+      dimensions:
+        width: 181
+        height: 24
+    layout_P23J00:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 376
+        y: 756
+      dimensions:
+        width: 109
+        height: 24
+    layout_3AZMG5:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1306
+        y: 754
+      dimensions:
+        width: 204
+        height: 24
+    layout_OOP6WC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 317
+        y: 205
+      dimensions:
+        width: 356
+        height: 420
+    layout_1S901E:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 100
+        y: 239
+      dimensions:
+        width: 169
+        height: 210
+    layout_2EKAAH:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 569
+        y: 50
+      dimensions:
+        width: 706
+        height: 60
+    layout_RBLJRQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 194
+        y: 1978
+      dimensions:
+        width: 52
+        height: 15
+    fill_N0N9QJ:
+      - '#F81A1A'
+    layout_U5HC96:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 8px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 192
+        y: 1385
+      dimensions:
+        width: 140
+        height: 24
+    layout_7U9CCY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1685.99
+        y: 156.72
+      dimensions:
+        width: 24
+        height: 24
+    layout_HRXSB5:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 153
+        y: 57
+      dimensions:
+        width: 45
+        height: 42
+    fill_V3OY6N:
+      - '#0F2854'
+    layout_A6UZ6O:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 742
+        y: 1359
+      dimensions:
+        width: 21
+        height: 19.5
+    layout_TLQGW1:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 978
+        y: 1358
+      dimensions:
+        width: 18.75
+        height: 18.75
+    layout_SVYTRQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 783
+        y: 1361
+      dimensions:
+        width: 100
+        height: 19
+    style_0FH6MY:
+      fontFamily: Inter
+      fontWeight: 400
+      fontSize: 16
+      lineHeight: 1.2102272510528564em
+      textAlignHorizontal: CENTER
+      textAlignVertical: TOP
+    layout_77WZWX:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1024
+        y: 1361
+      dimensions:
+        width: 86
+        height: 19
+    layout_ADC42N:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 8px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 717
+        y: 237
+      dimensions:
+        width: 140
+        height: 24
+    layout_DJIJE2:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 8px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 140
+        height: 24
+    layout_E2MR90:
+      mode: row
+      alignItems: center
+      sizing:
+        horizontal: hug
+        vertical: hug
+    layout_QWNPOY:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 2222
+    fill_5HSCN6:
+      - '#F6F7F8'
+    layout_3WK0KK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: -2
+      dimensions:
+        width: 1440
+        height: 100
+    M3/Elevation Light/1:
+      boxShadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3)
+    layout_1WLGIN:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 1036
+        y: 30
+      dimensions:
+        width: 124
+        height: 50
+    fill_SWXWIJ:
+      - rgba(65, 63, 63, 0.12)
+    layout_THVGH9:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 1181
+        y: 30
+      dimensions:
+        width: 124
+        height: 50
+    fill_KC7E4A:
+      - '#021526'
+    layout_IGM8UY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 335
+        y: 30
+      dimensions:
+        width: 650
+        height: 50
+    fill_O6ZCWJ:
+      - rgba(108, 93, 211, 0.06)
+    stroke_Y73WL8:
+      colors:
+        - rgba(0, 0, 0, 0.12)
+      strokeWeight: 1px
+    layout_D53UGY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 359
+        y: 45
+      dimensions:
+        width: 24
+        height: 24
+    layout_66RV12:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 100
+      dimensions:
+        width: 1440
+        height: 520
+    fill_DDWS8T:
+      - rgba(245, 231, 198, 0.5)
+    layout_DVUC3D:
+      mode: column
+      gap: 4px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 190
+        y: 215
+      dimensions:
+        width: 410
+        height: 257
+    layout_H3SB4G:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 785
+        y: 160
+      dimensions:
+        width: 520
+        height: 400
+    fill_RA0FRJ:
+      - type: IMAGE
+        imageRef: c721232cfaaeadd554345cf1b48f076fcd60cf33
+        scaleMode: STRETCH
+        objectFit: fill
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: true
+          requiresImageDimensions: false
+          cropTransform:
+            - - 0.866772472858429
+              - 0
+              - 0.00040987037937156856
+            - - 0
+              - 1
+              - -0.001128250965848565
+          filenameSuffix: 5ccc25
+    layout_HS3NX4:
+      mode: column
+      gap: 10px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: -20
+        y: 610
+      dimensions:
+        width: 1480
+    layout_8G4QYX:
+      mode: column
+      gap: 10px
+      padding: 15px 24px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 150
+        y: 957
+      dimensions:
+        width: 320
+        height: 130
+    stroke_F6VAIN:
+      colors:
+        - rgba(0, 0, 0, 0.5)
+      strokeWeight: 1px
+    layout_U270OR:
+      mode: column
+      gap: 10px
+      padding: 15px 24px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 560
+        y: 957
+      dimensions:
+        width: 320
+        height: 130
+    layout_ANGZRK:
+      mode: column
+      gap: 10px
+      padding: 15px 24px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 970
+        y: 957
+      dimensions:
+        width: 320
+        height: 130
+    layout_HM0UFQ:
+      mode: column
+      gap: 10px
+      padding: 15px 24px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 150
+        y: 1138
+      dimensions:
+        width: 320
+        height: 130
+    layout_S9MHWX:
+      mode: column
+      gap: 10px
+      padding: 15px 24px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 560
+        y: 1138
+      dimensions:
+        width: 320
+        height: 130
+    layout_APSIXI:
+      mode: column
+      gap: 10px
+      padding: 15px 24px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 970
+        y: 1138
+      dimensions:
+        width: 320
+        height: 130
+    layout_39P7DK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 79
+        y: 34
+      dimensions:
+        width: 45
+        height: 42
+    layout_L7VQ5G:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 144
+        y: 37
+      dimensions:
+        width: 71
+        height: 16
+    style_6AU0O1:
+      fontFamily: Roboto
+      fontWeight: 800
+      fontSize: 30
+      lineHeight: 0.5333333333333333em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_GU16TL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 144
+        y: 64
+      dimensions:
+        width: 162
+        height: 16
+    style_NQT1FR:
+      fontFamily: Roboto
+      fontWeight: 400
+      fontSize: 25
+      lineHeight: 0.64em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_39OJ48:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 395
+        y: 48
+      dimensions:
+        width: 74
+        height: 16
+    style_WQJP41:
+      fontFamily: Roboto
+      fontWeight: 400
+      fontSize: 18
+      lineHeight: 0.8888888888888888em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    fill_YM3VDX:
+      - '#4D4A85'
+    layout_80E5BC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 573
+        y: 1324
+      dimensions:
+        width: 243
+        height: 39
+    style_F9Y2ER:
+      fontFamily: Montserrat
+      fontWeight: 700
+      fontSize: 32
+      lineHeight: 1.218999981880188em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_Q1K6BC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 520
+        y: 889
+      dimensions:
+        width: 349
+        height: 39
+    layout_D1917J:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 101
+        y: 1420
+      dimensions:
+        width: 245
+        height: 325
+    layout_XT436L:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 437
+        y: 1420
+      dimensions:
+        width: 245
+        height: 325
+    layout_7H2MI8:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 773
+        y: 1420
+      dimensions:
+        width: 245
+        height: 325
+    layout_TDJ66Y:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1109
+        y: 1420
+      dimensions:
+        width: 245
+        height: 325
+    layout_AJDV9P:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 1828
+      dimensions:
+        width: 1440
+        height: 394
+    layout_JGK4Z1:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 164
+        height: 160
+    stroke_8X9N3D:
+      colors:
+        - '#9747FF'
+      strokeWeight: 1px
+      strokeDashes:
+        - 10
+        - 5
+    layout_33LR3P:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 20
+        y: 20
+      dimensions:
+        width: 124
+        height: 50
+    layout_ON2QS3:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 20
+        y: 90
+      dimensions:
+        width: 124
+        height: 50
+    layout_SXC30H:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 2105
+    layout_H7F9RP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 860
+        y: 179
+      dimensions:
+        width: 24
+        height: 24
+    layout_4ER293:
+      mode: column
+      gap: 10px
+      padding: 25px 20px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 0
+        y: 0
+      dimensions:
+        width: 1440
+        height: 100
+    layout_BW60TX:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 103
+        y: 634
+      dimensions:
+        width: 290
+        height: 334
+    fill_D7FAOT:
+      - rgba(249, 242, 226, 0.24)
+    layout_LZAXSY:
+      mode: row
+      alignItems: center
+      gap: 13px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 123
+        y: 743
+    layout_JLIYY4:
+      mode: row
+      alignItems: center
+      gap: 13px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 123
+        y: 783
+    layout_P7XBO7:
+      mode: row
+      alignItems: center
+      gap: 13px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 123
+        y: 823
+    layout_MNI9EF:
+      mode: row
+      alignItems: center
+      gap: 13px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 123
+        y: 863
+    layout_PNWZM3:
+      mode: row
+      alignItems: center
+      gap: 13px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 123
+        y: 903
+    layout_1SOMW0:
+      mode: row
+      alignItems: center
+      gap: 13px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 123
+        y: 943
+    layout_VILI2L:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 123
+        y: 683
+      dimensions:
+        width: 106
+        height: 16
+    layout_EF450D:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 103
+        y: 721
+      dimensions:
+        width: 290
+        height: 0
+    layout_QISWJZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 103
+        y: 245
+      dimensions:
+        width: 290
+        height: 334
+    layout_39S0UY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 106
+        y: 994.35
+      dimensions:
+        width: 290
+        height: 362.65
+    layout_H9DJ0H:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 345.75
+        y: 653.31
+      dimensions:
+        width: 14.5
+        height: 6.28
+    stroke_ILT4GM:
+      colors:
+        - '#000000'
+      strokeWeight: 1.5px
+    layout_5M7E1G:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 103
+        y: 187
+      dimensions:
+        width: 156
+        height: 16
+    style_1JVIWD:
+      fontFamily: Roboto
+      fontWeight: 600
+      fontSize: 40
+      lineHeight: 0.4em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_G9R807:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 419
+        y: 187
+      dimensions:
+        width: 295
+        height: 16
+    layout_1UA298:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 418
+        y: 243
+      dimensions:
+        width: 920
+        height: 40
+    layout_FCS8HX:
+      mode: row
+      alignItems: center
+      gap: 26px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 418
+        y: 295
+    layout_669YF2:
+      mode: row
+      alignItems: center
+      gap: 26px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 418
+        y: 637
+    layout_EKYVDB:
+      mode: row
+      alignItems: center
+      gap: 26px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 418
+        y: 975
+    layout_UG5INL:
+      mode: row
+      alignItems: center
+      gap: 26px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 418
+        y: 1315
+    layout_9XZK1Z:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 1711
+      dimensions:
+        width: 1440
+        height: 394
+    layout_PSH0V8:
+      mode: row
+      alignItems: center
+      gap: 11px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 211
+        y: 1806
+    layout_Q3R788:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 125
+    layout_NIWQIA:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 25
+      dimensions:
+        width: 1440
+        height: 100
+    layout_IG9020:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 1114
+        y: 62
+      dimensions:
+        width: 124
+        height: 50
+    layout_6CW7WJ:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 10px
+      padding: 10px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 1261
+        y: 62
+      dimensions:
+        width: 124
+        height: 50
+    layout_6Z6VVM:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 40
+        y: 0
+      dimensions:
+        width: 24
+        height: 24
+    layout_IPCUJT:
+      mode: row
+      alignItems: center
+      gap: 11px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 64
+        y: 53
+    layout_XAATVL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 347
+        y: 64
+      dimensions:
+        width: 650
+        height: 50
+    layout_ZWGUVD:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 370
+        y: 79
+      dimensions:
+        width: 24
+        height: 24
+    layout_455RI1:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 409
+        y: 82
+      dimensions:
+        width: 74
+        height: 16
+    layout_NG65VG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1048
+        y: 75
+      dimensions:
+        width: 35
+        height: 35
+    layout_HH98V7:
+      mode: row
+      alignItems: center
+      gap: 11px
+      sizing:
+        horizontal: hug
+        vertical: hug
+    layout_NRKD6P:
+      mode: none
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 50
+        height: 48
+    layout_AFOAZZ:
+      mode: column
+      gap: 11px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      dimensions:
+        width: 164
+    layout_0P02JS:
+      mode: row
+      alignItems: center
+      gap: 21px
+      padding: 16px 23px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 650
+        height: 50
+    layout_F90IXJ:
+      mode: none
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 18
+        height: 18
+    stroke_R0BFFB:
+      colors:
+        - rgba(0, 0, 0, 0.7)
+      strokeWeight: 2.5px
+    layout_AJ9U4Y:
+      mode: none
+      sizing:
+        horizontal: hug
+        vertical: hug
+    layout_HCXFU1:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1654
+        height: 1376
+    layout_0EGI64:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 191
+        y: 572
+      dimensions:
+        width: 277
+        height: 303
+    layout_SFLZND:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 592
+        y: 569
+      dimensions:
+        width: 277
+        height: 303
+    layout_PR69BY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 976
+        y: 569
+      dimensions:
+        width: 277
+        height: 303
+    layout_XO3NKL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 603
+        y: 908
+      dimensions:
+        width: 55
+        height: 15
+    layout_UD8OYJ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 809
+        y: 908
+      dimensions:
+        width: 54
+        height: 15
+    layout_Y7C808:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 171
+        y: 878
+      dimensions:
+        width: 278
+        height: 18
+    layout_M036TG:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 578
+        y: 875
+      dimensions:
+        width: 265
+        height: 15
+    layout_55L58B:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 953
+        y: 883
+      dimensions:
+        width: 280
+        height: 30
+    layout_K3DEYW:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 192
+        y: 905
+      dimensions:
+        width: 60
+        height: 15
+    layout_STL3YR:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 388
+        y: 908
+      dimensions:
+        width: 61
+        height: 15
+    layout_R9WDGS:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 960
+        y: 927
+      dimensions:
+        width: 55
+        height: 15
+    layout_QXPDP0:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1179
+        y: 927
+      dimensions:
+        width: 54
+        height: 15
+    layout_23CARU:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 135
+      dimensions:
+        width: 1654
+        height: 247
+    fill_FMDFHI:
+      - '#F0F0F0'
+    layout_YMSG5S:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 184
+        y: 189
+      dimensions:
+        width: 314
+        height: 68
+    style_TY44SO:
+      fontFamily: Bona Nova
+      fontWeight: 700
+      fontSize: 28
+      lineHeight: 1.2000000817435128em
+      letterSpacing: 2%
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_I27P9D:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 184
+        y: 473
+      dimensions:
+        width: 128
+        height: 34
+    layout_5B78S0:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 184
+        y: 513
+      dimensions:
+        width: 1428
+        height: 0
+    layout_7YKB90:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 869
+        y: 572
+      dimensions:
+        width: 49
+        height: 36
+    fill_3ZNP8W:
+      - '#E87777'
+    layout_CC383O:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 480
+        y: 572
+      dimensions:
+        width: 49
+        height: 36
+    layout_QK1Q9J:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1264
+        y: 572
+      dimensions:
+        width: 50
+        height: 36
+    layout_0299EL:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1277
+        y: 579
+      dimensions:
+        width: 25
+        height: 26
+    layout_6CWO9D:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 881
+        y: 582
+      dimensions:
+        width: 26
+        height: 26
+    layout_0SLF9M:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 479
+        y: 594
+      dimensions:
+        width: 26
+        height: 26
+    layout_YH52FT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1494
+        y: 534
+      dimensions:
+        width: 118
+        height: 35
+    layout_7XJIPK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1520
+        y: 545
+      dimensions:
+        width: 66
+        height: 15
+    layout_Q0BW6Q:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 11
+        y: 135
+      dimensions:
+        width: 1654
+        height: 247
+    fill_BH4OIZ:
+      - rgba(158, 141, 141, 0)
+    layout_VKT691:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 496
+        y: 582
+      dimensions:
+        width: 17
+        height: 15.62
+    layout_9VOCXE:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 13
+        y: 994
+      dimensions:
+        width: 1660
+        height: 394
+    layout_6QKR3H:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 21
+        y: 972
+      dimensions:
+        width: 1660
+        height: 394
+    layout_MUR0NZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1125
+        y: 1061
+      dimensions:
+        width: 409
+        height: 250
+    fill_MEI9YL:
+      - type: IMAGE
+        imageRef: 61a5d57f624b152ad0c0089b123839b329f2361f
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_1VHL4U:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 212
+        y: 1061
+      dimensions:
+        width: 346
+        height: 100
+    fill_ZVOQ5D:
+      - rgba(227, 238, 255, 0.5)
+    stroke_M1Q6XQ:
+      colors:
+        - '#000000'
+        - rgba(51, 34, 34, 0.2)
+      strokeWeight: 1px
+      strokeDashes:
+        - 2
+        - 2
+    layout_KBSBW4:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 212
+        y: 1173
+      dimensions:
+        width: 472
+        height: 120
+    style_W1ZAZB:
+      fontFamily: Open Sans
+      fontWeight: 400
+      fontSize: 16
+      lineHeight: 1.5em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    fill_M8MERQ:
+      - rgba(0, 0, 0, 0.85)
+    layout_KJ9F3V:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 841
+        y: 1061
+      dimensions:
+        width: 121
+        height: 24
+    style_2YFT4U:
+      fontFamily: Roboto
+      fontWeight: 700
+      fontSize: 32
+      lineHeight: 0.75em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_L09C4Z:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 842
+        y: 1136
+      dimensions:
+        width: 25
+        height: 26
+    layout_D9S8E7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 842
+        y: 1190
+      dimensions:
+        width: 25
+        height: 26
+    layout_0SDE6F:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 842
+        y: 1250
+      dimensions:
+        width: 25
+        height: 26
+    layout_B5DY7H:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 252
+        y: 1085
+      dimensions:
+        width: 52
+        height: 38.76
+    layout_RQQF7R:
+      mode: column
+      gap: 10px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 374
+        y: 41
+      dimensions:
+        width: 133
+    layout_JNKMH4:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 507
+        y: 42
+      dimensions:
+        width: 706
+        height: 60
+    layout_E1BX3R:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 36
+        y: 13
+      dimensions:
+        width: 232.8
+        height: 113
+    layout_NUBRNK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 168
+        y: 36
+      dimensions:
+        width: 76
+        height: 44
+    layout_3TVYXC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1287
+        y: 57
+      dimensions:
+        width: 82
+        height: 22
+    layout_CYNBTH:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1258
+        y: 56.1
+      dimensions:
+        width: 18
+        height: 16.56
+    layout_9I1IQ1:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1422
+        y: 55.18
+      dimensions:
+        width: 21
+        height: 17.25
+    layout_I1OFEP:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1454
+        y: 57
+      dimensions:
+        width: 60
+        height: 22
+    layout_QMZ980:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1550
+        y: 57.02
+      dimensions:
+        width: 21
+        height: 16.57
+    layout_QBKXJQ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1616
+        y: 57.02
+      dimensions:
+        width: 20.25
+        height: 18.63
+    layout_G24I1O:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 24
+        height: 24
+    layout_A0SFMJ:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 2102
+    layout_5SFTHZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 1963
+      dimensions:
+        width: 82
+        height: 28
+    layout_QTYDLB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 42
+        y: 136
+      dimensions:
+        width: 1374
+        height: 451
+    layout_JAHX0F:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 38
+        y: 604
+      dimensions:
+        width: 1387
+        height: 161
+    layout_TQFTB8:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 39
+        y: 773
+      dimensions:
+        width: 1386
+        height: 889
+    layout_66RLN4:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 1698
+      dimensions:
+        width: 1440
+        height: 394
+    layout_4DA5JD:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 2049
+    layout_DAQ1GE:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 42
+        y: 618
+      dimensions:
+        width: 852
+        height: 420
+    layout_YI3UPV:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 917
+        y: 608
+      dimensions:
+        width: 510
+        height: 416
+    layout_QCWZTT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 42
+        y: 134
+      dimensions:
+        width: 1384
+        height: 453
+    layout_5Y385N:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 924
+        y: 919.77
+      dimensions:
+        width: 496
+        height: 93.16
+    layout_L9SGD7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 44
+        y: 1066
+      dimensions:
+        width: 1383
+        height: 1.01
+    layout_MQTYXT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 40
+        y: 1096
+      dimensions:
+        width: 1387
+        height: 524
+    layout_OMZ1SH:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 1673
+      dimensions:
+        width: 1440
+        height: 394
+    layout_7LS7NV:
+      mode: row
+      alignItems: center
+      gap: 11px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 213
+        y: 1769
+    layout_GMVRKF:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 98
+        y: 191
+      dimensions:
+        width: 159
+        height: 16
+    style_852S78:
+      fontFamily: Open Sans
+      fontWeight: 700
+      fontSize: 36
+      lineHeight: 0.4444444444444444em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_F3TNTY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 98
+        y: 245
+      dimensions:
+        width: 815
+        height: 185
+    layout_4UW46M:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 98
+        y: 446
+      dimensions:
+        width: 815
+        height: 185
+    layout_F9THUV:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 98
+        y: 645
+      dimensions:
+        width: 815
+        height: 185
+    layout_GBIAVD:
+      mode: column
+      gap: 24px
+      padding: 24px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: -664
+        y: 456
+      dimensions:
+        width: 380
+    stroke_XE1BXZ:
+      colors:
+        - '#F1F5F9'
+      strokeWeight: 1px
+    effect_JT4EVB:
+      boxShadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1)
+    layout_7FJU61:
+      mode: column
+      gap: 24px
+      padding: 24px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 965
+        y: 245
+      dimensions:
+        width: 380
+    layout_AMINHD:
+      mode: column
+      gap: 10px
+      padding: 25px 20px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 1440
+        height: 100
+    layout_60NQRG:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 34px
+      padding: 0px 20px
+      sizing:
+        horizontal: hug
+        vertical: hug
+    layout_8IRO5P:
+      mode: row
+      gap: 21px
+      sizing:
+        horizontal: hug
+        vertical: fixed
+      dimensions:
+        height: 18
+    layout_SEZW82:
+      mode: none
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 18.06
+        height: 18.06
+    fill_EZBG3L:
+      - '#808080'
+    layout_ME9NTD:
+      mode: none
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 11
+        height: 15
+    style_2AAP8A:
+      fontFamily: Open Sans
+      fontWeight: 400
+      fontSize: 18
+      lineHeight: 0.8888888888888888em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_PL4TXN:
+      mode: none
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      dimensions:
+        width: 19
+        height: 18
+    fill_AOKCIN:
+      - '#757575'
+    layout_QOU8KU:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 815
+        height: 185
+    layout_O6E9Y2:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 0
+      dimensions:
+        width: 815
+        height: 185
+    stroke_WEE2TK:
+      colors:
+        - rgba(0, 0, 0, 0.25)
+      strokeWeight: 1px
+    layout_QBJXUT:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 17
+        y: 19
+      dimensions:
+        width: 117
+        height: 148
+    layout_0H2TBF:
+      mode: row
+      gap: 21px
+      sizing:
+        horizontal: hug
+        vertical: fixed
+      locationRelativeToParent:
+        x: 603
+        y: 84
+      dimensions:
+        height: 18
+    layout_3U4FFD:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 159
+        y: 19
+      dimensions:
+        width: 78
+        height: 75
+    style_NOGBRN:
+      fontFamily: Roboto
+      fontWeight: 400
+      fontSize: 18
+      lineHeight: 1.3888888888888888em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_8QNFDY:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 736
+        y: 82
+      dimensions:
+        width: 20
+        height: 20
+    layout_NV6N3F:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 1296
+    layout_D1ESVF:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 79
+        y: 216
+      dimensions:
+        width: 779
+        height: 399
+    effect_HUIPRE:
+      boxShadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25)
+    layout_BBNNE3:
+      mode: column
+      justifyContent: center
+      gap: 10px
+      padding: 25px 20px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 0
+        y: 0
+      dimensions:
+        width: 1440
+        height: 100
+    layout_7LXNDZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 79
+        y: 169
+      dimensions:
+        width: 183
+        height: 16
+    style_4CDRFZ:
+      fontFamily: Roboto
+      fontWeight: 700
+      fontSize: 36
+      lineHeight: 0.4444444444444444em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_KBWE1P:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 114
+        y: 320
+      dimensions:
+        width: 696
+        height: 255
+    layout_NXVQJK:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 113
+        y: 235
+      dimensions:
+        width: 250
+        height: 30
+    layout_TMM1W9:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 110
+        y: 282
+      dimensions:
+        width: 700
+        height: 0
+    stroke_75LIEX:
+      colors:
+        - '#D9D9D9'
+      strokeWeight: 1px
+    layout_XM5J5P:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 79
+        y: 662
+      dimensions:
+        width: 779
+        height: 506
+    layout_BYPS36:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 906
+        y: 216
+      dimensions:
+        width: 448
+        height: 847
+    effect_B1AS4C:
+      boxShadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25)
+    layout_9ZO0BH:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1253
+        y: 687
+      dimensions:
+        width: 70
+        height: 16
+    style_1EAUWT:
+      fontFamily: Roboto
+      fontWeight: 700
+      fontSize: 16
+      lineHeight: 1em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_YCTI9I:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1262
+        y: 723
+      dimensions:
+        width: 61
+        height: 16
+    layout_KQB4XB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1303
+        y: 759
+      dimensions:
+        width: 20
+        height: 16
+    layout_1GE8PH:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 687
+      dimensions:
+        width: 63
+        height: 16
+    style_SNZK9H:
+      fontFamily: Roboto
+      fontWeight: 400
+      fontSize: 16
+      lineHeight: 1em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    fill_4JXWA0:
+      - '#9D9D9D'
+    layout_GUUH11:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 723
+      dimensions:
+        width: 107
+        height: 16
+    layout_0BRDLM:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 759
+      dimensions:
+        width: 84
+        height: 16
+    layout_A5J12I:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1215
+        y: 603
+      dimensions:
+        width: 88
+        height: 16
+    style_KEX9HG:
+      fontFamily: Roboto
+      fontWeight: 700
+      fontSize: 20
+      lineHeight: 0.8em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_JAD6NM:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1215
+        y: 432
+      dimensions:
+        width: 88
+        height: 16
+    layout_XN4927:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1056
+        y: 360
+      dimensions:
+        width: 39
+        height: 16
+    fill_Z34RM9:
+      - '#959595'
+    layout_XKNFRO:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1058
+        y: 530
+      dimensions:
+        width: 39
+        height: 16
+    layout_S1XOQN:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1051
+        y: 329
+      dimensions:
+        width: 135
+        height: 16
+    layout_JKPZ8M:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1051
+        y: 501
+      dimensions:
+        width: 208
+        height: 16
+    layout_7D3N71:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 942
+        y: 241
+      dimensions:
+        width: 103
+        height: 16
+    style_OYTDJD:
+      fontFamily: Roboto
+      fontWeight: 700
+      fontSize: 24
+      lineHeight: 0.6666666666666666em
+      textAlignHorizontal: LEFT
+      textAlignVertical: TOP
+    layout_K5NNPC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 282
+      dimensions:
+        width: 400
+        height: 0
+    layout_XP36LH:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 662
+      dimensions:
+        width: 400
+        height: 0
+    layout_RNM5FC:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 801
+      dimensions:
+        width: 400
+        height: 0
+    layout_DSMMJS:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 942
+        y: 320
+      dimensions:
+        width: 85
+        height: 128
+    fill_RJS1WH:
+      - type: IMAGE
+        imageRef: 705f356c79f2eade9464482625fcb29427107dc1
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_T4TCQZ:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 942
+        y: 490
+      dimensions:
+        width: 85
+        height: 128
+    fill_QVQ40F:
+      - type: IMAGE
+        imageRef: 350930dd30718dcbf5f17bac1c6e663780dee24b
+        scaleMode: FILL
+        objectFit: cover
+        isBackground: false
+        imageDownloadArguments:
+          needsCropping: false
+          requiresImageDimensions: false
+    layout_2YYAVB:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 930
+        y: 833
+      dimensions:
+        width: 113
+        height: 16
+    layout_BY1J9G:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 1218
+        y: 833
+      dimensions:
+        width: 105
+        height: 16
+    fill_B3CIB7:
+      - '#137FEC'
+    layout_B7NGMS:
+      mode: row
+      justifyContent: center
+      alignItems: center
+      gap: 8px
+      sizing:
+        horizontal: fixed
+        vertical: fixed
+      locationRelativeToParent:
+        x: 930
+        y: 881
+      dimensions:
+        width: 393
+        height: 48
+    layout_EMRC0A:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 1440
+    layout_9LBBX7:
+      mode: column
+      alignItems: center
+      padding: 48px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 357
+        y: 249
+      dimensions:
+        width: 672
+    stroke_MNKIEY:
+      colors:
+        - '#E7EDF3'
+      strokeWeight: 1px
+    effect_WHTW87:
+      boxShadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05)
+    layout_75HIX7:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 1046
+      dimensions:
+        width: 1440
+        height: 394
+    layout_OLKHX2:
+      mode: column
+      padding: 32px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 112
+        y: 289
+      dimensions:
+        width: 1216
+    layout_N40O1L:
+      mode: row
+      justifyContent: space-between
+      alignItems: flex-end
+      gap: 674.5399780273438px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 112
+        y: 166
+      dimensions:
+        width: 1216
+    layout_DGVHYS:
+      mode: column
+      gap: 24px
+      padding: 0px 0px 44.25px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 112
+        y: 447
+      dimensions:
+        width: 800
+    layout_0WYL9U:
+      mode: column
+      gap: 32px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 944
+        y: 447
+      dimensions:
+        width: 384
+    layout_AQU6M5:
+      mode: column
+      gap: 8px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 98
+        y: 195
+      dimensions:
+        width: 1152
+    layout_T4QJM9:
+      mode: row
+      alignItems: center
+      gap: 8px
+      padding: 8px 0px 24px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 145
+        y: 308
+      dimensions:
+        width: 1152
+    layout_246M7W:
+      mode: column
+      gap: '-1px'
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 145
+        y: 395
+      dimensions:
+        width: 1150
+    layout_U203Y1:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 1253
+    layout_4J5G8L:
+      mode: row
+      justifyContent: space-between
+      alignItems: flex-end
+      gap: 318.4800109863281px
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 107
+        y: 174
+      dimensions:
+        width: 1120
+    layout_RIV3N5:
+      mode: column
+      sizing:
+        horizontal: fixed
+        vertical: hug
+      locationRelativeToParent:
+        x: 107
+        y: 319
+      dimensions:
+        width: 1120
+    layout_0AW8NG:
+      mode: none
+      sizing: {}
+      dimensions:
+        width: 1440
+        height: 394
+    layout_SJXQ0Q:
+      mode: none
+      sizing: {}
+      locationRelativeToParent:
+        x: 0
+        y: 0
+      dimensions:
+        width: 1440
+        height: 394
+    layout_DJOR8L:
+      mode: row
+      alignItems: center
+      gap: 11px
+      sizing:
+        horizontal: hug
+        vertical: hug
+      locationRelativeToParent:
+        x: 210
+        y: 95
