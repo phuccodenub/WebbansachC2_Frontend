@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MagnifyingGlass, Heart, ShoppingCart, List } from '@phosphor-icons/react'
+import { useCart } from '../context/CartContext'
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
+  const { totalItems } = useCart()
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -45,7 +47,7 @@ export default function Header() {
           <Link to="/cart" className="relative text-text-secondary hover:text-primary transition-colors">
             <ShoppingCart size={24} />
             <span className="absolute -top-1 -right-2 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-              0
+              {totalItems}
             </span>
           </Link>
           <button className="text-text-secondary hover:text-primary transition-colors lg:hidden">
