@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FunnelSimple } from '@phosphor-icons/react'
 import BookCard from '../components/BookCard'
 
@@ -14,24 +14,26 @@ const priceRanges = [
 ]
 
 const allBooks = [
-  { id: 1, title: 'Đúng Là Tết!', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Đúng+Là+Tết', price: 61200, originalPrice: 68000, discount: 10 },
-  { id: 2, title: 'Nhà Giả Kim', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Nhà+Giả+Kim', price: 69000, originalPrice: 79000, discount: 13 },
-  { id: 3, title: 'Đắc Nhân Tâm', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Đắc+Nhân+Tâm', price: 76000, originalPrice: 86000, discount: 12 },
-  { id: 4, title: 'Cây Cam Ngọt Của Tôi', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Cây+Cam+Ngọt', price: 82000, originalPrice: 108000, discount: 24 },
-  { id: 5, title: 'Tuổi Trẻ Đáng Giá Bao Nhiêu', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Tuổi+Trẻ', price: 65000, originalPrice: 75000, discount: 13 },
-  { id: 6, title: 'Tôi Thấy Hoa Vàng Trên Cỏ Xanh', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Hoa+Vàng', price: 55000, originalPrice: 72000, discount: 24 },
-  { id: 7, title: 'Mắt Biếc', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Mắt+Biếc', price: 95000, originalPrice: 110000, discount: 14 },
-  { id: 8, title: 'Dế Mèn Phiêu Lưu Ký', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Dế+Mèn', price: 45000, originalPrice: 55000, discount: 18 },
-  { id: 9, title: 'Sapiens: Lược Sử Loài Người', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Sapiens', price: 152000, originalPrice: 189000, discount: 20 },
-  { id: 10, title: 'Atomic Habits', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Atomic+Habits', price: 120000, originalPrice: 150000, discount: 20 },
-  { id: 11, title: '1984 - George Orwell', image: 'https://placehold.co/220x300/e2e8f0/475569?text=1984', price: 89000, originalPrice: 99000, discount: 10 },
-  { id: 12, title: 'Hoàng Tử Bé', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Hoàng+Tử+Bé', price: 42000, originalPrice: 52000, discount: 19 },
+  { id: 1, title: 'Đúng Là Tết!', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Đúng+Là+Tết', price: 61200, originalPrice: 68000, discount: 10, genre: 'Văn học VN', publisher: 'Nhã Nam' },
+  { id: 2, title: 'Nhà Giả Kim', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Nhà+Giả+Kim', price: 69000, originalPrice: 79000, discount: 13, genre: 'Tâm lý', publisher: 'NXB Trẻ' },
+  { id: 3, title: 'Đắc Nhân Tâm', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Đắc+Nhân+Tâm', price: 76000, originalPrice: 86000, discount: 12, genre: 'Tâm lý', publisher: 'Lao Động' },
+  { id: 4, title: 'Cây Cam Ngọt Của Tôi', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Cây+Cam+Ngọt', price: 82000, originalPrice: 108000, discount: 24, genre: 'Văn học VN', publisher: 'Nhã Nam' },
+  { id: 5, title: 'Tuổi Trẻ Đáng Giá Bao Nhiêu', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Tuổi+Trẻ', price: 65000, originalPrice: 75000, discount: 13, genre: 'Tâm lý', publisher: 'Phụ Nữ' },
+  { id: 6, title: 'Tôi Thấy Hoa Vàng Trên Cỏ Xanh', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Hoa+Vàng', price: 55000, originalPrice: 72000, discount: 24, genre: 'Văn học VN', publisher: 'NXB Trẻ' },
+  { id: 7, title: 'Mắt Biếc', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Mắt+Biếc', price: 95000, originalPrice: 110000, discount: 14, genre: 'Văn học VN', publisher: 'Tổng hợp TPHCM' },
+  { id: 8, title: 'Dế Mèn Phiêu Lưu Ký', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Dế+Mèn', price: 45000, originalPrice: 55000, discount: 18, genre: 'Thiếu nhi', publisher: 'Kim Đồng' },
+  { id: 9, title: 'Sapiens: Lược Sử Loài Người', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Sapiens', price: 152000, originalPrice: 189000, discount: 20, genre: 'Lịch sử', publisher: 'Nhã Nam' },
+  { id: 10, title: 'Atomic Habits', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Atomic+Habits', price: 120000, originalPrice: 150000, discount: 20, genre: 'Kinh tế', publisher: 'NXB Trẻ' },
+  { id: 11, title: '1984 - George Orwell', image: 'https://placehold.co/220x300/e2e8f0/475569?text=1984', price: 89000, originalPrice: 99000, discount: 10, genre: 'Ngoại ngữ', publisher: 'Lao Động' },
+  { id: 12, title: 'Hoàng Tử Bé', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Hoàng+Tử+Bé', price: 42000, originalPrice: 52000, discount: 19, genre: 'Thiếu nhi', publisher: 'Kim Đồng' },
 ]
 
 export default function CategoryPage() {
   const [selectedGenre, setSelectedGenre] = useState('Tất cả')
   const [selectedPublishers, setSelectedPublishers] = useState<string[]>([])
   const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null)
+  const [sortBy, setSortBy] = useState('newest')
+  const [filteredBooks, setFilteredBooks] = useState(allBooks)
   const [showMobileFilter, setShowMobileFilter] = useState(false)
 
   const togglePublisher = (pub: string) => {
@@ -39,6 +41,33 @@ export default function CategoryPage() {
       prev.includes(pub) ? prev.filter(p => p !== pub) : [...prev, pub]
     )
   }
+
+  useEffect(() => {
+    let result = [...allBooks]
+
+    if (selectedGenre !== 'Tất cả') {
+      result = result.filter(book => book.genre === selectedGenre)
+    }
+
+    if (selectedPriceRange !== null) {
+      const range = priceRanges[selectedPriceRange]
+      result = result.filter(book => book.price >= range.min && book.price <= range.max)
+    }
+
+    if (selectedPublishers.length > 0) {
+      result = result.filter(book => selectedPublishers.includes(book.publisher))
+    }
+
+    if (sortBy === 'price-asc') {
+      result.sort((a, b) => a.price - b.price)
+    } else if (sortBy === 'price-desc') {
+      result.sort((a, b) => b.price - a.price)
+    } else if (sortBy === 'name') {
+      result.sort((a, b) => a.title.localeCompare(b.title))
+    }
+
+    setFilteredBooks(result)
+  }, [selectedGenre, selectedPriceRange, selectedPublishers, sortBy])
 
   const Sidebar = () => (
     <div className="space-y-6">
@@ -144,17 +173,21 @@ export default function CategoryPage() {
         <div className="flex-1">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-text-secondary">
-              Hiển thị <span className="font-medium text-text-primary">{allBooks.length}</span> kết quả
+              Hiển thị <span className="font-medium text-text-primary">{filteredBooks.length}</span> kết quả
             </p>
-            <select className="text-sm border border-border rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary">
-              <option>Mới nhất</option>
-              <option>Giá thấp → cao</option>
-              <option>Giá cao → thấp</option>
-              <option>Bán chạy nhất</option>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="text-sm border border-border rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary"
+            >
+              <option value="newest">Mới nhất</option>
+              <option value="price-asc">Giá thấp → cao</option>
+              <option value="price-desc">Giá cao → thấp</option>
+              <option value="name">Tên A → Z</option>
             </select>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {allBooks.map((book) => (
+            {filteredBooks.map((book) => (
               <BookCard key={book.id} {...book} />
             ))}
           </div>
