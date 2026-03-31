@@ -32,6 +32,7 @@ export default function CategoryPage() {
   const [selectedGenre, setSelectedGenre] = useState('Tất cả')
   const [selectedPublishers, setSelectedPublishers] = useState<string[]>([])
   const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null)
+  const [sortBy, setSortBy] = useState('newest')
   const [filteredBooks, setFilteredBooks] = useState(allBooks)
   const [showMobileFilter, setShowMobileFilter] = useState(false)
 
@@ -57,8 +58,16 @@ export default function CategoryPage() {
       result = result.filter(book => selectedPublishers.includes(book.publisher))
     }
 
+    if (sortBy === 'price-asc') {
+      result.sort((a, b) => a.price - b.price)
+    } else if (sortBy === 'price-desc') {
+      result.sort((a, b) => b.price - a.price)
+    } else if (sortBy === 'name') {
+      result.sort((a, b) => a.title.localeCompare(b.title))
+    }
+
     setFilteredBooks(result)
-  }, [selectedGenre, selectedPriceRange, selectedPublishers])
+  }, [selectedGenre, selectedPriceRange, selectedPublishers, sortBy])
 
   const Sidebar = () => (
     <div className="space-y-6">
@@ -166,11 +175,15 @@ export default function CategoryPage() {
             <p className="text-sm text-text-secondary">
               Hiển thị <span className="font-medium text-text-primary">{filteredBooks.length}</span> kết quả
             </p>
-            <select className="text-sm border border-border rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary">
-              <option>Mới nhất</option>
-              <option>Giá thấp → cao</option>
-              <option>Giá cao → thấp</option>
-              <option>Bán chạy nhất</option>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="text-sm border border-border rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary"
+            >
+              <option value="newest">Mới nhất</option>
+              <option value="price-asc">Giá thấp → cao</option>
+              <option value="price-desc">Giá cao → thấp</option>
+              <option value="name">Tên A → Z</option>
             </select>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
