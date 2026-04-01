@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import type { ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilSimple, Eye, Trash, Plus, ClockCounterClockwise, FloppyDisk, Info } from '@phosphor-icons/react'
 
@@ -7,6 +9,14 @@ const addresses = [
 ]
 
 export default function ProfilePage() {
+  const [profile, setProfile] = useState({
+    fullName: 'Nguyễn Văn A',
+    phone: '0901234567',
+    email: 'nguyenvana@email.com',
+  })
+
+  const [isEditing, setIsEditing] = useState(false)
+
   return (
     <div className="bg-[#F5F6FA] min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-10">
@@ -20,8 +30,8 @@ export default function ProfilePage() {
               </button>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-text-primary">Nguyễn Minh Hoàng</h1>
-              <p className="text-sm text-text-secondary">minhhoang.archive@gmail.com</p>
+              <h1 className="text-2xl font-bold text-text-primary">{profile.fullName}</h1>
+              <p className="text-sm text-text-secondary">{profile.email}</p>
               <span className="inline-block mt-1 px-2.5 py-0.5 bg-[#2D3250] text-white text-[10px] font-bold rounded uppercase tracking-wider">
                 Hạng Bạch Kim
               </span>
@@ -32,9 +42,18 @@ export default function ProfilePage() {
               <ClockCounterClockwise size={16} />
               Lịch sử đơn hàng
             </Link>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+            <button
+              onClick={() => {
+                if (isEditing) {
+                  console.log('Saving profile:', profile)
+                  alert('Đã lưu thông tin!')
+                }
+                setIsEditing(!isEditing)
+              }}
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
               <FloppyDisk size={16} />
-              Lưu thay đổi
+              {isEditing ? 'Lưu' : 'Chỉnh sửa'}
             </button>
           </div>
         </div>
@@ -51,16 +70,34 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm text-text-secondary mb-1.5">Họ và tên</label>
-                  <input type="text" defaultValue="Nguyễn Minh Hoàng" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                  <input
+                    type="text"
+                    value={profile.fullName}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setProfile({ ...profile, fullName: e.target.value })}
+                    disabled={!isEditing}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary disabled:bg-gray-100 disabled:text-text-secondary"
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm text-text-secondary mb-1.5">Số điện thoại</label>
-                    <input type="tel" defaultValue="0901 234 543" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                    <input
+                      type="tel"
+                      value={profile.phone}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setProfile({ ...profile, phone: e.target.value })}
+                      disabled={!isEditing}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary disabled:bg-gray-100 disabled:text-text-secondary"
+                    />
                   </div>
                   <div>
                     <label className="block text-sm text-text-secondary mb-1.5">Email</label>
-                    <input type="email" defaultValue="minhhoang.archive@gmail.com" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                    <input
+                      type="email"
+                      value={profile.email}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setProfile({ ...profile, email: e.target.value })}
+                      disabled={!isEditing}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary disabled:bg-gray-100 disabled:text-text-secondary"
+                    />
                   </div>
                 </div>
               </div>
