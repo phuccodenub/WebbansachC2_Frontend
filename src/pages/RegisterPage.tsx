@@ -10,13 +10,101 @@ export default function RegisterPage() {
     password: '',
     confirmPassword: '',
   })
+  const [errors, setErrors] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+  })
+  const [acceptedTerms, setAcceptedTerms] = useState(false)
+  const [termsError, setTermsError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    const key = e.target.name as keyof typeof form
+    setForm({ ...form, [key]: e.target.value })
+    setErrors({ ...errors, [key]: '' })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isSubmitting) {
+      return
+    }
+
+    const normalizedForm = {
+      ...form,
+      fullName: form.fullName.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+    }
+
+    let valid = true
+    const newErrors = {
+      fullName: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: '',
+    }
+    let newTermsError = ''
+
+    if (!normalizedForm.fullName) {
+      newErrors.fullName = 'Vui lòng nhập họ và tên'
+      valid = false
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!normalizedForm.email) {
+      newErrors.email = 'Vui lòng nhập email'
+      valid = false
+    } else if (!emailRegex.test(normalizedForm.email)) {
+      newErrors.email = 'Email không đúng định dạng'
+      valid = false
+    }
+
+    const phoneRegex = /^\d{10,11}$/
+    if (!normalizedForm.phone) {
+      newErrors.phone = 'Vui lòng nhập số điện thoại'
+      valid = false
+    } else if (!phoneRegex.test(normalizedForm.phone)) {
+      newErrors.phone = 'Số điện thoại phải gồm 10-11 chữ số'
+      valid = false
+    }
+
+    if (!normalizedForm.password || normalizedForm.password.length < 6) {
+      newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
+      valid = false
+    }
+
+    if (!normalizedForm.confirmPassword) {
+      newErrors.confirmPassword = 'Vui lòng nhập lại mật khẩu'
+      valid = false
+    } else if (normalizedForm.confirmPassword !== normalizedForm.password) {
+      newErrors.confirmPassword = 'Mật khẩu xác nhận không khớp'
+      valid = false
+    }
+
+    if (!acceptedTerms) {
+      newTermsError = 'Bạn cần đồng ý điều khoản dịch vụ để tiếp tục'
+      valid = false
+    }
+
+    setErrors(newErrors)
+    setTermsError(newTermsError)
+
+    if (valid) {
+      setIsSubmitting(true)
+      try {
+        setForm(normalizedForm)
+        console.log('Register data:', normalizedForm)
+        // TODO: Call API register
+      } finally {
+        setIsSubmitting(false)
+      }
+    }
   }
 
   return (
@@ -54,6 +142,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.fullName && <p className="mt-1 text-sm text-red-500">{errors.fullName}</p>}
           </div>
 
           {/* Email */}
@@ -69,6 +158,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
           </div>
 
           {/* Phone */}
@@ -84,6 +174,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
           </div>
 
           {/* Password */}
@@ -99,6 +190,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password}</p>}
           </div>
 
           {/* Confirm Password */}
@@ -114,25 +206,40 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.confirmPassword && <p className="mt-1 text-sm text-red-500">{errors.confirmPassword}</p>}
           </div>
 
           {/* Terms */}
-          <label className="flex items-start gap-2 text-sm text-text-secondary cursor-pointer">
-            <input type="checkbox" className="mt-0.5 rounded border-border" />
-            <span>
-              Tôi đồng ý với{' '}
-              <a href="#" className="text-primary hover:underline">Điều khoản dịch vụ</a>
-              {' '}và{' '}
-              <a href="#" className="text-primary hover:underline">Chính sách bảo mật</a>
-            </span>
-          </label>
+          <div>
+            <label className="flex items-start gap-2 text-sm text-text-secondary cursor-pointer">
+              <input
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={(e) => {
+                  setAcceptedTerms(e.target.checked)
+                  if (e.target.checked) {
+                    setTermsError('')
+                  }
+                }}
+                className="mt-0.5 rounded border-border"
+              />
+              <span>
+                Tôi đồng ý với{' '}
+                <a href="#" className="text-primary hover:underline">Điều khoản dịch vụ</a>
+                {' '}và{' '}
+                <a href="#" className="text-primary hover:underline">Chính sách bảo mật</a>
+              </span>
+            </label>
+            {termsError && <p className="mt-1 text-sm text-red-500">{termsError}</p>}
+          </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+            disabled={isSubmitting}
+            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Đăng ký ngay
+            {isSubmitting ? 'Đang xử lý...' : 'Đăng ký ngay'}
           </button>
         </form>
 
