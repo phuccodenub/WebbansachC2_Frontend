@@ -5,9 +5,30 @@ import { User, Lock, GoogleLogo, FacebookLogo } from '@phosphor-icons/react'
 export default function LoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState({ username: '', password: '' })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    let valid = true
+    const newErrors = { username: '', password: '' }
+
+    if (!username.trim()) {
+      newErrors.username = 'Vui lòng nhập tên đăng nhập'
+      valid = false
+    }
+
+    if (!password || password.length < 6) {
+      newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
+      valid = false
+    }
+
+    setErrors(newErrors)
+
+    if (valid) {
+      console.log('Login data:', { username, password })
+      // TODO: Call API login
+    }
   }
 
   return (
@@ -44,6 +65,7 @@ export default function LoginPage() {
               onChange={(e) => setUsername(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.username && <p className="mt-1 text-sm text-red-500">{errors.username}</p>}
           </div>
 
           {/* Password */}
@@ -58,6 +80,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password}</p>}
           </div>
 
           {/* Remember & Forgot */}
