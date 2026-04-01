@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MagnifyingGlass, Eye, Printer, Plus, CaretRight, Sliders, CalendarBlank } from '@phosphor-icons/react'
 
-type ShippingStatus = 'shipping' | 'pending' | 'delivered'
+type ShippingStatus = 'shipping' | 'pending' | 'delivered' | 'processing' | 'cancelled'
 
 const initialOrders = [
   { id: '#BST-123456', customer: 'NGUYỄN VĂN B', date: '20/01/2026', total: '134.000Đ', shipping: 'shipping' as ShippingStatus, status: 'CELL' },
@@ -14,7 +14,9 @@ const initialOrders = [
 const shippingStyles: Record<ShippingStatus, { label: string; cls: string }> = {
   shipping: { label: 'ĐANG GIAO', cls: 'bg-blue-100 text-blue-700' },
   pending: { label: 'CHỜ XỬ LÝ', cls: 'bg-yellow-100 text-yellow-700' },
+  processing: { label: 'ĐANG XỬ LÝ', cls: 'bg-purple-100 text-purple-700' },
   delivered: { label: 'ĐÃ GIAO', cls: 'bg-green-100 text-green-700' },
+  cancelled: { label: 'ĐÃ HỦY', cls: 'bg-red-100 text-red-700' }
 }
 
 const stats = [
@@ -26,11 +28,22 @@ const stats = [
 ]
 
 export default function AdminOrdersPage() {
-  const [showDetail, setShowDetail] = useState(false)
+  const [selectedOrder, setSelectedOrder] = useState<typeof initialOrders[0] | null>(null)
   const [orders, setOrders] = useState(initialOrders)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
 
+  const handleUpdateStatus = (orderId: string, newStatus: string) => {
+    setOrders(orders.map(order => 
+      order.id === orderId 
+        ? { ...order, shipping: newStatus as ShippingStatus }
+        : order
+    ))
+    alert(`Đã cập nhật trạng thái đơn hàng ${orderId}`)
+    if (selectedOrder && selectedOrder.id === orderId) {
+      setSelectedOrder({ ...selectedOrder, shipping: newStatus as ShippingStatus })
+    }
+  }
   const displayedOrders = orders.filter(order => {
     const matchSearch = order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         order.customer.toLowerCase().includes(searchTerm.toLowerCase())
@@ -135,7 +148,7 @@ export default function AdminOrdersPage() {
                     <td className="px-5 py-4">
                       <div className="flex items-center justify-center gap-3">
                         <button
-                          onClick={() => setShowDetail(true)}
+                          onClick={() => setSelectedOrder(order)}
                           className="text-gray-400 hover:text-[#3B82F6] transition-colors"
                         >
                           <Eye size={18} />
@@ -159,16 +172,16 @@ export default function AdminOrdersPage() {
       </div>
 
       {/* Order Detail Modal */}
-      {showDetail && (
+      {selectedOrder && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white rounded-xl w-full max-w-[640px] max-h-[90vh] overflow-y-auto p-6 relative">
             {/* Header */}
             <div className="flex items-start justify-between mb-6">
               <div>
                 <h2 className="text-lg font-bold text-[#1F2937]">Chi tiết đơn hàng</h2>
-                <p className="text-sm font-semibold text-[#E8612D]">#LB-8921</p>
+                <p className="text-sm font-semibold text-[#E8612D]">{selectedOrder.id}</p>
               </div>
-              <button onClick={() => setShowDetail(false)} className="text-gray-400 hover:text-gray-600 text-xl leading-none">×</button>
+              <button onClick={() => setSelectedOrder(null)} className="text-gray-400 hover:text-gray-600 text-xl leading-none">×</button>
             </div>
 
             {/* Customer */}
@@ -247,13 +260,26 @@ export default function AdminOrdersPage() {
             </div>
 
             {/* Actions */}
-            <div className="flex gap-3">
-              <button className="flex-1 py-3 bg-[#E8612D] text-white font-semibold rounded-lg hover:bg-[#d4561f] transition-colors">
-                Cập nhật
-              </button>
-              <button className="px-6 py-3 border border-gray-300 text-gray-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
-                In ấn
-              </button>
+            <div className="flex flex-col gap-3">
+              <select 
+                value={selectedOrder.shipping}
+                onChange={(e) => handleUpdateStatus(selectedOrder.id, e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#E8612D] bg-white font-medium"
+              >
+                <option value="pending">Chờ xử lý</option>
+                <option value="processing">Đang xử lý</option>
+                <option value="shipping">Đang giao</option>
+                <option value="delivered">Đã giao</option>
+                <option value="cancelled">Đã hủy</option>
+              </select>
+              <div className="flex gap-3">
+                <button onClick={() => setSelectedOrder(null)} className="flex-1 py-3 bg-[#E8612D] text-white font-semibold rounded-lg hover:bg-[#d4561f] transition-colors">
+                  Đóng
+                </button>
+                <button className="px-6 py-3 border border-gray-300 text-gray-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
+                  In ấn
+                </button>
+              </div>
             </div>
           </div>
         </div>
