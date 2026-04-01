@@ -3,31 +3,35 @@ import { Link } from 'react-router-dom'
 const wishlistItems = [
   {
     id: 1,
-    title: 'The Alchemy of Stillness',
-    author: 'Elena Rostova',
-    badge: 'Limited Edition',
+    title: 'Noi troi bien dao - Co be dam may',
+    author: 'Nha xuat ban Kim Dong',
     image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCrco1C-0ygX1IyyWSCgInzljqLbXYKKj6_j870p_TKWBVuqYqsOd0BnwDErQ2BcNmrix7Qg_WOo3HfrApEb6tzdRT83RvhIZmzA-7zCwYehIDvqHFHF6rN84YfS29sBTzM2mW-Vbmv2cjVTLeA0f0JYe8Y0bQ_9hAlpVFEtKLcFYoBUo7zuaL4oND93xX-RWFP81NwF_zvqAcd24bKCeRKaknJb_ISOlkMMk1TTPl92w6q-RFCXWdLw_UtTGK9YqbgZiFZuQ3ednk',
-    price: 450000,
-    badgeClass: 'bg-tertiary-container text-on-tertiary-container',
+      'https://placehold.co/220x300/6286c5/ffffff?text=Co+be+dam+may',
+    price: 54000,
   },
   {
     id: 2,
-    title: 'Modern Monoliths',
-    author: 'Julian Vane',
-    badge: 'New Arrival',
+    title: 'Noi troi bien dao - Chiec den so',
+    author: 'Nha xuat ban Kim Dong',
     image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBGKq5IeOly5oa9b5k6sbgEG1_zF3_waD2WCiZ-0K6Ji_a108X3vAZawkbzDRdefeA47mYKp-Z9QqkamPCT9YiD_u_vROJfTR-ngTqTIc8eY2vY7LFPdwv8zvaugpSNnHe7ZQ8o3iPjIKtSHYvY34ITcpmb3fMUSFxp-nE1Ra5DSbA4ZUApprnaFqhdpeqSKaHUT07S8IDTMT3LHCy9d3hqT-9Xv7JGq-fAPOAZ3v1K1JT6SFG4fq9ReYYbru3rufavj-GLpfyRLKo',
-    price: 820000,
-    badgeClass: 'bg-primary-container text-on-primary-container',
+      'https://placehold.co/220x300/6286c5/ffffff?text=Co+be+dam+may',
+    price: 54000,
   },
   {
     id: 3,
-    title: 'Echoes of the Silk Road',
-    author: 'Dr. Aris Thorne',
+    title: 'Noi troi bien dao - Co be dam may',
+    author: 'Nha xuat ban Kim Dong',
     image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuASzub3v-DkpLrbsLtYpkQ0gOau_D-iP0CB8YP4HMVA8XO3Xz75sBrDmWc40LcRBVhKPGmPrfCPqBgOcgC_4pSbL-NCgXcBYkY4bV7PHCNoTX5V5BQHWQkI6eJXEBqCOaMZaWu6vI_NteAELD-VPc3bgPxGVLFRvY69aJlIrPJz_XDNVZYPWFQqiR7MBQRgrNa5UuW3czCsIocbiYIRnEzS2K38RuThDR_Kxsd7HHZ5ZoU-cEBVIna_IJidqrOjWdt5OurPwAa5V-U',
-    price: 560000,
+      'https://placehold.co/220x300/6286c5/ffffff?text=Co+be+dam+may',
+    price: 54000,
+  },
+  {
+    id: 4,
+    title: 'Noi duong long trung thuc',
+    author: 'Nha xuat ban Kim Dong',
+    image:
+      'https://placehold.co/220x300/f2bb4f/ffffff?text=Long+trung+thuc',
+    price: 54000,
   },
 ]
 
@@ -35,74 +39,61 @@ export default function WishlistPage() {
   const formatPrice = (value: number) => `${value.toLocaleString('vi-VN')}₫`
 
   return (
-    <div className="mx-auto max-w-7xl px-6 pb-20 pt-10">
-      <header className="mb-12">
-        <h1 className="mb-3 font-headline text-4xl font-extrabold tracking-tight text-on-surface md:text-5xl">
-          Danh Muc Yeu Thich Cua Ban
-        </h1>
-        <p className="max-w-2xl text-on-surface-variant md:text-lg">
-          A personal archive of stories and wisdom curated by you. These are the narratives waiting to be explored.
-        </p>
-        <p className="mt-4 text-sm text-text-secondary">
-          <Link to="/" className="font-medium hover:text-primary">Trang chu</Link>
+    <div className="mx-auto max-w-6xl bg-white">
+      <section className="bg-[#ededed] px-8 py-12">
+        <h1 className="mb-2 text-3xl font-semibold text-text-primary">Yeu thich</h1>
+        <p className="text-xs text-text-secondary">
+          <Link to="/" className="hover:text-primary">Trang chu</Link>
           <span className="mx-1">/</span>
-          <span>Wishlist</span>
+          <span>Yeu thich</span>
         </p>
-      </header>
+      </section>
 
-      <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <section className="px-8 py-8">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-medium text-text-primary">Danh muc yeu thich cua toi</h2>
+          <button type="button" className="rounded bg-[#e97777] px-4 py-1 text-xs font-semibold text-white">
+            Mua tat ca
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {wishlistItems.map((item) => (
-          <article
-            key={item.id}
-            className="group relative flex h-full flex-col rounded-xl bg-surface-container-lowest p-6 transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.06)]"
-          >
-            <div className="relative mb-6 aspect-3/4 overflow-hidden rounded-lg">
-              <Link to={`/product/${item.id}`}>
+          <article key={item.id} className="group relative">
+            <button type="button" className="absolute right-1 top-1 z-10 text-slate-500 hover:text-red-500">
+              ♡
+            </button>
+            <Link to={`/product/${item.id}`}>
+              <div className="mb-2 aspect-3/4 overflow-hidden rounded">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-              </Link>
-              {item.badge ? (
-                <div className="absolute left-4 top-4">
-                  <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${item.badgeClass ?? 'bg-surface-container text-text-primary'}`}>
-                    {item.badge}
-                  </span>
-                </div>
-              ) : null}
-            </div>
-
-            <div className="grow">
-              <Link to={`/product/${item.id}`} className="font-headline text-xl font-bold transition-colors group-hover:text-primary">
-                {item.title}
-              </Link>
-              <p className="mb-4 mt-1 text-sm italic text-on-secondary-container">by {item.author}</p>
-              <p className="text-lg font-bold text-primary">{formatPrice(item.price)}</p>
-            </div>
-
-            <div className="mt-6 flex gap-3">
-              <button type="button" className="flex-1 rounded-full bg-linear-to-br from-primary to-primary-container px-4 py-3 text-sm font-bold text-on-primary active:scale-95">
-                Them vao gio
-              </button>
-              <button type="button" className="rounded-full p-3 text-error transition-colors hover:bg-error-container/20" title="Go bo">
-                <span aria-hidden>🗑</span>
-              </button>
-            </div>
+              </div>
+              <h3 className="line-clamp-2 text-[11px] text-text-primary">{item.title}</h3>
+            </Link>
+            <p className="mt-1 text-[10px] text-text-secondary">{item.author}</p>
+            <p className="mt-1 text-[11px] font-semibold text-red-500">{formatPrice(item.price)}</p>
           </article>
         ))}
+        </div>
       </section>
 
-      <section className="relative mt-20 overflow-hidden rounded-3xl bg-surface-container-low p-10 text-center md:p-12">
-        <div className="relative z-10">
-          <h2 className="mb-3 font-headline text-3xl font-bold">Want more inspiration?</h2>
-          <p className="mx-auto mb-8 max-w-md text-on-surface-variant">
-            Explore our monthly editorial picks and discover your next favorite masterpiece.
-          </p>
-          <button type="button" className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-4 font-bold text-on-secondary">
-            Kham pha thu vien
-            <span aria-hidden>→</span>
-          </button>
+      <section className="grid grid-cols-1 items-center gap-8 px-8 pb-10 pt-2 md:grid-cols-2">
+        <p className="max-w-md text-xs leading-relaxed text-text-secondary">
+          MMT Bookstore la mot website ban sach truyen trinh xay dung cho
+          cac nguoi co hoi hoc hoi cho ban, sinh vien va nguoi yeu sach.
+          He thong san pham da dang, giao dien than thien va giup tim
+          kiem, dat hang va theo doi don hang mot cach hieu qua.
+        </p>
+        <div className="justify-self-end">
+          <img
+            src="https://placehold.co/260x120/dbeafe/64748b?text=Map+Preview"
+            alt="Map preview"
+            className="rounded-lg"
+          />
+          <p className="mt-1 text-[10px] text-slate-400">Xem ban do</p>
         </div>
       </section>
     </div>
