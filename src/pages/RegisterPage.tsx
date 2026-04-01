@@ -19,6 +19,7 @@ export default function RegisterPage() {
   })
   const [acceptedTerms, setAcceptedTerms] = useState(false)
   const [termsError, setTermsError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name as keyof typeof form
@@ -26,8 +27,19 @@ export default function RegisterPage() {
     setErrors({ ...errors, [key]: '' })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isSubmitting) {
+      return
+    }
+
+    const normalizedForm = {
+      ...form,
+      fullName: form.fullName.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+    }
 
     let valid = true
     const newErrors = {
@@ -39,34 +51,38 @@ export default function RegisterPage() {
     }
     let newTermsError = ''
 
-    if (!form.fullName.trim()) {
+    if (!normalizedForm.fullName) {
       newErrors.fullName = 'Vui lòng nhập họ và tên'
       valid = false
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!form.email.trim()) {
+    if (!normalizedForm.email) {
       newErrors.email = 'Vui lòng nhập email'
       valid = false
-    } else if (!emailRegex.test(form.email)) {
+    } else if (!emailRegex.test(normalizedForm.email)) {
       newErrors.email = 'Email không đúng định dạng'
       valid = false
     }
 
-    if (!form.phone.trim()) {
+    const phoneRegex = /^\d{10,11}$/
+    if (!normalizedForm.phone) {
       newErrors.phone = 'Vui lòng nhập số điện thoại'
+      valid = false
+    } else if (!phoneRegex.test(normalizedForm.phone)) {
+      newErrors.phone = 'Số điện thoại phải gồm 10-11 chữ số'
       valid = false
     }
 
-    if (!form.password || form.password.length < 6) {
+    if (!normalizedForm.password || normalizedForm.password.length < 6) {
       newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
       valid = false
     }
 
-    if (!form.confirmPassword) {
+    if (!normalizedForm.confirmPassword) {
       newErrors.confirmPassword = 'Vui lòng nhập lại mật khẩu'
       valid = false
-    } else if (form.confirmPassword !== form.password) {
+    } else if (normalizedForm.confirmPassword !== normalizedForm.password) {
       newErrors.confirmPassword = 'Mật khẩu xác nhận không khớp'
       valid = false
     }
@@ -80,8 +96,14 @@ export default function RegisterPage() {
     setTermsError(newTermsError)
 
     if (valid) {
-      console.log('Register data:', form)
-      // TODO: Call API register
+      setIsSubmitting(true)
+      try {
+        setForm(normalizedForm)
+        console.log('Register data:', normalizedForm)
+        // TODO: Call API register
+      } finally {
+        setIsSubmitting(false)
+      }
     }
   }
 
@@ -214,9 +236,10 @@ export default function RegisterPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+            disabled={isSubmitting}
+            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Đăng ký ngay
+            {isSubmitting ? 'Đang xử lý...' : 'Đăng ký ngay'}
           </button>
         </form>
 
