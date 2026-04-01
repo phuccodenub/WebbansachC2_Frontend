@@ -4,7 +4,7 @@ import { MagnifyingGlass, Eye, Printer, Plus, CaretRight, Sliders, CalendarBlank
 
 type ShippingStatus = 'shipping' | 'pending' | 'delivered'
 
-const orders = [
+const initialOrders = [
   { id: '#BST-123456', customer: 'NGUYỄN VĂN B', date: '20/01/2026', total: '134.000Đ', shipping: 'shipping' as ShippingStatus, status: 'CELL' },
   { id: '#BST-123456', customer: 'NGUYỄN VĂN C', date: '20/01/2026', total: '134.000Đ', shipping: 'pending' as ShippingStatus, status: 'CELL' },
   { id: '#BST-123456', customer: 'NGUYỄN VĂN E', date: '20/01/2026', total: '134.000Đ', shipping: 'pending' as ShippingStatus, status: 'CELL' },
@@ -27,6 +27,16 @@ const stats = [
 
 export default function AdminOrdersPage() {
   const [showDetail, setShowDetail] = useState(false)
+  const [orders, setOrders] = useState(initialOrders)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [statusFilter, setStatusFilter] = useState('')
+
+  const displayedOrders = orders.filter(order => {
+    const matchSearch = order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        order.customer.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchStatus = !statusFilter || order.shipping === statusFilter
+    return matchSearch && matchStatus
+  })
 
   return (
     <div>
@@ -64,12 +74,21 @@ export default function AdminOrdersPage() {
           <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="ID đơn hàng hoặc khách hàng."
             className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#E8612D]"
           />
         </div>
-        <select className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none">
-          <option>Trạng thải đơn</option>
+        <select 
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none"
+        >
+          <option value="">Trạng thái đơn</option>
+          <option value="pending">Chờ xử lý</option>
+          <option value="shipping">Đang giao</option>
+          <option value="delivered">Đã giao</option>
         </select>
         <select className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none">
           <option>Thanh toán</option>
@@ -99,7 +118,7 @@ export default function AdminOrdersPage() {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, i) => {
+              {displayedOrders.map((order, i) => {
                 const ship = shippingStyles[order.shipping]
                 return (
                   <tr key={i} className="border-b border-gray-100 last:border-0">
