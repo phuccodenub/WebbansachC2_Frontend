@@ -1,21 +1,53 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilSimple, Eye, Trash, Plus, ClockCounterClockwise, FloppyDisk, Info } from '@phosphor-icons/react'
+import { useAuth } from '../context/AuthContext'
+import api from '../lib/api'
 
-const addresses = [
+const defaultAddresses = [
   { id: 1, type: 'Nhà riêng', isDefault: true, name: 'Nguyễn Minh Hoàng', address: '25/4 Đường số 12, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh', phone: '0901 234 567' },
   { id: 2, type: 'Văn phòng', isDefault: false, name: 'Nguyễn Minh Hoàng', address: 'Tòa nhà Bitexco, Số 2 Hải Triều, Quận 1, TP. Hồ Chí Minh', phone: '0901 234 567' },
 ]
 
 export default function ProfilePage() {
+  const { user } = useAuth()
   const [profile, setProfile] = useState({
-    fullName: 'Nguyễn Văn A',
-    phone: '0901234567',
-    email: 'nguyenvana@email.com',
+    fullName: user?.name || 'Nguyễn Văn A',
+    phone: user?.phone || '0901234567',
+    email: user?.email || 'nguyenvana@email.com',
   })
-
+  const [addresses, setAddresses] = useState(defaultAddresses)
   const [isEditing, setIsEditing] = useState(false)
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await api.get('/auth/me')
+        if (res.data.success && res.data.data) {
+          const u = res.data.data
+          setProfile({ fullName: u.name || '', phone: u.phone || '', email: u.email || '' })
+        }
+      } catch { /* keep defaults */ }
+    }
+    const fetchAddresses = async () => {
+      try {
+        const res = await api.get('/users/addresses')
+        if (res.data.success && res.data.data?.length) {
+          setAddresses(res.data.data.map((a: { id: string; label?: string; isDefault: boolean; fullName: string; street: string; ward: string; district: string; province: string; phone: string }) => ({
+            id: a.id,
+            type: a.label || 'Nhà riêng',
+            isDefault: a.isDefault,
+            name: a.fullName,
+            address: `${a.street}, ${a.ward}, ${a.district}, ${a.province}`,
+            phone: a.phone,
+          })))
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchProfile()
+    fetchAddresses()
+  }, [])
 
   return (
     <div className="bg-[#F5F6FA] min-h-screen">
@@ -43,10 +75,14 @@ export default function ProfilePage() {
               Lịch sử đơn hàng
             </Link>
             <button
-              onClick={() => {
+              onClick={async () => {
                 if (isEditing) {
-                  console.log('Saving profile:', profile)
-                  alert('Đã lưu thông tin!')
+                  try {
+                    await api.put('/users/profile', { name: profile.fullName, phone: profile.phone })
+                    alert('Đã lưu thông tin!')
+                  } catch {
+                    alert('Lưu thất bại, vui lòng thử lại!')
+                  }
                 }
                 setIsEditing(!isEditing)
               }}

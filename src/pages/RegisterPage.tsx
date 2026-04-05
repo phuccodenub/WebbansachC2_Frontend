@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { User, EnvelopeSimple, Phone, Lock } from '@phosphor-icons/react'
+import { useAuth } from '../context/AuthContext'
 
 export default function RegisterPage() {
+  const { register } = useAuth()
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -98,9 +101,10 @@ export default function RegisterPage() {
     if (valid) {
       setIsSubmitting(true)
       try {
-        setForm(normalizedForm)
-        console.log('Register data:', normalizedForm)
-        // TODO: Call API register
+        await register(normalizedForm.fullName, normalizedForm.email, normalizedForm.password)
+        navigate('/')
+      } catch (err: any) {
+        setErrors(prev => ({ ...prev, email: err.response?.data?.message || 'Đăng ký thất bại' }))
       } finally {
         setIsSubmitting(false)
       }

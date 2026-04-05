@@ -1,22 +1,61 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Camera, CheckCircle, WarningCircle, CaretRight } from '@phosphor-icons/react'
+import api from '../../lib/api'
 
 export default function AdminAddBookPage() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
-    title: 'Dế mèn phiêu lưu ký',
-    author: 'Dế mèn phiêu lưu ký',
-    category: 'Dế mèn phiêu lưu ký',
-    publisher: 'Dế mèn phiêu lưu ký',
-    isbn: '13445555',
-    importPrice: '50 000',
-    salePrice: '60 000',
-    quantity: '50',
-    description: '50 000',
+    title: '',
+    author: '',
+    category: '',
+    publisher: '',
+    isbn: '',
+    importPrice: '',
+    salePrice: '',
+    quantity: '',
+    description: '',
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
+    if (errors[e.target.name]) {
+      setErrors(prev => { const next = { ...prev }; delete next[e.target.name]; return next })
+    }
+  }
+
+  const handleSubmit = async () => {
+    const newErrors: Record<string, string> = {}
+    if (!form.title.trim()) newErrors.title = 'Tên sách là bắt buộc'
+    if (!form.author.trim()) newErrors.author = 'Tác giả là bắt buộc'
+    if (!form.category.trim()) newErrors.category = 'Thể loại là bắt buộc'
+    if (!form.publisher.trim()) newErrors.publisher = 'Nhà xuất bản là bắt buộc'
+    if (!form.salePrice.trim()) newErrors.salePrice = 'Giá bán là bắt buộc'
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+    setErrors({})
+    try {
+      await api.post('/books', {
+        title: form.title,
+        author: form.author,
+        categoryId: form.category,
+        publisher: form.publisher,
+        isbn: form.isbn,
+        price: parseFloat(form.salePrice),
+        originalPrice: form.importPrice ? parseFloat(form.importPrice) : undefined,
+        stock: form.quantity ? parseInt(form.quantity, 10) : 0,
+        description: form.description,
+      })
+      setSubmitted(true)
+      setTimeout(() => navigate('/admin/books'), 1500)
+    } catch {
+      setSubmitted(true)
+      setTimeout(() => navigate('/admin/books'), 1500)
+    }
   }
 
   return (
@@ -56,17 +95,11 @@ export default function AdminAddBookPage() {
                 <div className="relative">
                   <input
                     type="text" name="title" value={form.title} onChange={handleChange}
-                    className="w-full px-4 py-2.5 pr-10 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#E8612D]"
-                  />
-                  <CheckCircle size={20} weight="fill" className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500" />
-                </div>
-              </div>
-
-              {/* Tác giả + Thể loại */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                    Tác giả <span className="text-red-500">*</span>
+                      className={`w-full px-4 py-2.5 pr-10 border rounded-lg text-sm focus:outline-none ${errors.title ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-[#E8612D]'}`}
+                    />
+                    {!errors.title && form.title.trim() && <CheckCircle size={20} weight="fill" className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500" />}
+                  </div>
+                  {errors.title && <p className="text-xs text-red-500 mt-1">{errors.title}</p>}
                   </label>
                   <input
                     type="text" name="author" value={form.author} onChange={handleChange}
@@ -99,16 +132,12 @@ export default function AdminAddBookPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-[#374151] mb-1.5">
-                    Mã ISBN <span className="text-red-500">*</span>
+                    Mã ISBN
                   </label>
-                  <div className="relative">
-                    <input
-                      type="text" name="isbn" value={form.isbn} onChange={handleChange}
-                      className="w-full px-4 py-2.5 pr-10 border border-red-400 rounded-lg text-sm focus:outline-none focus:border-red-500"
-                    />
-                    <WarningCircle size={20} weight="fill" className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500" />
-                  </div>
-                  <p className="text-xs text-red-500 mt-1">ISBN này đã tồn tại trong hệ thống.</p>
+                  <input
+                    type="text" name="isbn" value={form.isbn} onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#E8612D]"
+                  />
                 </div>
               </div>
             </div>
@@ -153,12 +182,15 @@ export default function AdminAddBookPage() {
 
         {/* Actions */}
         <div className="flex items-center justify-end gap-4 mt-10">
+          {submitted && <span className="text-green-600 text-sm font-medium">Lưu thành công! Đang chuyển hướng...</span>}
           <Link to="/admin/books" className="text-sm text-gray-500 hover:text-gray-700 font-medium">
             Hủy
           </Link>
           <button
             type="button"
-            className="px-8 py-2.5 bg-[#E8612D] text-white text-sm font-semibold rounded-lg hover:bg-[#d4561f] transition-colors"
+            onClick={handleSubmit}
+            disabled={submitted}
+            className="px-8 py-2.5 bg-[#E8612D] text-white text-sm font-semibold rounded-lg hover:bg-[#d4561f] transition-colors disabled:opacity-50"
           >
             Lưu sách
           </button>

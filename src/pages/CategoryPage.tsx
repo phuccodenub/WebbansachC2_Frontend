@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { FunnelSimple } from '@phosphor-icons/react'
 import BookCard from '../components/BookCard'
+import api from '../lib/api'
 
 const genres = ['Tất cả', 'Văn học VN', 'Khoa học', 'Truyện tranh', 'Lịch sử', 'Ngoại ngữ', 'Kinh tế', 'Tâm lý', 'Thiếu nhi']
 
@@ -29,12 +31,28 @@ const allBooks = [
 ]
 
 export default function CategoryPage() {
+  const [searchParams] = useSearchParams()
+  const searchQuery = searchParams.get('search') || ''
+  const [books, setBooks] = useState(allBooks)
   const [selectedGenre, setSelectedGenre] = useState('Tất cả')
   const [selectedPublishers, setSelectedPublishers] = useState<string[]>([])
   const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null)
   const [sortBy, setSortBy] = useState('newest')
   const [filteredBooks, setFilteredBooks] = useState(allBooks)
   const [showMobileFilter, setShowMobileFilter] = useState(false)
+
+  // Fetch books from API on mount
+  useEffect(() => {
+    api.get('/books').then(res => {
+      if (res.data.data?.length) {
+        setBooks(res.data.data.map((b: any) => ({
+          id: b.id, title: b.title, genre: b.category?.name || 'Khác', publisher: b.publisher || 'Khác',
+          image: b.image || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent(b.title.slice(0, 10))}`,
+          price: b.price, originalPrice: b.originalPrice || b.price, discount: b.discount || 0,
+        })))
+      }
+    }).catch(() => {})
+  }, [])
 
   const togglePublisher = (pub: string) => {
     setSelectedPublishers(prev =>
@@ -43,7 +61,11 @@ export default function CategoryPage() {
   }
 
   useEffect(() => {
-    let result = [...allBooks]
+    let result = [...books]
+
+    if (searchQuery) {
+      result = result.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    }
 
     if (selectedGenre !== 'Tất cả') {
       result = result.filter(book => book.genre === selectedGenre)
@@ -67,7 +89,7 @@ export default function CategoryPage() {
     }
 
     setFilteredBooks(result)
-  }, [selectedGenre, selectedPriceRange, selectedPublishers, sortBy])
+  }, [selectedGenre, selectedPriceRange, selectedPublishers, sortBy, books, searchQuery])
 
   const Sidebar = () => (
     <div className="space-y-6">

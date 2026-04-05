@@ -1,20 +1,24 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { User, Lock, GoogleLogo, FacebookLogo } from '@phosphor-icons/react'
+import { useAuth } from '../context/AuthContext'
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState({ username: '', password: '' })
+  const [errors, setErrors] = useState({ email: '', password: '', general: '' })
+  const [loading, setLoading] = useState(false)
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     let valid = true
-    const newErrors = { username: '', password: '' }
+    const newErrors = { email: '', password: '', general: '' }
 
-    if (!username.trim()) {
-      newErrors.username = 'Vui lòng nhập tên đăng nhập'
+    if (!email.trim()) {
+      newErrors.email = 'Vui lòng nhập email'
       valid = false
     }
 
@@ -26,8 +30,15 @@ export default function LoginPage() {
     setErrors(newErrors)
 
     if (valid) {
-      console.log('Login data:', { username, password })
-      // TODO: Call API login
+      setLoading(true)
+      try {
+        await login(email, password)
+        navigate('/')
+      } catch (err: any) {
+        setErrors(prev => ({ ...prev, general: err.response?.data?.message || 'Đăng nhập thất bại' }))
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
@@ -53,19 +64,20 @@ export default function LoginPage() {
         <p className="text-center text-text-secondary text-sm mb-6">Đăng nhập để tiếp tục</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Username */}
+          {errors.general && <p className="text-sm text-red-500 text-center bg-red-50 p-2 rounded">{errors.general}</p>}
+          {/* Email */}
           <div className="relative">
             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">
               <User size={20} />
             </div>
             <input
-              type="text"
-              placeholder="Tên đăng nhập"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
-            {errors.username && <p className="mt-1 text-sm text-red-500">{errors.username}</p>}
+            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
           </div>
 
           {/* Password */}
@@ -95,9 +107,10 @@ export default function LoginPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+            disabled={loading}
+            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
           >
-            Đăng nhập
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </button>
         </form>
 

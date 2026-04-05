@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MagnifyingGlass, Eye, Printer, Plus, CaretRight, Sliders, CalendarBlank } from '@phosphor-icons/react'
+import api from '../../lib/api'
 
 type ShippingStatus = 'shipping' | 'pending' | 'delivered' | 'processing' | 'cancelled'
 
@@ -33,7 +34,36 @@ export default function AdminOrdersPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
 
-  const handleUpdateStatus = (orderId: string, newStatus: string) => {
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await api.get('/admin/orders')
+        if (res.data.success && res.data.data?.length) {
+          const mapped = res.data.data.map((o: { id: string; orderNumber?: string; user?: { name?: string }; createdAt: string; total: number; status: string }) => ({
+            id: `#${o.orderNumber || o.id}`,
+            customer: o.user?.name?.toUpperCase() || 'N/A',
+            date: new Date(o.createdAt).toLocaleDateString('vi-VN'),
+            total: o.total.toLocaleString('vi-VN') + 'Đ',
+            shipping: o.status as ShippingStatus,
+            status: 'CELL',
+            _id: o.id,
+          }))
+          setOrders(mapped)
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchOrders()
+  }, [])
+
+  const handleUpdateStatus = async (orderId: string, newStatus: string) => {
+    try {
+      // Extract real ID from the order
+      const order = orders.find(o => o.id === orderId)
+      const realId = (order as typeof initialOrders[0] & { _id?: string })?._id
+      if (realId) {
+        await api.put(`/admin/orders/${realId}/status`, { status: newStatus })
+      }
+    } catch { /* update locally anyway */ }
     setOrders(orders.map(order => 
       order.id === orderId 
         ? { ...order, shipping: newStatus as ShippingStatus }

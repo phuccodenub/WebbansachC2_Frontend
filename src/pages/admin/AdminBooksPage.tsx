@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilSimple, Trash, CaretLeft, CaretRight } from '@phosphor-icons/react'
+import api from '../../lib/api'
 
 type BookStatus = 'in_stock' | 'low_stock' | 'out_of_stock'
 
@@ -32,12 +33,57 @@ const statusConfig: Record<BookStatus, { label: string; cls: string }> = {
 }
 
 export default function AdminBooksPage() {
+  const [bookList, setBookList] = useState(books)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterGenre, setFilterGenre] = useState('all')
+  const [filterStatus, setFilterStatus] = useState('all')
   const [featuredMap, setFeaturedMap] = useState<Record<number, boolean>>(
     Object.fromEntries(books.map(b => [b.id, b.featured]))
   )
 
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const res = await api.get('/books?limit=50')
+        if (res.data.success && res.data.data?.length) {
+          const mapped = res.data.data.map((b: { id: number; image?: string; title: string; category?: { name: string }; author: string; publisher?: string; price: number; stock: number; featured?: boolean }) => ({
+            id: b.id,
+            cover: b.image || 'https://placehold.co/60x80/8B7355/fff?text=Book',
+            title: b.title,
+            genre: b.category?.name || 'N/A',
+            author: b.author,
+            publisher: b.publisher || 'N/A',
+            price: b.price,
+            stock: b.stock,
+            status: (b.stock === 0 ? 'out_of_stock' : b.stock <= 10 ? 'low_stock' : 'in_stock') as BookStatus,
+            featured: b.featured || false,
+          }))
+          setBookList(mapped)
+          setFeaturedMap(Object.fromEntries(mapped.map((b: { id: number; featured: boolean }) => [b.id, b.featured])))
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchBooks()
+  }, [])
+
   const toggleFeatured = (id: number) =>
     setFeaturedMap(prev => ({ ...prev, [id]: !prev[id] }))
+
+  const handleDelete = async (id: number) => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa sách này?')) {
+      try {
+        await api.delete(`/books/${id}`)
+      } catch { /* still remove locally */ }
+      setBookList(prev => prev.filter(b => b.id !== id))
+    }
+  }
+
+  const filteredBooks = bookList.filter(b => {
+    const matchSearch = b.title.toLowerCase().includes(searchTerm.toLowerCase()) || b.author.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchGenre = filterGenre === 'all' || b.genre.toLowerCase().includes(filterGenre.toLowerCase())
+    const matchStatus = filterStatus === 'all' || b.status === filterStatus
+    return matchSearch && matchGenre && matchStatus
+  })
 
   const formatPrice = (v: number) => v.toLocaleString('vi-VN').replace(/\./g, ' ')
 
@@ -48,22 +94,27 @@ export default function AdminBooksPage() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
             <span className="text-gray-500">Thể loại:</span>
-            <select className="font-semibold bg-transparent focus:outline-none">
-              <option>Tất cả</option>
-            </select>
-          </div>
-          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
-            <span className="text-gray-500">Tác giả:</span>
-            <select className="font-semibold bg-transparent focus:outline-none">
-              <option>Tất cả</option>
+            <select value={filterGenre} onChange={e => setFilterGenre(e.target.value)} className="font-semibold bg-transparent focus:outline-none">
+              <option value="all">Tất cả</option>
+              <option value="fiction">Fiction</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="dystopian">Dystopian</option>
             </select>
           </div>
           <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 text-sm">
             <span className="text-gray-500">Trạng thái:</span>
-            <select className="font-semibold bg-transparent focus:outline-none">
-              <option>Tất cả</option>
+            <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="font-semibold bg-transparent focus:outline-none">
+              <option value="all">Tất cả</option>
+              <option value="in_stock">Còn hàng</option>
+              <option value="low_stock">Sắp hết</option>
+              <option value="out_of_stock">Hết hàng</option>
             </select>
           </div>
+          <input
+            type="text" placeholder="Tìm kiếm sách..."
+            value={searchTerm} onChange={e => setSearchTerm(e.target.value)}
+            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary"
+          />
         </div>
 
         <Link
@@ -91,7 +142,7 @@ export default function AdminBooksPage() {
               </tr>
             </thead>
             <tbody>
-              {books.map((book) => {
+              {filteredBooks.map((book) => {
                 const st = statusConfig[book.status]
                 return (
                   <tr key={book.id} className="border-b border-gray-100 last:border-0">
@@ -143,7 +194,7 @@ export default function AdminBooksPage() {
                         >
                           <PencilSimple size={18} />
                         </Link>
-                        <button className="text-gray-400 hover:text-red-500 transition-colors">
+                        <button onClick={() => handleDelete(book.id)} className="text-gray-400 hover:text-red-500 transition-colors">
                           <Trash size={18} />
                         </button>
                       </div>

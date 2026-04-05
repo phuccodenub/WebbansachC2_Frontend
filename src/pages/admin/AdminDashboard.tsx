@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ClipboardText, CurrencyCircleDollar, BookOpen, UsersThree, Warning } from '@phosphor-icons/react'
+import api from '../../lib/api'
 
-const stats = [
+const defaultStats = [
   { label: 'Tổng số đơn hàng', value: '200', change: '+ 12% so với tháng trước', icon: ClipboardText, iconBg: 'bg-blue-100', iconColor: 'text-blue-600' },
   { label: 'Doanh thu', value: '14tr', change: '+ 12% so với tháng trước', icon: CurrencyCircleDollar, iconBg: 'bg-yellow-100', iconColor: 'text-yellow-600' },
   { label: 'Sách đang bán', value: '364', change: '+ 12% so với tháng trước', icon: BookOpen, iconBg: 'bg-teal-100', iconColor: 'text-teal-600' },
@@ -16,7 +18,7 @@ const categories = [
   { name: 'Văn học', pct: 21, color: 'bg-yellow-400' },
 ]
 
-const recentOrders = [
+const defaultRecentOrders = [
   { id: 'DH-1234', customer: 'Nguyễn Sỹ Phúc', date: '01/03/2026', status: 'Hủy', total: '100 000 VND' },
   { id: 'DH-1234', customer: 'Nguyễn Sỹ Phúc', date: '01/03/2026', status: 'Hủy', total: '100 000 VND' },
   { id: 'DH-1234', customer: 'Nguyễn Sỹ Phúc', date: '01/03/2026', status: 'Hủy', total: '100 000 VND' },
@@ -24,7 +26,7 @@ const recentOrders = [
   { id: 'DH-1234', customer: 'Nguyễn Sỹ Phúc', date: '01/03/2026', status: 'Hủy', total: '100 000 VND' },
 ]
 
-const lowStock = [
+const defaultLowStock = [
   { title: 'Dế Mèn Phiêu Lưu Ký', cat: 'Thiếu nhi', qty: 2 },
   { title: 'Tuổi Thơ Dữ Dội', cat: 'Thiếu nhi', qty: 6 },
   { title: 'Lão Hạc', cat: 'Thiếu nhi', qty: 2 },
@@ -33,6 +35,37 @@ const lowStock = [
 ]
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState(defaultStats)
+  const [recentOrders, setRecentOrders] = useState(defaultRecentOrders)
+  const [lowStock, setLowStock] = useState(defaultLowStock)
+
+  useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        const res = await api.get('/admin/dashboard')
+        if (res.data.success && res.data.data) {
+          const d = res.data.data
+          setStats([
+            { ...defaultStats[0], value: String(d.totalOrders || 0) },
+            { ...defaultStats[1], value: d.totalRevenue >= 1000000 ? `${Math.round(d.totalRevenue / 1000000)}tr` : d.totalRevenue.toLocaleString('vi-VN') },
+            { ...defaultStats[2], value: String(d.totalBooks || 0) },
+            { ...defaultStats[3], value: String(d.totalUsers || 0) },
+          ])
+          if (d.recentOrders?.length) {
+            setRecentOrders(d.recentOrders.map((o: { orderNumber?: string; id: string; user?: { name?: string }; createdAt: string; status: string; total: number }) => ({
+              id: o.orderNumber || o.id,
+              customer: o.user?.name || 'N/A',
+              date: new Date(o.createdAt).toLocaleDateString('vi-VN'),
+              status: o.status,
+              total: o.total.toLocaleString('vi-VN') + ' VND',
+            })))
+          }
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchDashboard()
+  }, [])
+
   // Simple bar data for chart placeholder
   const bars = [
     [40, 60], [55, 70], [80, 90], [65, 85],
