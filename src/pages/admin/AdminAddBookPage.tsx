@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Camera, CheckCircle, WarningCircle, CaretRight } from '@phosphor-icons/react'
+import { Camera, CheckCircle, CaretRight } from '@phosphor-icons/react'
 import api from '../../lib/api'
 
 export default function AdminAddBookPage() {
@@ -100,6 +100,11 @@ export default function AdminAddBookPage() {
                     {!errors.title && form.title.trim() && <CheckCircle size={20} weight="fill" className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500" />}
                   </div>
                   {errors.title && <p className="text-xs text-red-500 mt-1">{errors.title}</p>}
+                </div>
+                {/* Tác giả */}
+                <div>
+                  <label className="block text-sm font-semibold text-[#374151] mb-1.5">
+                    Tác giả <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text" name="author" value={form.author} onChange={handleChange}
@@ -117,7 +122,6 @@ export default function AdminAddBookPage() {
                     <option>Dế mèn phiêu lưu ký</option>
                   </select>
                 </div>
-              </div>
 
               {/* NXB + ISBN */}
               <div className="grid grid-cols-2 gap-4">

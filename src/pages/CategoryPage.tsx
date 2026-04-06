@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FunnelSimple } from '@phosphor-icons/react'
 import BookCard from '../components/BookCard'
@@ -38,17 +38,16 @@ export default function CategoryPage() {
   const [selectedPublishers, setSelectedPublishers] = useState<string[]>([])
   const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null)
   const [sortBy, setSortBy] = useState('newest')
-  const [filteredBooks, setFilteredBooks] = useState(allBooks)
   const [showMobileFilter, setShowMobileFilter] = useState(false)
 
   // Fetch books from API on mount
   useEffect(() => {
     api.get('/books').then(res => {
       if (res.data.data?.length) {
-        setBooks(res.data.data.map((b: any) => ({
-          id: b.id, title: b.title, genre: b.category?.name || 'Khác', publisher: b.publisher || 'Khác',
-          image: b.image || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent(b.title.slice(0, 10))}`,
-          price: b.price, originalPrice: b.originalPrice || b.price, discount: b.discount || 0,
+        setBooks(res.data.data.map((b: Record<string, unknown>) => ({
+          id: b.id, title: b.title as string, genre: (b.category as Record<string, string>)?.name || 'Khác', publisher: (b.publisher as string) || 'Khác',
+          image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+          price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
         })))
       }
     }).catch(() => {})
@@ -60,7 +59,7 @@ export default function CategoryPage() {
     )
   }
 
-  useEffect(() => {
+  const filteredBooks = useMemo(() => {
     let result = [...books]
 
     if (searchQuery) {
@@ -88,10 +87,10 @@ export default function CategoryPage() {
       result.sort((a, b) => a.title.localeCompare(b.title))
     }
 
-    setFilteredBooks(result)
+    return result
   }, [selectedGenre, selectedPriceRange, selectedPublishers, sortBy, books, searchQuery])
 
-  const Sidebar = () => (
+  const sidebarContent = (
     <div className="space-y-6">
       {/* Genre */}
       <div>
@@ -166,7 +165,7 @@ export default function CategoryPage() {
         {/* Sidebar - Desktop */}
         <aside className="hidden md:block w-64 shrink-0">
           <div className="bg-white rounded-xl p-5 border border-border sticky top-20">
-            <Sidebar />
+            {sidebarContent}
           </div>
         </aside>
 
@@ -186,7 +185,7 @@ export default function CategoryPage() {
                 <h2 className="text-lg font-bold">Bộ lọc</h2>
                 <button onClick={() => setShowMobileFilter(false)} className="text-text-secondary hover:text-text-primary">✕</button>
               </div>
-              <Sidebar />
+              {sidebarContent}
             </div>
           </div>
         )}

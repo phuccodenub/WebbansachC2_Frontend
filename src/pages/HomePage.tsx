@@ -44,16 +44,16 @@ export default function HomePage() {
 
   useEffect(() => {
     api.get('/books?sort=soldCount&order=desc&limit=8').then(res => {
-      if (res.data.data?.length) setBestSellersData(res.data.data.map((b: any) => ({
-        id: b.id, title: b.title, image: b.image || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent(b.title.slice(0, 10))}`,
-        price: b.price, originalPrice: b.originalPrice || b.price, discount: b.discount || 0,
+      if (res.data.data?.length) setBestSellersData(res.data.data.map((b: Record<string, unknown>) => ({
+        id: b.id, title: b.title as string, image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+        price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
       })))
     }).catch(() => {})
 
     api.get('/books?sort=createdAt&order=desc&limit=4').then(res => {
-      if (res.data.data?.length) setNewBooksData(res.data.data.map((b: any) => ({
-        id: b.id, title: b.title, image: b.image || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent(b.title.slice(0, 10))}`,
-        price: b.price, originalPrice: b.originalPrice || b.price, discount: b.discount || 0,
+      if (res.data.data?.length) setNewBooksData(res.data.data.map((b: Record<string, unknown>) => ({
+        id: b.id, title: b.title as string, image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+        price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
       })))
     }).catch(() => {})
   }, [])

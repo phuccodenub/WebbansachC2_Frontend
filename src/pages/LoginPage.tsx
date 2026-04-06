@@ -34,8 +34,9 @@ export default function LoginPage() {
       try {
         await login(email, password)
         navigate('/')
-      } catch (err: any) {
-        setErrors(prev => ({ ...prev, general: err.response?.data?.message || 'Đăng nhập thất bại' }))
+      } catch (err: unknown) {
+        const message = (err as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Đăng nhập thất bại'
+        setErrors(prev => ({ ...prev, general: message }))
       } finally {
         setLoading(false)
       }

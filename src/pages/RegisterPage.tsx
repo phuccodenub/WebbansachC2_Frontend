@@ -103,8 +103,9 @@ export default function RegisterPage() {
       try {
         await register(normalizedForm.fullName, normalizedForm.email, normalizedForm.password)
         navigate('/')
-      } catch (err: any) {
-        setErrors(prev => ({ ...prev, email: err.response?.data?.message || 'Đăng ký thất bại' }))
+      } catch (err: unknown) {
+        const message = (err as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Đăng ký thất bại'
+        setErrors(prev => ({ ...prev, email: message }))
       } finally {
         setIsSubmitting(false)
       }
