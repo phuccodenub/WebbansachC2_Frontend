@@ -1,296 +1,279 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Star, Minus, Plus, ShoppingCart, Heart } from '@phosphor-icons/react'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import BookCard from '../components/BookCard'
+import { useCart } from '../context/CartContext'
+import api from '../lib/api'
 
-const relatedBooks = [
-  { id: 2, title: 'Nhà Giả Kim', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Nhà+Giả+Kim', price: 69000, originalPrice: 79000, discount: 13 },
-  { id: 3, title: 'Đắc Nhân Tâm', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Đắc+Nhân+Tâm', price: 76000, originalPrice: 86000, discount: 12 },
-  { id: 4, title: 'Cây Cam Ngọt Của Tôi', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Cây+Cam+Ngọt', price: 82000, originalPrice: 108000, discount: 24 },
-  { id: 5, title: 'Tuổi Trẻ Đáng Giá Bao Nhiêu', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Tuổi+Trẻ', price: 65000, originalPrice: 75000, discount: 13 },
+const booksData = [
+  {
+    id: 1, title: 'Dung La Tet!', author: 'Bui Phuong Tam', price: 61200, originalPrice: 72000,
+    image: 'https://placehold.co/420x520/e2e8f0/475569?text=Dung+La+Tet',
+    category: 'Sach thieu nhi', publisher: 'Kim Dong', year: '2025',
+    pages: '40', weight: '255 gr', size: '20.5 x 20.5 x 0.8 cm',
+    isbn: 'PVN180010782', stock: 15,
+    description: 'Dung La Tet! la mot tap sach tranh vui nhon va am ap, giup cac be hieu hon ve van hoa Tet truyen thong. Noi dung gan gui, minh hoa dep, phu hop de doc cung gia dinh.',
+  },
+  {
+    id: 2, title: 'Nha Gia Kim', author: 'Paulo Coelho', price: 79000, originalPrice: 95000,
+    image: 'https://placehold.co/420x520/e2e8f0/475569?text=Nha+Gia+Kim',
+    category: 'Van hoc nuoc ngoai', publisher: 'NXB Hoi Nha Van', year: '2020',
+    pages: '228', weight: '300 gr', size: '13 x 20.5 cm',
+    isbn: 'PVN180010783', stock: 30,
+    description: 'Nha Gia Kim ke ve cau be chan cuu Santiago thuc hien cuoc hanh trinh di tim kho bau va kham pha y nghia cuoc song.',
+  },
+  {
+    id: 3, title: 'Dac Nhan Tam', author: 'Dale Carnegie', price: 88000, originalPrice: 108000,
+    image: 'https://placehold.co/420x520/e2e8f0/475569?text=Dac+Nhan+Tam',
+    category: 'Ky nang song', publisher: 'NXB Tong Hop', year: '2021',
+    pages: '320', weight: '400 gr', size: '14.5 x 20.5 cm',
+    isbn: 'PVN180010784', stock: 50,
+    description: 'Dac Nhan Tam la cuon sach kinh dien ve nghe thuat doi nhan xu the, giup ban giao tiep hieu qua va xay dung moi quan he.',
+  },
+  {
+    id: 4, title: 'Clean Code', author: 'Robert C. Martin', price: 450000, originalPrice: 500000,
+    image: 'https://placehold.co/420x520/e2e8f0/475569?text=Clean+Code',
+    category: 'Cong nghe', publisher: 'Prentice Hall', year: '2008',
+    pages: '464', weight: '600 gr', size: '18.5 x 23.5 cm',
+    isbn: 'PVN180010785', stock: 10,
+    description: 'Clean Code huong dan cach viet ma nguon sach, dang doc va de bao tri theo cac nguyen tac tot nhat cua lap trinh.',
+  },
+  {
+    id: 5, title: 'Sapiens - Luoc Su Loai Nguoi', author: 'Yuval Noah Harari', price: 199000, originalPrice: 230000,
+    image: 'https://placehold.co/420x520/e2e8f0/475569?text=Sapiens',
+    category: 'Lich su', publisher: 'NXB Tri Thuc', year: '2022',
+    pages: '560', weight: '700 gr', size: '16 x 24 cm',
+    isbn: 'PVN180010786', stock: 25,
+    description: 'Sapiens kham pha lich su phat trien cua loai nguoi tu thoi tien su den xa hoi hien dai.',
+  },
 ]
 
-const bookDetails = {
-  isbn: '978-604-2-12345-6',
-  author: 'Nguyễn Nhật Ánh',
-  publisher: 'NXB Trẻ',
-  publishYear: 2024,
-  pages: 256,
-  language: 'Tiếng Việt',
-  weight: '300g',
-  dimensions: '13 x 20.5 cm',
-}
+const authorBooks = [
+  { id: 11, title: 'Con meo day hai au', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Con+Meo', price: 62000 },
+  { id: 12, title: 'Ban than cua be', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Ban+Than', price: 58000 },
+  { id: 13, title: 'Ve voi mua xuan', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Mua+Xuan', price: 64000 },
+  { id: 14, title: 'Khuc hat be ngoan', image: 'https://placehold.co/220x300/e2e8f0/475569?text=Khuc+Hat', price: 59000 },
+]
+
+const defaultRelatedBooks = [
+  { id: 21, title: 'Co be doi dam may', image: 'https://placehold.co/260x340/e2e8f0/475569?text=Co+Be+Doi+Dam+May', price: 54000, originalPrice: 68000, discount: 20 },
+  { id: 22, title: 'Nuoi duong long trung thuc', image: 'https://placehold.co/260x340/e2e8f0/475569?text=Long+Trung+Thuc', price: 48000, originalPrice: 60000, discount: 20 },
+  { id: 23, title: 'Hanh trinh mau nhiem', image: 'https://placehold.co/260x340/e2e8f0/475569?text=Hanh+Trinh', price: 52000, originalPrice: 65000, discount: 20 },
+  { id: 24, title: 'Giai dieu tuoi tho', image: 'https://placehold.co/260x340/e2e8f0/475569?text=Giai+Dieu', price: 46000, originalPrice: 58000, discount: 21 },
+  { id: 25, title: 'Nhung ngay nang dep', image: 'https://placehold.co/260x340/e2e8f0/475569?text=Nang+Dep', price: 51000, originalPrice: 63000, discount: 19 },
+]
 
 export default function ProductDetailPage() {
+  const { id } = useParams()
+  const [book, setBook] = useState(booksData[0])
+  const [relatedBooks, setRelatedBooks] = useState(defaultRelatedBooks)
+  const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
-  const [activeTab, setActiveTab] = useState<'description' | 'reviews'>('description')
-  const [selectedImage, setSelectedImage] = useState(0)
+  const [tab, setTab] = useState<'detail' | 'review'>('detail')
 
-  const images = [
-    'https://placehold.co/400x560/e2e8f0/475569?text=Đúng+Là+Tết!',
-    'https://placehold.co/400x560/e2e8f0/475569?text=Mặt+sau',
-    'https://placehold.co/400x560/e2e8f0/475569?text=Bìa+trong',
+  useEffect(() => {
+    const fetchBook = async () => {
+      try {
+        const res = await api.get(`/books/${id}`)
+        if (res.data.success && res.data.data) {
+          const b = res.data.data
+          setBook({
+            id: b.id,
+            title: b.title,
+            author: b.author,
+            price: b.price,
+            originalPrice: b.originalPrice || b.price,
+            image: b.image || 'https://placehold.co/420x520/e2e8f0/475569?text=Book',
+            category: b.category?.name || 'Sách',
+            publisher: b.publisher || '',
+            year: b.publishedYear?.toString() || '',
+            pages: b.pages?.toString() || '',
+            weight: b.weight || '',
+            size: b.dimensions || '',
+            isbn: b.isbn || '',
+            stock: b.stock ?? 0,
+            description: b.description || '',
+          })
+          // Fetch related books by same category
+          if (b.category?.slug) {
+            const relRes = await api.get(`/books?category=${b.category.slug}&limit=5`)
+            if (relRes.data.success && relRes.data.data) {
+              setRelatedBooks(relRes.data.data.filter((rb: { id: number }) => rb.id !== b.id).slice(0, 5).map((rb: { id: number; title: string; image?: string; price: number; originalPrice?: number }) => ({
+                id: rb.id,
+                title: rb.title,
+                image: rb.image || 'https://placehold.co/260x340/e2e8f0/475569?text=Book',
+                price: rb.price,
+                originalPrice: rb.originalPrice,
+              })))
+            }
+          }
+        }
+      } catch {
+        // fallback to hardcoded data
+        const found = booksData.find(b => b.id === Number(id))
+        if (found) setBook(found)
+      }
+    }
+    fetchBook()
+  }, [id])
+
+  const detailRows = [
+    ['Ma hang', book.isbn],
+    ['Tac gia', book.author],
+    ['NCC', book.publisher],
+    ['Nha xuat ban', book.publisher],
+    ['Nam xuat ban', book.year],
+    ['Trong luong', book.weight],
+    ['Kich thuoc bao bi', book.size],
+    ['So trang', book.pages],
   ]
 
+  const handleAddToCart = () => {
+    addToCart({
+      id: book.id,
+      title: book.title,
+      price: book.price,
+      originalPrice: book.originalPrice,
+      quantity,
+      image: book.image,
+    })
+    alert(`Đã thêm ${quantity} "${book.title}" vào giỏ hàng!`)
+  }
+
+  const handleBuyNow = () => {
+    addToCart({
+      id: book.id,
+      title: book.title,
+      price: book.price,
+      originalPrice: book.originalPrice,
+      quantity,
+      image: book.image,
+    })
+    window.location.href = '/cart'
+  }
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
-      {/* Breadcrumb */}
-      <nav className="text-sm text-text-secondary mb-6">
-        <Link to="/" className="hover:text-primary">Trang chủ</Link>
+    <div className="mx-auto max-w-7xl px-4 py-8">
+      <nav className="mb-6 text-sm text-text-secondary">
+        <Link to="/" className="hover:text-primary">Trang chu</Link>
         <span className="mx-2">/</span>
-        <Link to="/category" className="hover:text-primary">Văn học Việt Nam</Link>
+        <Link to="/category" className="hover:text-primary">{book.category}</Link>
         <span className="mx-2">/</span>
-        <span className="text-text-primary font-medium">Đúng Là Tết!</span>
+        <span className="font-medium text-text-primary">{book.title}</span>
       </nav>
 
-      {/* Product Main */}
-      <div className="bg-white rounded-xl border border-border p-6 mb-8">
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Images */}
-          <div>
-            <div className="aspect-[3/4] rounded-lg overflow-hidden bg-bg-light mb-3">
-              <img
-                src={images[selectedImage]}
-                alt="Đúng Là Tết!"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex gap-2">
-              {images.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`w-16 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                    selectedImage === idx ? 'border-primary' : 'border-border'
-                  }`}
-                >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+      <section className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-[120px_1fr]">
+            <div className="order-2 flex gap-3 md:order-1 md:flex-col">
+              {[1, 2, 3].map((idx) => (
+                <button key={idx} type="button" className="h-24 w-20 overflow-hidden rounded border border-border bg-white">
+                  <img src={book.image} alt={`thumb-${idx}`} className="h-full w-full object-cover" />
                 </button>
               ))}
             </div>
-          </div>
-
-          {/* Info */}
-          <div>
-            <h1 className="text-2xl font-bold text-text-primary mb-2">Đúng Là Tết!</h1>
-
-            {/* Rating */}
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
-                    key={star}
-                    size={18}
-                    weight={star <= 4 ? 'fill' : 'regular'}
-                    className={star <= 4 ? 'text-yellow-400' : 'text-gray-300'}
-                  />
-                ))}
+            <div className="order-1 md:order-2">
+              <div className="rounded border border-border bg-white p-4">
+                <img
+                  src={book.image}
+                  alt={book.title}
+                  className="mx-auto w-full max-w-sm object-cover"
+                />
               </div>
-              <span className="text-sm text-text-secondary">(128 đánh giá)</span>
-              <span className="text-sm text-text-muted">|</span>
-              <span className="text-sm text-success">Còn hàng</span>
-            </div>
-
-            {/* Price */}
-            <div className="bg-bg-light rounded-lg p-4 mb-6">
-              <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-bold text-price">61.200đ</span>
-                <span className="text-lg text-price-old line-through">68.000đ</span>
-                <span className="bg-accent text-white text-xs font-bold px-2 py-0.5 rounded">-10%</span>
-              </div>
-            </div>
-
-            {/* Book Details Quick */}
-            <div className="grid grid-cols-2 gap-3 mb-6 text-sm">
-              <div className="flex justify-between">
-                <span className="text-text-secondary">Tác giả:</span>
-                <span className="text-primary font-medium">{bookDetails.author}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-text-secondary">NXB:</span>
-                <span className="font-medium">{bookDetails.publisher}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-text-secondary">Năm XB:</span>
-                <span className="font-medium">{bookDetails.publishYear}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-text-secondary">Số trang:</span>
-                <span className="font-medium">{bookDetails.pages}</span>
-              </div>
-            </div>
-
-            {/* Quantity */}
-            <div className="flex items-center gap-4 mb-6">
-              <span className="text-sm text-text-secondary font-medium">Số lượng:</span>
-              <div className="flex items-center border border-border rounded-lg">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-9 h-9 flex items-center justify-center text-text-secondary hover:text-primary transition-colors"
-                >
-                  <Minus size={16} />
-                </button>
-                <span className="w-10 text-center text-sm font-medium">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-9 h-9 flex items-center justify-center text-text-secondary hover:text-primary transition-colors"
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-3">
-              <button className="flex-1 flex items-center justify-center gap-2 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors">
-                <ShoppingCart size={20} />
-                THÊM VÀO GIỎ HÀNG
-              </button>
-              <button className="flex-1 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-red-600 transition-colors">
-                MUA NGAY
-              </button>
-              <button className="w-12 h-12 flex items-center justify-center border border-border rounded-lg text-text-secondary hover:text-accent hover:border-accent transition-colors">
-                <Heart size={22} />
-              </button>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Tabs */}
-      <div className="bg-white rounded-xl border border-border mb-8">
-        <div className="flex border-b border-border">
-          <button
-            onClick={() => setActiveTab('description')}
-            className={`px-6 py-3 text-sm font-medium transition-colors relative ${
-              activeTab === 'description'
-                ? 'text-primary'
-                : 'text-text-secondary hover:text-text-primary'
-            }`}
-          >
-            Mô tả sản phẩm
-            {activeTab === 'description' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-            )}
-          </button>
-          <button
-            onClick={() => setActiveTab('reviews')}
-            className={`px-6 py-3 text-sm font-medium transition-colors relative ${
-              activeTab === 'reviews'
-                ? 'text-primary'
-                : 'text-text-secondary hover:text-text-primary'
-            }`}
-          >
-            Đánh giá (128)
-            {activeTab === 'reviews' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-            )}
-          </button>
+        <div className="lg:col-span-5">
+          <h1 className="mb-2 text-3xl font-bold text-text-primary">{book.title}</h1>
+          <div className="mb-3 border-b border-border pb-3">
+            <p className="text-3xl font-bold text-price">{book.price.toLocaleString('vi-VN')}d</p>
+            <p className="text-sm text-text-secondary">(Gia da bao gom thue: {book.originalPrice.toLocaleString('vi-VN')}d)</p>
+          </div>
+
+          <div className="mb-4 space-y-1 text-sm text-text-secondary">
+            <p>Nha xuat ban: {book.publisher}</p>
+            <p>Tac gia: {book.author}</p>
+            <p>The loai: {book.category}</p>
+            <p>Tinh trang: {book.stock > 0 ? 'Con hang' : 'Het hang'}</p>
+          </div>
+
+          <div className="mb-5 flex items-center gap-3">
+            <span className="text-sm font-semibold">SL:</span>
+            <button type="button" className="h-8 w-8 rounded border border-border" onClick={() => setQuantity((v) => Math.max(1, v - 1))}>-</button>
+            <span className="w-8 text-center font-semibold">{quantity}</span>
+            <button type="button" className="h-8 w-8 rounded border border-border" onClick={() => setQuantity((v) => v + 1)}>+</button>
+          </div>
+
+          <div className="space-y-2">
+            <button type="button" onClick={handleAddToCart} className="w-full rounded bg-primary py-2.5 text-sm font-bold text-white">THEM VAO GIO HANG</button>
+            <button type="button" onClick={handleBuyNow} className="w-full rounded bg-surface-container py-2.5 text-sm font-bold text-text-primary">MUA NGAY</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-8">
+          <div className="overflow-hidden rounded border border-border bg-white">
+            <div className="flex border-b border-border text-sm font-semibold">
+              <button type="button" className={`px-4 py-2 ${tab === 'detail' ? 'bg-surface-container text-primary' : 'text-text-secondary'}`} onClick={() => setTab('detail')}>
+                Thong tin chi tiet
+              </button>
+              <button type="button" className={`px-4 py-2 ${tab === 'review' ? 'bg-surface-container text-primary' : 'text-text-secondary'}`} onClick={() => setTab('review')}>
+                Binh luan
+              </button>
+            </div>
+            <div className="p-4 text-sm text-text-secondary">
+              {tab === 'detail' ? (
+                <div className="space-y-1">
+                  {detailRows.map(([k, v]) => (
+                    <p key={k}>
+                      <span className="font-semibold text-text-primary">{k}: </span>
+                      {v}
+                    </p>
+                  ))}
+                  <p className="pt-2 leading-relaxed">
+                    {book.description}
+                  </p>
+                </div>
+              ) : (
+                <p>Chua co binh luan nao cho san pham nay.</p>
+              )}
+            </div>
+          </div>
         </div>
 
-        <div className="p-6">
-          {activeTab === 'description' ? (
-            <div className="prose prose-sm max-w-none">
-              <h3 className="text-lg font-semibold mb-3">Thông tin chi tiết</h3>
-              <table className="w-full text-sm mb-6">
-                <tbody>
-                  {Object.entries({
-                    'ISBN': bookDetails.isbn,
-                    'Tác giả': bookDetails.author,
-                    'Nhà xuất bản': bookDetails.publisher,
-                    'Năm xuất bản': bookDetails.publishYear,
-                    'Số trang': bookDetails.pages,
-                    'Ngôn ngữ': bookDetails.language,
-                    'Trọng lượng': bookDetails.weight,
-                    'Kích thước': bookDetails.dimensions,
-                  }).map(([key, value]) => (
-                    <tr key={key} className="border-b border-border">
-                      <td className="py-2 text-text-secondary w-40">{key}</td>
-                      <td className="py-2 font-medium">{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
-              <h3 className="text-lg font-semibold mb-3">Giới thiệu sách</h3>
-              <p className="text-text-secondary leading-relaxed mb-3">
-                "Đúng Là Tết!" là tập truyện ngắn mới nhất của nhà văn Nguyễn Nhật Ánh, mang đến những câu chuyện ấm áp, hài hước và đầy hoài niệm về ngày Tết cổ truyền Việt Nam.
-              </p>
-              <p className="text-text-secondary leading-relaxed">
-                Qua ngòi bút tinh tế, tác giả dẫn dắt người đọc trở về với những ký ức tuổi thơ, nơi mùi bánh chưng, tiếng pháo, và không khí sum vầy gia đình luôn gợi lên cảm xúc khó quên.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {/* Review Summary */}
-              <div className="flex items-center gap-6 p-4 bg-bg-light rounded-lg">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-primary">4.0</div>
-                  <div className="flex mt-1">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={14} weight={s <= 4 ? 'fill' : 'regular'} className={s <= 4 ? 'text-yellow-400' : 'text-gray-300'} />
-                    ))}
+        <aside className="lg:col-span-4">
+          <div className="rounded border border-border bg-white p-4">
+            <h3 className="mb-4 text-center text-sm font-bold uppercase tracking-wide text-text-primary">Sach cung tac gia</h3>
+            <div className="space-y-3">
+              {authorBooks.map((book) => (
+                <Link key={book.id} to={`/product/${book.id}`} className="flex gap-3 border-b border-border pb-3 last:border-0">
+                  <img src={book.image} alt={book.title} className="h-16 w-12 rounded object-cover" />
+                  <div>
+                    <p className="line-clamp-2 text-xs font-medium text-text-primary">{book.title}</p>
+                    <p className="mt-1 text-xs font-bold text-price">{book.price.toLocaleString('vi-VN')}d</p>
                   </div>
-                  <div className="text-xs text-text-secondary mt-1">128 đánh giá</div>
-                </div>
-                <div className="flex-1 space-y-1">
-                  {[
-                    { stars: 5, count: 72 },
-                    { stars: 4, count: 35 },
-                    { stars: 3, count: 15 },
-                    { stars: 2, count: 4 },
-                    { stars: 1, count: 2 },
-                  ].map((r) => (
-                    <div key={r.stars} className="flex items-center gap-2 text-xs">
-                      <span className="w-4 text-right">{r.stars}</span>
-                      <Star size={12} weight="fill" className="text-yellow-400" />
-                      <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-yellow-400 rounded-full"
-                          style={{ width: `${(r.count / 128) * 100}%` }}
-                        />
-                      </div>
-                      <span className="w-8 text-text-secondary">{r.count}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Sample Reviews */}
-              {[
-                { name: 'Minh Anh', date: '15/01/2024', rating: 5, content: 'Sách rất hay, nội dung ý nghĩa. Giao hàng nhanh, bìa đẹp.' },
-                { name: 'Hoàng Tú', date: '10/01/2024', rating: 4, content: 'Đọc xong rất thích, nhưng hơi ngắn. Mong tác giả viết thêm nhiều truyện như vậy.' },
-                { name: 'Thu Hằng', date: '05/01/2024', rating: 4, content: 'Mua về tặng bạn bè dịp Tết. Ai cũng thích. Giá cả phải chăng.' },
-              ].map((review, idx) => (
-                <div key={idx} className="border-b border-border pb-4 last:border-0">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-bold">
-                        {review.name[0]}
-                      </div>
-                      <span className="font-medium text-sm">{review.name}</span>
-                    </div>
-                    <span className="text-xs text-text-muted">{review.date}</span>
-                  </div>
-                  <div className="flex mb-2">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={14} weight={s <= review.rating ? 'fill' : 'regular'} className={s <= review.rating ? 'text-yellow-400' : 'text-gray-300'} />
-                    ))}
-                  </div>
-                  <p className="text-sm text-text-secondary">{review.content}</p>
-                </div>
+                </Link>
               ))}
             </div>
-          )}
-        </div>
-      </div>
+          </div>
+        </aside>
+      </section>
 
-      {/* Related Books */}
-      <section className="mb-8">
-        <h2 className="text-xl font-bold text-text-primary mb-4">Sách liên quan</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <section className="mb-10">
+        <h2 className="mb-4 text-center text-sm font-bold uppercase tracking-wider text-text-primary">Sach cung the loai</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {relatedBooks.map((book) => (
             <BookCard key={book.id} {...book} />
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-4 text-center text-sm font-bold uppercase tracking-wider text-text-primary">San pham da xem</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {relatedBooks.map((book) => (
+            <BookCard key={`seen-${book.id}`} {...book} />
           ))}
         </div>
       </section>

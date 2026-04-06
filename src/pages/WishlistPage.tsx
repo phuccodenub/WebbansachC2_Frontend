@@ -1,69 +1,122 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { X } from '@phosphor-icons/react'
+import { useCart } from '../context/CartContext'
 
-const wishlistItems = [
-  { id: 1, title: 'Tớ rất yêu Doraemon', image: 'https://placehold.co/277x303/e2e8f0/475569?text=Doraemon', price: 115200, originalPrice: 128000 },
-  { id: 2, title: 'Vun đắp tâm hồn - Cô bé đội đám mây', image: 'https://placehold.co/277x303/e2e8f0/475569?text=Cô+Bé', price: 63000, originalPrice: 70000 },
-  { id: 3, title: 'Hạt mầm nhân cách - Nuôi dưỡng lòng trung thực - Vị tổng thống ngay thẳng', image: 'https://placehold.co/277x303/e2e8f0/475569?text=Hạt+Mầm', price: 14400, originalPrice: 16000 },
+interface WishlistItem {
+  id: number
+  title: string
+  author: string
+  image: string
+  price: number
+}
+
+const defaultItems: WishlistItem[] = [
+  {
+    id: 1,
+    title: 'Noi troi bien dao - Co be dam may',
+    author: 'Nha xuat ban Kim Dong',
+    image: 'https://placehold.co/220x300/6286c5/ffffff?text=Co+be+dam+may',
+    price: 54000,
+  },
+  {
+    id: 2,
+    title: 'Noi troi bien dao - Chiec den so',
+    author: 'Nha xuat ban Kim Dong',
+    image: 'https://placehold.co/220x300/6286c5/ffffff?text=Chiec+den+so',
+    price: 54000,
+  },
+  {
+    id: 3,
+    title: 'Noi troi bien dao - Co be dam may',
+    author: 'Nha xuat ban Kim Dong',
+    image: 'https://placehold.co/220x300/6286c5/ffffff?text=Co+be+dam+may',
+    price: 54000,
+  },
+  {
+    id: 4,
+    title: 'Noi duong long trung thuc',
+    author: 'Nha xuat ban Kim Dong',
+    image: 'https://placehold.co/220x300/f2bb4f/ffffff?text=Long+trung+thuc',
+    price: 54000,
+  },
 ]
 
 export default function WishlistPage() {
-  const formatPrice = (v: number) => v.toLocaleString('vi-VN') + '₫'
+  const [items, setItems] = useState<WishlistItem[]>(defaultItems)
+  const { addToCart } = useCart()
+  const formatPrice = (value: number) => `${value.toLocaleString('vi-VN')}₫`
+
+  const removeFromWishlist = (id: number) => {
+    setItems(prev => prev.filter(item => item.id !== id))
+  }
+
+  const handleBuyAll = () => {
+    items.forEach(item => {
+      addToCart({ id: item.id, title: item.title, price: item.price, quantity: 1, image: item.image, originalPrice: item.price })
+    })
+    setItems([])
+  }
 
   return (
-    <div>
-      {/* Breadcrumb Banner */}
-      <div className="bg-[#F5F6FA] py-10 px-4 mb-8">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold text-text-primary">Wishlist</h1>
-          <p className="text-sm mt-1">
-            <Link to="/" className="text-text-primary underline font-medium hover:text-primary">Trang chủ</Link>
-            <span className="mx-1 text-text-secondary">/</span>
-            <span className="text-text-secondary">Wishlist</span>
-          </p>
-        </div>
-      </div>
+    <div className="mx-auto max-w-6xl bg-white">
+      <section className="bg-[#ededed] px-8 py-12">
+        <h1 className="mb-2 text-3xl font-semibold text-text-primary">Yeu thich</h1>
+        <p className="text-xs text-text-secondary">
+          <Link to="/" className="hover:text-primary">Trang chu</Link>
+          <span className="mx-1">/</span>
+          <span>Yeu thich</span>
+        </p>
+      </section>
 
-      <div className="max-w-6xl mx-auto px-4 pb-12">
-        {/* Title + Delete All */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-text-primary">Wishlist</h2>
-          <button className="text-sm text-text-primary hover:text-accent transition-colors border border-gray-300 px-4 py-1.5 rounded">
-            Xóa tất cả
+      <section className="px-8 py-8">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-medium text-text-primary">Danh muc yeu thich cua toi</h2>
+          <button type="button" onClick={handleBuyAll} disabled={items.length === 0} className="rounded bg-[#e97777] px-4 py-1 text-xs font-semibold text-white disabled:opacity-50">
+            Mua tat ca
           </button>
         </div>
-        <hr className="border-gray-300 mb-8" />
 
-        {/* Books Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {wishlistItems.map((item) => (
-            <div key={item.id} className="relative group">
-              {/* X Remove Button */}
-              <button className="absolute top-2 right-[-12px] z-10 w-8 h-8 bg-gray-200 hover:bg-red-100 rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors shadow-sm">
-                <X size={16} weight="bold" />
-              </button>
-              {/* Book Image */}
-              <Link to={`/product/${item.id}`}>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {items.length === 0 ? (
+          <p className="col-span-full text-center text-text-secondary py-8">Danh muc yeu thich cua ban dang trong.</p>
+        ) : items.map((item) => (
+          <article key={item.id} className="group relative">
+            <button type="button" onClick={() => removeFromWishlist(item.id)} className="absolute right-1 top-1 z-10 text-red-500 hover:text-red-700">
+              ♥
+            </button>
+            <Link to={`/product/${item.id}`}>
+              <div className="mb-2 aspect-3/4 overflow-hidden rounded">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full aspect-[277/303] object-cover rounded-sm"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-              </Link>
-              {/* Book Info */}
-              <div className="mt-3">
-                <Link to={`/product/${item.id}`} className="text-sm text-text-primary hover:text-primary line-clamp-2 leading-snug">
-                  {item.title}
-                </Link>
-                <div className="flex items-center gap-3 mt-2">
-                  <span className="text-sm text-red-500 font-medium">{formatPrice(item.price)}</span>
-                  <span className="text-sm text-gray-400 line-through">{formatPrice(item.originalPrice)}</span>
-                </div>
               </div>
-            </div>
-          ))}
+              <h3 className="line-clamp-2 text-[11px] text-text-primary">{item.title}</h3>
+            </Link>
+            <p className="mt-1 text-[10px] text-text-secondary">{item.author}</p>
+            <p className="mt-1 text-[11px] font-semibold text-red-500">{formatPrice(item.price)}</p>
+          </article>
+        ))}
         </div>
-      </div>
+      </section>
+
+      <section className="grid grid-cols-1 items-center gap-8 px-8 pb-10 pt-2 md:grid-cols-2">
+        <p className="max-w-md text-xs leading-relaxed text-text-secondary">
+          MMT Bookstore la mot website ban sach truyen trinh xay dung cho
+          cac nguoi co hoi hoc hoi cho ban, sinh vien va nguoi yeu sach.
+          He thong san pham da dang, giao dien than thien va giup tim
+          kiem, dat hang va theo doi don hang mot cach hieu qua.
+        </p>
+        <div className="justify-self-end">
+          <img
+            src="https://placehold.co/260x120/dbeafe/64748b?text=Map+Preview"
+            alt="Map preview"
+            className="rounded-lg"
+          />
+          <p className="mt-1 text-[10px] text-slate-400">Xem ban do</p>
+        </div>
+      </section>
     </div>
   )
 }

@@ -1,39 +1,17 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Minus, Plus, Trash, ArrowLeft } from '@phosphor-icons/react'
-
-interface CartItem {
-  id: number
-  title: string
-  image: string
-  price: number
-  originalPrice: number
-  quantity: number
-}
-
-const initialItems: CartItem[] = [
-  { id: 1, title: 'Đúng Là Tết!', image: 'https://placehold.co/80x110/e2e8f0/475569?text=Đúng+Là+Tết', price: 61200, originalPrice: 68000, quantity: 1 },
-  { id: 2, title: 'Nhà Giả Kim', image: 'https://placehold.co/80x110/e2e8f0/475569?text=Nhà+Giả+Kim', price: 69000, originalPrice: 79000, quantity: 2 },
-  { id: 3, title: 'Đắc Nhân Tâm', image: 'https://placehold.co/80x110/e2e8f0/475569?text=Đắc+Nhân+Tâm', price: 76000, originalPrice: 86000, quantity: 1 },
-]
+import { useCart } from '../context/CartContext'
 
 export default function CartPage() {
-  const [items, setItems] = useState<CartItem[]>(initialItems)
+  const { items, updateQuantity, removeFromCart } = useCart()
 
   const formatPrice = (value: number) => value.toLocaleString('vi-VN') + 'đ'
 
-  const updateQuantity = (id: number, delta: number) => {
-    setItems(prev =>
-      prev.map(item =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    )
-  }
-
-  const removeItem = (id: number) => {
-    setItems(prev => prev.filter(item => item.id !== id))
+  const handleQuantityChange = (id: number, delta: number) => {
+    const item = items.find(i => i.id === id)
+    if (item) {
+      updateQuantity(id, Math.max(1, item.quantity + delta))
+    }
   }
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -91,14 +69,14 @@ export default function CartPage() {
                 <div className="flex items-center justify-between mt-3">
                   <div className="flex items-center border border-border rounded-lg">
                     <button
-                      onClick={() => updateQuantity(item.id, -1)}
+                      onClick={() => handleQuantityChange(item.id, -1)}
                       className="w-8 h-8 flex items-center justify-center text-text-secondary hover:text-primary"
                     >
                       <Minus size={14} />
                     </button>
                     <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(item.id, 1)}
+                      onClick={() => handleQuantityChange(item.id, 1)}
                       className="w-8 h-8 flex items-center justify-center text-text-secondary hover:text-primary"
                     >
                       <Plus size={14} />
@@ -109,7 +87,7 @@ export default function CartPage() {
                       {formatPrice(item.price * item.quantity)}
                     </span>
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                       className="text-text-muted hover:text-accent transition-colors"
                     >
                       <Trash size={18} />

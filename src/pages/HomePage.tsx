@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react'
 import { Truck, ShieldCheck, CreditCard, FileText, ArrowRight } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 import BookCard from '../components/BookCard'
+import api from '../lib/api'
 
 const categories = [
   { name: 'Văn học VN', icon: '📚', color: 'bg-blue-50 border-blue-200' },
@@ -37,6 +39,25 @@ const newBooks = [
 ]
 
 export default function HomePage() {
+  const [bestSellersData, setBestSellersData] = useState(bestSellers)
+  const [newBooksData, setNewBooksData] = useState(newBooks)
+
+  useEffect(() => {
+    api.get('/books?sort=soldCount&order=desc&limit=8').then(res => {
+      if (res.data.data?.length) setBestSellersData(res.data.data.map((b: Record<string, unknown>) => ({
+        id: b.id, title: b.title as string, image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+        price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
+      })))
+    }).catch(() => {})
+
+    api.get('/books?sort=createdAt&order=desc&limit=4').then(res => {
+      if (res.data.data?.length) setNewBooksData(res.data.data.map((b: Record<string, unknown>) => ({
+        id: b.id, title: b.title as string, image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+        price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
+      })))
+    }).catch(() => {})
+  }, [])
+
   return (
     <div>
       {/* Hero Banner */}
@@ -122,7 +143,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {bestSellers.map((book) => (
+          {bestSellersData.map((book) => (
             <BookCard key={book.id} {...book} />
           ))}
         </div>
@@ -138,7 +159,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {newBooks.map((book) => (
+            {newBooksData.map((book) => (
               <BookCard key={book.id} {...book} />
             ))}
           </div>

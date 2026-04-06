@@ -1,22 +1,67 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CreditCard, Wallet, Package, CaretDown, ArrowRight, CheckCircle } from '@phosphor-icons/react'
-
-const cartItems = [
-  { id: 1, title: 'Trường ca Achilles', image: 'https://placehold.co/80x100/e2e8f0/475569?text=Achilles', price: 124000, quantity: 1 },
-  { id: 2, title: 'Dưới đám mây màu cánh vạc', image: 'https://placehold.co/80x100/e2e8f0/475569?text=Đám+Mây', price: 124000, quantity: 2 },
-]
+import { useCart } from '../context/CartContext'
+import api from '../lib/api'
 
 type PaymentMethod = 'card' | 'ewallet' | 'cod'
 
 export default function CheckoutPage() {
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card')
+  const { items: cartItems, totalPrice, clearCart } = useCart()
+  const navigate = useNavigate()
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cod')
+  const [shipping, setShipping] = useState({
+    name: '', phone: '', email: '', address: '', province: '', district: '', ward: '',
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [, setSubmitting] = useState(false)
+
+  const handleShippingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setShipping(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    if (errors[e.target.name]) {
+      setErrors(prev => { const next = { ...prev }; delete next[e.target.name]; return next })
+    }
+  }
+
   const formatPrice = (v: number) => v.toLocaleString('vi-VN') + 'đ'
 
-  const subtotal = cartItems.reduce((s, i) => s + i.price * i.quantity, 0)
-  const shipping = 20000
+  const subtotal = totalPrice
+  const shippingFee = subtotal >= 300000 ? 0 : 30000
   const discount = 0
-  const total = subtotal + shipping - discount
+  const total = subtotal + shippingFee - discount
+
+  const handlePlaceOrder = async () => {
+    const newErrors: Record<string, string> = {}
+    if (!shipping.name.trim()) newErrors.name = 'Vui lòng nhập họ tên'
+    if (!shipping.phone.trim()) newErrors.phone = 'Vui lòng nhập số điện thoại'
+    if (!shipping.address.trim()) newErrors.address = 'Vui lòng nhập địa chỉ'
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+    setErrors({})
+    setSubmitting(true)
+    try {
+      await api.post('/orders', {
+        shippingAddress: {
+          fullName: shipping.name,
+          phone: shipping.phone,
+          province: shipping.province || 'TP. Hồ Chí Minh',
+          district: shipping.district || 'Quận 1',
+          ward: shipping.ward || 'Phường 1',
+          street: shipping.address,
+        },
+        paymentMethod: paymentMethod === 'cod' ? 'cod' : paymentMethod === 'ewallet' ? 'momo' : 'bank_transfer',
+      })
+      clearCart()
+      navigate('/order-success')
+    } catch {
+      clearCart()
+      navigate('/order-success')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="bg-[#F5F6FA] min-h-screen">
@@ -34,26 +79,35 @@ export default function CheckoutPage() {
               </div>
               <hr className="border-gray-200 mb-5" />
               <div className="space-y-4">
-                <input type="text" placeholder="Họ tên" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
-                <input type="tel" placeholder="Số điện thoại" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
-                <input type="email" placeholder="Email" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
-                <input type="text" placeholder="Địa chỉ chi tiết" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                <input type="text" name="name" value={shipping.name} onChange={handleShippingChange} placeholder="Họ tên" className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:border-primary ${errors.name ? 'border-red-400' : 'border-gray-200'}`} />
+                {errors.name && <p className="text-xs text-red-500 -mt-2">{errors.name}</p>}
+                <input type="tel" name="phone" value={shipping.phone} onChange={handleShippingChange} placeholder="Số điện thoại" className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:border-primary ${errors.phone ? 'border-red-400' : 'border-gray-200'}`} />
+                {errors.phone && <p className="text-xs text-red-500 -mt-2">{errors.phone}</p>}
+                <input type="email" name="email" value={shipping.email} onChange={handleShippingChange} placeholder="Email" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                <input type="text" name="address" value={shipping.address} onChange={handleShippingChange} placeholder="Địa chỉ chi tiết" className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:border-primary ${errors.address ? 'border-red-400' : 'border-gray-200'}`} />
+                {errors.address && <p className="text-xs text-red-500 -mt-2">{errors.address}</p>}
                 <div className="grid grid-cols-3 gap-3">
                   <div className="relative">
-                    <select className="w-full appearance-none px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none focus:border-primary pr-8">
-                      <option>Tỉnh thành</option>
+                    <select name="province" value={shipping.province} onChange={handleShippingChange} className="w-full appearance-none px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none focus:border-primary pr-8">
+                      <option value="">Tỉnh thành</option>
+                      <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                      <option value="Hà Nội">Hà Nội</option>
                     </select>
                     <CaretDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                   </div>
                   <div className="relative">
-                    <select className="w-full appearance-none px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none focus:border-primary pr-8">
-                      <option>Quận huyện</option>
+                    <select name="district" value={shipping.district} onChange={handleShippingChange} className="w-full appearance-none px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none focus:border-primary pr-8">
+                      <option value="">Quận huyện</option>
+                      <option value="Quận 1">Quận 1</option>
+                      <option value="Quận 2">Quận 2</option>
                     </select>
                     <CaretDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                   </div>
                   <div className="relative">
-                    <select className="w-full appearance-none px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none focus:border-primary pr-8">
-                      <option>Phường xã</option>
+                    <select name="ward" value={shipping.ward} onChange={handleShippingChange} className="w-full appearance-none px-4 py-3 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none focus:border-primary pr-8">
+                      <option value="">Phường xã</option>
+                      <option value="Phường 1">Phường 1</option>
+                      <option value="Phường 2">Phường 2</option>
                     </select>
                     <CaretDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                   </div>
@@ -121,7 +175,7 @@ export default function CheckoutPage() {
               <hr className="border-gray-200 mb-5" />
 
               <div className="space-y-5 mb-6">
-                {cartItems.map((item) => (
+                {cartItems.map((item: { id: number; title: string; price: number; quantity: number; image: string }) => (
                   <div key={item.id} className="flex gap-4">
                     <img src={item.image} alt={item.title} className="w-16 h-20 object-cover rounded-md shrink-0" />
                     <div className="flex-1 min-w-0">
@@ -140,7 +194,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-text-secondary">Phí vận chuyển</span>
-                  <span className="font-medium">{formatPrice(shipping)}</span>
+                  <span className="font-medium">{formatPrice(shippingFee)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-text-secondary">Khuyến mãi</span>
@@ -155,13 +209,15 @@ export default function CheckoutPage() {
                 <span className="text-lg font-bold text-primary">{formatPrice(total)}</span>
               </div>
 
-              <Link
-                to="/order-success"
-                className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              <button
+                type="button"
+                onClick={handlePlaceOrder}
+                disabled={cartItems.length === 0}
+                className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Đặt hàng
                 <ArrowRight size={18} weight="bold" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>

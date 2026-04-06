@@ -1,12 +1,54 @@
+import { useEffect, useState } from 'react'
+import type { ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilSimple, Eye, Trash, Plus, ClockCounterClockwise, FloppyDisk, Info } from '@phosphor-icons/react'
+import { useAuth } from '../context/AuthContext'
+import api from '../lib/api'
 
-const addresses = [
+const defaultAddresses = [
   { id: 1, type: 'Nhà riêng', isDefault: true, name: 'Nguyễn Minh Hoàng', address: '25/4 Đường số 12, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh', phone: '0901 234 567' },
   { id: 2, type: 'Văn phòng', isDefault: false, name: 'Nguyễn Minh Hoàng', address: 'Tòa nhà Bitexco, Số 2 Hải Triều, Quận 1, TP. Hồ Chí Minh', phone: '0901 234 567' },
 ]
 
 export default function ProfilePage() {
+  const { user } = useAuth()
+  const [profile, setProfile] = useState({
+    fullName: user?.name || 'Nguyễn Văn A',
+    phone: user?.phone || '0901234567',
+    email: user?.email || 'nguyenvana@email.com',
+  })
+  const [addresses, setAddresses] = useState(defaultAddresses)
+  const [isEditing, setIsEditing] = useState(false)
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await api.get('/auth/me')
+        if (res.data.success && res.data.data) {
+          const u = res.data.data
+          setProfile({ fullName: u.name || '', phone: u.phone || '', email: u.email || '' })
+        }
+      } catch { /* keep defaults */ }
+    }
+    const fetchAddresses = async () => {
+      try {
+        const res = await api.get('/users/addresses')
+        if (res.data.success && res.data.data?.length) {
+          setAddresses(res.data.data.map((a: { id: string; label?: string; isDefault: boolean; fullName: string; street: string; ward: string; district: string; province: string; phone: string }) => ({
+            id: a.id,
+            type: a.label || 'Nhà riêng',
+            isDefault: a.isDefault,
+            name: a.fullName,
+            address: `${a.street}, ${a.ward}, ${a.district}, ${a.province}`,
+            phone: a.phone,
+          })))
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchProfile()
+    fetchAddresses()
+  }, [])
+
   return (
     <div className="bg-[#F5F6FA] min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-10">
@@ -20,8 +62,8 @@ export default function ProfilePage() {
               </button>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-text-primary">Nguyễn Minh Hoàng</h1>
-              <p className="text-sm text-text-secondary">minhhoang.archive@gmail.com</p>
+              <h1 className="text-2xl font-bold text-text-primary">{profile.fullName}</h1>
+              <p className="text-sm text-text-secondary">{profile.email}</p>
               <span className="inline-block mt-1 px-2.5 py-0.5 bg-[#2D3250] text-white text-[10px] font-bold rounded uppercase tracking-wider">
                 Hạng Bạch Kim
               </span>
@@ -32,9 +74,22 @@ export default function ProfilePage() {
               <ClockCounterClockwise size={16} />
               Lịch sử đơn hàng
             </Link>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+            <button
+              onClick={async () => {
+                if (isEditing) {
+                  try {
+                    await api.put('/users/profile', { name: profile.fullName, phone: profile.phone })
+                    alert('Đã lưu thông tin!')
+                  } catch {
+                    alert('Lưu thất bại, vui lòng thử lại!')
+                  }
+                }
+                setIsEditing(!isEditing)
+              }}
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
               <FloppyDisk size={16} />
-              Lưu thay đổi
+              {isEditing ? 'Lưu' : 'Chỉnh sửa'}
             </button>
           </div>
         </div>
@@ -51,16 +106,34 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm text-text-secondary mb-1.5">Họ và tên</label>
-                  <input type="text" defaultValue="Nguyễn Minh Hoàng" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                  <input
+                    type="text"
+                    value={profile.fullName}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setProfile({ ...profile, fullName: e.target.value })}
+                    disabled={!isEditing}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary disabled:bg-gray-100 disabled:text-text-secondary"
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm text-text-secondary mb-1.5">Số điện thoại</label>
-                    <input type="tel" defaultValue="0901 234 543" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                    <input
+                      type="tel"
+                      value={profile.phone}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setProfile({ ...profile, phone: e.target.value })}
+                      disabled={!isEditing}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary disabled:bg-gray-100 disabled:text-text-secondary"
+                    />
                   </div>
                   <div>
                     <label className="block text-sm text-text-secondary mb-1.5">Email</label>
-                    <input type="email" defaultValue="minhhoang.archive@gmail.com" className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary" />
+                    <input
+                      type="email"
+                      value={profile.email}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => setProfile({ ...profile, email: e.target.value })}
+                      disabled={!isEditing}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary disabled:bg-gray-100 disabled:text-text-secondary"
+                    />
                   </div>
                 </div>
               </div>

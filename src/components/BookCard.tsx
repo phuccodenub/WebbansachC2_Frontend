@@ -1,5 +1,6 @@
 import { ShoppingCart } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 interface BookCardProps {
   id: number
@@ -11,8 +12,26 @@ interface BookCardProps {
 }
 
 export default function BookCard({ id, title, image, price, originalPrice, discount }: BookCardProps) {
+  const { addToCart } = useCart()
+  
   const formatPrice = (value: number) =>
     value.toLocaleString('vi-VN') + 'đ'
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    addToCart({
+      id,
+      title,
+      price,
+      quantity: 1,
+      image,
+      originalPrice: originalPrice || price
+    })
+    
+    alert(`Đã thêm "${title}" vào giỏ hàng!`)
+  }
 
   return (
     <Link
@@ -48,10 +67,7 @@ export default function BookCard({ id, title, image, price, originalPrice, disco
             )}
           </div>
           <button
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
+            onClick={handleAddToCart}
             className="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors"
           >
             <ShoppingCart size={16} weight="bold" />

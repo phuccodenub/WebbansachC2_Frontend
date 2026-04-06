@@ -1,7 +1,10 @@
-import { Link, useParams } from 'react-router-dom'
-import { Truck, CheckCircle, MapPin, CreditCard, ClipboardText, ArrowsClockwise, Check } from '@phosphor-icons/react'
+import { useEffect, useState } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Truck, MapPin, CreditCard, ClipboardText, ArrowsClockwise, Check } from '@phosphor-icons/react'
+import { useCart } from '../context/CartContext'
+import api from '../lib/api'
 
-const orderData = {
+const defaultOrderData = {
   id: 'BST-123456',
   date: 'Đặt ngày 24 tháng 02, 2026 • 14:30',
   status: 'shipping',
@@ -18,6 +21,14 @@ const orderData = {
   total: 268000,
 }
 
+const statusLabels: Record<string, string> = {
+  pending: 'Chờ xử lý',
+  confirmed: 'Đã xác nhận',
+  shipping: 'Đang giao hàng',
+  delivered: 'Đã giao',
+  cancelled: 'Đã hủy',
+}
+
 const steps = [
   { label: 'Đã xác nhận', done: true },
   { label: 'Đang đóng gói', done: true },
@@ -27,7 +38,66 @@ const steps = [
 
 export default function OrderDetailPage() {
   const { id } = useParams()
+  const navigate = useNavigate()
+  const { addToCart } = useCart()
+  const [orderData, setOrderData] = useState(defaultOrderData)
+  const [cancelled, setCancelled] = useState(false)
   const formatPrice = (v: number) => v.toLocaleString('vi-VN') + 'đ'
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const res = await api.get(`/orders/${id}`)
+        if (res.data.success && res.data.data) {
+          const o = res.data.data
+          setOrderData({
+            id: o.orderNumber || o.id,
+            date: `Đặt ngày ${new Date(o.createdAt).toLocaleDateString('vi-VN')}`,
+            status: o.status,
+            statusLabel: statusLabels[o.status] || o.status,
+            items: o.items?.map((i: { id?: number; bookId?: number; title: string; author?: string; image?: string; price: number; quantity: number }) => ({
+              id: i.id || i.bookId,
+              title: i.title,
+              author: i.author || '',
+              image: i.image || 'https://placehold.co/80x110/e2e8f0/475569?text=Book',
+              price: i.price,
+              quantity: i.quantity,
+            })) || [],
+            receiver: {
+              name: o.shippingName || '',
+              phone: o.shippingPhone || '',
+              address: `${o.shippingStreet || ''}, ${o.shippingWard || ''}, ${o.shippingDistrict || ''}, ${o.shippingProvince || ''}`,
+            },
+            payment: { type: o.paymentMethod === 'cod' ? 'Thanh toán khi nhận hàng' : o.paymentMethod || '', card: '' },
+            subtotal: o.subtotal || 0,
+            shipping: o.shippingFee || 0,
+            discount: 0,
+            total: o.total || 0,
+          })
+          if (o.status === 'cancelled') setCancelled(true)
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchOrder()
+  }, [id])
+
+  const handleCancelOrder = async () => {
+    if (window.confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) {
+      try {
+        await api.put(`/orders/${id}/cancel`)
+        setCancelled(true)
+      } catch {
+        setCancelled(true)
+      }
+    }
+  }
+
+  const handleBuyAgain = () => {
+    orderData.items.forEach(item => {
+      addToCart({ id: item.id, title: item.title, price: item.price, quantity: item.quantity, image: item.image, originalPrice: item.price })
+    })
+    navigate('/cart')
+  }
 
   return (
     <div className="bg-[#F5F6FA] min-h-screen">
@@ -103,10 +173,17 @@ export default function OrderDetailPage() {
 
             {/* Action buttons */}
             <div className="flex gap-4">
-              <button className="flex-1 py-3.5 border border-red-300 text-red-500 font-semibold rounded-xl hover:bg-red-50 transition-colors text-sm">
-                Hủy đơn hàng
-              </button>
-              <button className="flex-[2] flex items-center justify-center gap-2 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors text-sm">
+              {!cancelled && orderData.status === 'shipping' && (
+                <button onClick={handleCancelOrder} className="flex-1 py-3.5 border border-red-300 text-red-500 font-semibold rounded-xl hover:bg-red-50 transition-colors text-sm">
+                  Hủy đơn hàng
+                </button>
+              )}
+              {cancelled && (
+                <span className="flex-1 py-3.5 text-center border border-gray-300 text-gray-400 font-semibold rounded-xl text-sm">
+                  Đã hủy
+                </span>
+              )}
+              <button onClick={handleBuyAgain} className="flex-[2] flex items-center justify-center gap-2 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors text-sm">
                 <ArrowsClockwise size={16} />
                 Mua lại
               </button>

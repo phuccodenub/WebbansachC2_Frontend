@@ -1,13 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Eye } from '@phosphor-icons/react'
+import api from '../lib/api'
 
-const orders = [
+const defaultOrders = [
   { id: 'BST-123456', date: '24/05/2024', total: 470000, status: 'pending', statusLabel: 'Chờ xử lý' },
   { id: 'BST-123455', date: '22/05/2024', total: 1280000, status: 'shipping', statusLabel: 'Đang giao' },
   { id: 'BST-123450', date: '15/05/2024', total: 320000, status: 'delivered', statusLabel: 'Đã giao' },
   { id: 'BST-123440', date: '10/05/2024', total: 760000, status: 'cancelled', statusLabel: 'Đã hủy' },
 ]
+
+const statusLabels: Record<string, string> = {
+  pending: 'Chờ xử lý',
+  confirmed: 'Đã xác nhận',
+  shipping: 'Đang giao',
+  delivered: 'Đã giao',
+  cancelled: 'Đã hủy',
+}
 
 const statusStyles: Record<string, string> = {
   pending: 'bg-yellow-100 text-yellow-700',
@@ -16,10 +25,43 @@ const statusStyles: Record<string, string> = {
   cancelled: 'bg-gray-100 text-gray-500',
 }
 
-const filters = ['Tất cả', 'Chờ xử lý', 'Đang giao', 'Đã giao', 'Đã hủy']
+const filters = [
+  { key: 'all', label: 'Tất cả' },
+  { key: 'pending', label: 'Chờ xử lý' },
+  { key: 'shipping', label: 'Đang giao' },
+  { key: 'delivered', label: 'Đã giao' },
+  { key: 'cancelled', label: 'Đã hủy' },
+]
 
 export default function OrderHistoryPage() {
-  const [activeFilter, setActiveFilter] = useState('Tất cả')
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [orders, setOrders] = useState(defaultOrders)
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await api.get('/orders')
+        if (res.data.success && res.data.data?.length) {
+          const mapped = res.data.data.map((o: { id: string; orderNumber: string; createdAt: string; total: number; status: string }) => ({
+            id: o.orderNumber || o.id,
+            date: new Date(o.createdAt).toLocaleDateString('vi-VN'),
+            total: o.total,
+            status: o.status,
+            statusLabel: statusLabels[o.status] || o.status,
+            _id: o.id,
+          }))
+          setOrders(mapped)
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchOrders()
+  }, [])
+
+  const filteredOrders = useMemo(() => {
+    if (activeFilter === 'all') return orders
+    return orders.filter((order) => order.status === activeFilter)
+  }, [activeFilter, orders])
+
   const formatPrice = (v: number) => v.toLocaleString('vi-VN') + 'đ'
 
   return (
@@ -34,15 +76,15 @@ export default function OrderHistoryPage() {
         <div className="flex gap-2 mb-6">
           {filters.map((f) => (
             <button
-              key={f}
-              onClick={() => setActiveFilter(f)}
+              key={f.key}
+              onClick={() => setActiveFilter(f.key)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeFilter === f
+                activeFilter === f.key
                   ? 'bg-primary text-white'
                   : 'bg-white border border-gray-300 text-text-secondary hover:border-primary hover:text-primary'
               }`}
             >
-              {f}
+              {f.label}
             </button>
           ))}
         </div>
@@ -60,7 +102,7 @@ export default function OrderHistoryPage() {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {filteredOrders.map((order) => (
                 <tr key={order.id} className="border-t border-gray-100">
                   <td className="px-6 py-5">
                     <Link to={`/orders/${order.id}`} className="text-primary font-semibold text-sm hover:underline">

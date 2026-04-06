@@ -1,13 +1,46 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { User, Lock, GoogleLogo, FacebookLogo } from '@phosphor-icons/react'
+import { useAuth } from '../context/AuthContext'
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState({ email: '', password: '', general: '' })
+  const [loading, setLoading] = useState(false)
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    let valid = true
+    const newErrors = { email: '', password: '', general: '' }
+
+    if (!email.trim()) {
+      newErrors.email = 'Vui lòng nhập email'
+      valid = false
+    }
+
+    if (!password || password.length < 6) {
+      newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
+      valid = false
+    }
+
+    setErrors(newErrors)
+
+    if (valid) {
+      setLoading(true)
+      try {
+        await login(email, password)
+        navigate('/')
+      } catch (err: unknown) {
+        const message = (err as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Đăng nhập thất bại'
+        setErrors(prev => ({ ...prev, general: message }))
+      } finally {
+        setLoading(false)
+      }
+    }
   }
 
   return (
@@ -32,18 +65,20 @@ export default function LoginPage() {
         <p className="text-center text-text-secondary text-sm mb-6">Đăng nhập để tiếp tục</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Username */}
+          {errors.general && <p className="text-sm text-red-500 text-center bg-red-50 p-2 rounded">{errors.general}</p>}
+          {/* Email */}
           <div className="relative">
             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">
               <User size={20} />
             </div>
             <input
-              type="text"
-              placeholder="Tên đăng nhập"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
           </div>
 
           {/* Password */}
@@ -58,6 +93,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
+            {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password}</p>}
           </div>
 
           {/* Remember & Forgot */}
@@ -72,9 +108,10 @@ export default function LoginPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+            disabled={loading}
+            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
           >
-            Đăng nhập
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </button>
         </form>
 
