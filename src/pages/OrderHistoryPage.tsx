@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Eye } from '@phosphor-icons/react'
+import api from '../lib/api'
 
-const orders = [
+const defaultOrders = [
   { id: 'BST-123456', date: '24/05/2024', total: 470000, status: 'pending', statusLabel: 'Chờ xử lý' },
   { id: 'BST-123455', date: '22/05/2024', total: 1280000, status: 'shipping', statusLabel: 'Đang giao' },
   { id: 'BST-123450', date: '15/05/2024', total: 320000, status: 'delivered', statusLabel: 'Đã giao' },
   { id: 'BST-123440', date: '10/05/2024', total: 760000, status: 'cancelled', statusLabel: 'Đã hủy' },
 ]
+
+const statusLabels: Record<string, string> = {
+  pending: 'Chờ xử lý',
+  confirmed: 'Đã xác nhận',
+  shipping: 'Đang giao',
+  delivered: 'Đã giao',
+  cancelled: 'Đã hủy',
+}
 
 const statusStyles: Record<string, string> = {
   pending: 'bg-yellow-100 text-yellow-700',
@@ -26,7 +35,29 @@ const filters = [
 
 export default function OrderHistoryPage() {
   const [activeFilter, setActiveFilter] = useState('all')
-  const [filteredOrders, setFilteredOrders] = useState(orders)
+  const [orders, setOrders] = useState(defaultOrders)
+  const [filteredOrders, setFilteredOrders] = useState(defaultOrders)
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await api.get('/orders')
+        if (res.data.success && res.data.data?.length) {
+          const mapped = res.data.data.map((o: { id: string; orderNumber: string; createdAt: string; total: number; status: string }) => ({
+            id: o.orderNumber || o.id,
+            date: new Date(o.createdAt).toLocaleDateString('vi-VN'),
+            total: o.total,
+            status: o.status,
+            statusLabel: statusLabels[o.status] || o.status,
+            _id: o.id,
+          }))
+          setOrders(mapped)
+          setFilteredOrders(mapped)
+        }
+      } catch { /* keep defaults */ }
+    }
+    fetchOrders()
+  }, [])
 
   useEffect(() => {
     if (activeFilter === 'all') {

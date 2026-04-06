@@ -1,11 +1,26 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { MagnifyingGlass, Heart, ShoppingCart, List } from '@phosphor-icons/react'
+import { Link, useNavigate } from 'react-router-dom'
+import { MagnifyingGlass, Heart, ShoppingCart, List, SignOut, UserCircle } from '@phosphor-icons/react'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const { totalItems } = useCart()
+  const { user, isAuthenticated, isAdmin, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      navigate(`/category?search=${encodeURIComponent(searchQuery.trim())}`)
+    }
+  }
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -26,7 +41,7 @@ export default function Header() {
         </Link>
 
         {/* Search Bar */}
-        <div className="flex-1 max-w-xl relative">
+        <form onSubmit={handleSearch} className="flex-1 max-w-xl relative">
           <input
             type="text"
             placeholder="Tìm sách..."
@@ -34,14 +49,14 @@ export default function Header() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full border border-border rounded-lg py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary">
+          <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary">
             <MagnifyingGlass size={20} />
           </button>
-        </div>
+        </form>
 
         {/* Nav Icons */}
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-text-secondary hover:text-primary transition-colors">
+          <Link to="/wishlist" className="text-text-secondary hover:text-primary transition-colors">
             <Heart size={24} />
           </Link>
           <Link to="/cart" className="relative text-text-secondary hover:text-primary transition-colors">
@@ -57,18 +72,47 @@ export default function Header() {
 
         {/* Auth Buttons */}
         <div className="hidden lg:flex items-center gap-2">
-          <Link
-            to="/login"
-            className="px-4 py-2 text-sm font-medium text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
-          >
-            Đăng nhập
-          </Link>
-          <Link
-            to="/register"
-            className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors"
-          >
-            Đăng ký
-          </Link>
+          {isAuthenticated ? (
+            <>
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="px-3 py-2 text-sm font-medium text-white bg-accent rounded-lg hover:opacity-90 transition-colors"
+                >
+                  Quản trị
+                </Link>
+              )}
+              <Link
+                to="/profile"
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+              >
+                <UserCircle size={20} />
+                {user?.name || 'Tài khoản'}
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-red-600 transition-colors"
+              >
+                <SignOut size={20} />
+                Đăng xuất
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="px-4 py-2 text-sm font-medium text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
+              >
+                Đăng nhập
+              </Link>
+              <Link
+                to="/register"
+                className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors"
+              >
+                Đăng ký
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
