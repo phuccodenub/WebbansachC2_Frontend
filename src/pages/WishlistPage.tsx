@@ -52,7 +52,7 @@ export default function WishlistPage() {
 
   const handleBuyAll = () => {
     items.forEach(item => {
-      addToCart({ id: item.id, title: item.title, price: item.price, quantity: 1, image: item.image })
+      addToCart({ id: item.id, title: item.title, price: item.price, quantity: 1, image: item.image, originalPrice: item.price })
     })
     setItems([])
   }

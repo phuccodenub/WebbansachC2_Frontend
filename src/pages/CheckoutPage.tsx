@@ -7,7 +7,7 @@ import api from '../lib/api'
 type PaymentMethod = 'card' | 'ewallet' | 'cod'
 
 export default function CheckoutPage() {
-  const { cartItems, totalPrice, clearCart } = useCart()
+  const { items: cartItems, totalPrice, clearCart } = useCart()
   const navigate = useNavigate()
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cod')
   const [shipping, setShipping] = useState({
@@ -175,7 +175,7 @@ export default function CheckoutPage() {
               <hr className="border-gray-200 mb-5" />
 
               <div className="space-y-5 mb-6">
-                {cartItems.map((item) => (
+                {cartItems.map((item: { id: number; title: string; price: number; quantity: number; image: string }) => (
                   <div key={item.id} className="flex gap-4">
                     <img src={item.image} alt={item.title} className="w-16 h-20 object-cover rounded-md shrink-0" />
                     <div className="flex-1 min-w-0">
