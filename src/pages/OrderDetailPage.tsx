@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { Truck, CheckCircle, MapPin, CreditCard, ClipboardText, ArrowsClockwise, Check } from '@phosphor-icons/react'
+import { Truck, MapPin, CreditCard, ClipboardText, ArrowsClockwise, Check } from '@phosphor-icons/react'
 import { useCart } from '../context/CartContext'
 import api from '../lib/api'
 

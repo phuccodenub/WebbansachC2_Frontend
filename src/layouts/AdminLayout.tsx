@@ -8,14 +8,11 @@ const navItems = [
   { to: '/admin/books', icon: Book, label: 'Sách', exact: false },
 ]
 
-export default function AdminLayout() {
-  const location = useLocation()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
+function Sidebar({ location, setSidebarOpen }: { location: ReturnType<typeof useLocation>; setSidebarOpen: (v: boolean) => void }) {
   const isActive = (path: string, exact: boolean) =>
     exact ? location.pathname === path : location.pathname.startsWith(path)
 
-  const Sidebar = () => (
+  return (
     <div className="flex flex-col h-full bg-[#2D3250]">
       {/* Logo */}
       <div className="px-5 py-6">
@@ -61,12 +58,17 @@ export default function AdminLayout() {
       </div>
     </div>
   )
+}
+
+export default function AdminLayout() {
+  const location = useLocation()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-[#F5F6FA] flex">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-[240px] bg-[#2D3250] fixed inset-y-0 left-0 z-30">
-        <Sidebar />
+        <Sidebar location={location} setSidebarOpen={setSidebarOpen} />
       </aside>
 
       {/* Mobile Sidebar Overlay */}
@@ -80,7 +82,7 @@ export default function AdminLayout() {
             >
               <X size={20} />
             </button>
-            <Sidebar />
+            <Sidebar location={location} setSidebarOpen={setSidebarOpen} />
           </aside>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CreditCard, Wallet, Package, CaretDown, ArrowRight, CheckCircle } from '@phosphor-icons/react'
 import { useCart } from '../context/CartContext'
 import api from '../lib/api'
@@ -14,7 +14,7 @@ export default function CheckoutPage() {
     name: '', phone: '', email: '', address: '', province: '', district: '', ward: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [submitting, setSubmitting] = useState(false)
+  const [, setSubmitting] = useState(false)
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setShipping(prev => ({ ...prev, [e.target.name]: e.target.value }))

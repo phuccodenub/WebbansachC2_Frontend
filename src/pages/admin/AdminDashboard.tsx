@@ -37,7 +37,7 @@ const defaultLowStock = [
 export default function AdminDashboard() {
   const [stats, setStats] = useState(defaultStats)
   const [recentOrders, setRecentOrders] = useState(defaultRecentOrders)
-  const [lowStock, setLowStock] = useState(defaultLowStock)
+  const [lowStock] = useState(defaultLowStock)
 
   useEffect(() => {
     const fetchDashboard = async () => {

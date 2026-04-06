@@ -62,17 +62,6 @@ const defaultRelatedBooks = [
   { id: 25, title: 'Nhung ngay nang dep', image: 'https://placehold.co/260x340/e2e8f0/475569?text=Nang+Dep', price: 51000, originalPrice: 63000, discount: 19 },
 ]
 
-const detailRows = [
-  ['Ma hang', 'PVN180010782'],
-  ['Tac gia', 'Bui Phuong Tam'],
-  ['NCC', 'Nha sach Kim Dong'],
-  ['Nha xuat ban', 'Kim Dong'],
-  ['Nam xuat ban', '2025'],
-  ['Trong luong', '255 gr'],
-  ['Kich thuoc bao bi', '20.5 x 20.5 x 0.8 cm'],
-  ['So trang', '40'],
-]
-
 export default function ProductDetailPage() {
   const { id } = useParams()
   const [book, setBook] = useState(booksData[0])

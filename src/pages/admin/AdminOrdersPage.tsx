@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { MagnifyingGlass, Eye, Printer, Plus, CaretRight, Sliders, CalendarBlank } from '@phosphor-icons/react'
+import { MagnifyingGlass, Eye, Printer, Plus, Sliders, CalendarBlank } from '@phosphor-icons/react'
 import api from '../../lib/api'
 
 type ShippingStatus = 'shipping' | 'pending' | 'delivered' | 'processing' | 'cancelled'

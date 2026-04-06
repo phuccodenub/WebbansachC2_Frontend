@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Truck, Check, CaretRight } from '@phosphor-icons/react'
+import { CaretRight } from '@phosphor-icons/react'
 import api from '../../lib/api'
 
 const defaultOrderData = {

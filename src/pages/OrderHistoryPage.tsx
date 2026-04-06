@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Eye } from '@phosphor-icons/react'
 import api from '../lib/api'
@@ -36,7 +36,6 @@ const filters = [
 export default function OrderHistoryPage() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [orders, setOrders] = useState(defaultOrders)
-  const [filteredOrders, setFilteredOrders] = useState(defaultOrders)
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -52,20 +51,16 @@ export default function OrderHistoryPage() {
             _id: o.id,
           }))
           setOrders(mapped)
-          setFilteredOrders(mapped)
         }
       } catch { /* keep defaults */ }
     }
     fetchOrders()
   }, [])
 
-  useEffect(() => {
-    if (activeFilter === 'all') {
-      setFilteredOrders(orders)
-    } else {
-      setFilteredOrders(orders.filter((order) => order.status === activeFilter))
-    }
-  }, [activeFilter])
+  const filteredOrders = useMemo(() => {
+    if (activeFilter === 'all') return orders
+    return orders.filter((order) => order.status === activeFilter)
+  }, [activeFilter, orders])
 
   const formatPrice = (v: number) => v.toLocaleString('vi-VN') + 'đ'
 
