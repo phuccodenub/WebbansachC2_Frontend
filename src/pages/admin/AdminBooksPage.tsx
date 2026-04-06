@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilSimple, Trash, CaretLeft, CaretRight } from '@phosphor-icons/react'
 import api from '../../lib/api'
+import { resolveBookImage } from '../../lib/bookImage'
 
 type BookStatus = 'in_stock' | 'low_stock' | 'out_of_stock'
 
@@ -48,7 +49,7 @@ export default function AdminBooksPage() {
         if (res.data.success && res.data.data?.length) {
           const mapped = res.data.data.map((b: { id: number; image?: string; title: string; category?: { name: string }; author: string; publisher?: string; price: number; stock: number; featured?: boolean }) => ({
             id: b.id,
-            cover: b.image || 'https://placehold.co/60x80/8B7355/fff?text=Book',
+            cover: resolveBookImage(b.image, b.title),
             title: b.title,
             genre: b.category?.name || 'N/A',
             author: b.author,

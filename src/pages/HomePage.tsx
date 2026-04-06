@@ -3,6 +3,7 @@ import { Truck, ShieldCheck, CreditCard, FileText, ArrowRight } from '@phosphor-
 import { Link } from 'react-router-dom'
 import BookCard from '../components/BookCard'
 import api from '../lib/api'
+import { resolveBookImage } from '../lib/bookImage'
 
 const categories = [
   { name: 'Văn học VN', icon: '📚', color: 'bg-blue-50 border-blue-200' },
@@ -39,20 +40,24 @@ const newBooks = [
 ]
 
 export default function HomePage() {
-  const [bestSellersData, setBestSellersData] = useState(bestSellers)
-  const [newBooksData, setNewBooksData] = useState(newBooks)
+  const [bestSellersData, setBestSellersData] = useState(
+    bestSellers.map((book) => ({ ...book, image: resolveBookImage(book.image, book.title) })),
+  )
+  const [newBooksData, setNewBooksData] = useState(
+    newBooks.map((book) => ({ ...book, image: resolveBookImage(book.image, book.title) })),
+  )
 
   useEffect(() => {
     api.get('/books?sort=soldCount&order=desc&limit=8').then(res => {
       if (res.data.data?.length) setBestSellersData(res.data.data.map((b: Record<string, unknown>) => ({
-        id: b.id, title: b.title as string, image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+        id: b.id, title: b.title as string, image: resolveBookImage(b.image as string, b.title as string),
         price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
       })))
     }).catch(() => {})
 
     api.get('/books?sort=createdAt&order=desc&limit=4').then(res => {
       if (res.data.data?.length) setNewBooksData(res.data.data.map((b: Record<string, unknown>) => ({
-        id: b.id, title: b.title as string, image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+        id: b.id, title: b.title as string, image: resolveBookImage(b.image as string, b.title as string),
         price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
       })))
     }).catch(() => {})

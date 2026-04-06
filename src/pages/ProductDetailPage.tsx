@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import BookCard from '../components/BookCard'
 import { useCart } from '../context/CartContext'
 import api from '../lib/api'
+import { resolveBookImage } from '../lib/bookImage'
 
 const booksData = [
   {
@@ -82,7 +83,7 @@ export default function ProductDetailPage() {
             author: b.author,
             price: b.price,
             originalPrice: b.originalPrice || b.price,
-            image: b.image || 'https://placehold.co/420x520/e2e8f0/475569?text=Book',
+            image: resolveBookImage(b.image, b.title),
             category: b.category?.name || 'Sách',
             publisher: b.publisher || '',
             year: b.publishedYear?.toString() || '',
@@ -100,7 +101,7 @@ export default function ProductDetailPage() {
               setRelatedBooks(relRes.data.data.filter((rb: { id: number }) => rb.id !== b.id).slice(0, 5).map((rb: { id: number; title: string; image?: string; price: number; originalPrice?: number }) => ({
                 id: rb.id,
                 title: rb.title,
-                image: rb.image || 'https://placehold.co/260x340/e2e8f0/475569?text=Book',
+                image: resolveBookImage(rb.image, rb.title),
                 price: rb.price,
                 originalPrice: rb.originalPrice,
               })))

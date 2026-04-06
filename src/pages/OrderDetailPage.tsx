@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Truck, MapPin, CreditCard, ClipboardText, ArrowsClockwise, Check } from '@phosphor-icons/react'
 import { useCart } from '../context/CartContext'
 import api from '../lib/api'
+import { resolveBookImage } from '../lib/bookImage'
 
 const defaultOrderData = {
   id: 'BST-123456',
@@ -59,7 +60,7 @@ export default function OrderDetailPage() {
               id: i.id || i.bookId,
               title: i.title,
               author: i.author || '',
-              image: i.image || 'https://placehold.co/80x110/e2e8f0/475569?text=Book',
+              image: resolveBookImage(i.image, i.title),
               price: i.price,
               quantity: i.quantity,
             })) || [],

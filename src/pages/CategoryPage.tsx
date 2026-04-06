@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { FunnelSimple } from '@phosphor-icons/react'
 import BookCard from '../components/BookCard'
 import api from '../lib/api'
+import { resolveBookImage } from '../lib/bookImage'
 
 const genres = ['Tất cả', 'Văn học VN', 'Khoa học', 'Truyện tranh', 'Lịch sử', 'Ngoại ngữ', 'Kinh tế', 'Tâm lý', 'Thiếu nhi']
 
@@ -33,7 +34,9 @@ const allBooks = [
 export default function CategoryPage() {
   const [searchParams] = useSearchParams()
   const searchQuery = searchParams.get('search') || ''
-  const [books, setBooks] = useState(allBooks)
+  const [books, setBooks] = useState(
+    allBooks.map((book) => ({ ...book, image: resolveBookImage(book.image, book.title) })),
+  )
   const [selectedGenre, setSelectedGenre] = useState('Tất cả')
   const [selectedPublishers, setSelectedPublishers] = useState<string[]>([])
   const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null)
@@ -46,7 +49,7 @@ export default function CategoryPage() {
       if (res.data.data?.length) {
         setBooks(res.data.data.map((b: Record<string, unknown>) => ({
           id: b.id, title: b.title as string, genre: (b.category as Record<string, string>)?.name || 'Khác', publisher: (b.publisher as string) || 'Khác',
-          image: (b.image as string) || `https://placehold.co/220x300/e2e8f0/475569?text=${encodeURIComponent((b.title as string).slice(0, 10))}`,
+          image: resolveBookImage(b.image as string, b.title as string),
           price: b.price as number, originalPrice: (b.originalPrice as number) || (b.price as number), discount: (b.discount as number) || 0,
         })))
       }

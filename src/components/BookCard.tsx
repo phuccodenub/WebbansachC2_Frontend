@@ -1,6 +1,8 @@
 import { ShoppingCart } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { useCart } from '../context/CartContext'
+import { buildBookImageUrl, resolveBookImage } from '../lib/bookImage'
 
 interface BookCardProps {
   id: number
@@ -13,6 +15,7 @@ interface BookCardProps {
 
 export default function BookCard({ id, title, image, price, originalPrice, discount }: BookCardProps) {
   const { addToCart } = useCart()
+  const [imgSrc, setImgSrc] = useState(resolveBookImage(image, title))
   
   const formatPrice = (value: number) =>
     value.toLocaleString('vi-VN') + 'đ'
@@ -41,9 +44,10 @@ export default function BookCard({ id, title, image, price, originalPrice, disco
       {/* Image */}
       <div className="relative aspect-[3/4] overflow-hidden bg-bg-light">
         <img
-          src={image}
+          src={imgSrc}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          onError={() => setImgSrc(buildBookImageUrl(title))}
         />
         {discount && (
           <span className="absolute top-2 left-2 bg-accent text-white text-xs font-bold px-2 py-0.5 rounded">
