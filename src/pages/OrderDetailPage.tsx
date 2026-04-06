@@ -94,7 +94,7 @@ export default function OrderDetailPage() {
 
   const handleBuyAgain = () => {
     orderData.items.forEach(item => {
-      addToCart({ id: item.id, title: item.title, price: item.price, quantity: item.quantity, image: item.image })
+      addToCart({ id: item.id, title: item.title, price: item.price, quantity: item.quantity, image: item.image, originalPrice: item.price })
     })
     navigate('/cart')
   }
